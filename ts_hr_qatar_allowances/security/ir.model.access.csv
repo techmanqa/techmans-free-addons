@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_allowance_user,hr.allowance.user,model_hr_allowance,hr.group_hr_user,1,1,1,1
+access_hr_allowance_manager,hr.allowance.manager,model_hr_allowance,hr.group_hr_manager,1,1,1,1
+access_hr_employee_allowance_user,hr.employee.allowance.user,model_hr_employee_allowance,hr.group_hr_user,1,1,1,1
+access_hr_employee_allowance_manager,hr.employee.allowance.manager,model_hr_employee_allowance,hr.group_hr_manager,1,1,1,1
+access_hr_allowance_type_user,hr.allowance.type.user,model_hr_allowance_type,hr.group_hr_user,1,1,1,1
+access_hr_allowance_type_manager,hr.allowance.type.manager,model_hr_allowance_type,hr.group_hr_manager,1,1,1,1

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- I. Core Salary Components -->
+    <record id="allowance_type_core" model="hr.allowance.type">
+        <field name="name">Core Salary Components</field>
+        <field name="type_code">100</field>
+        <field name="description">Fixed, contractual parts of pay that form the foundation for all payroll and legal calculations.</field>
+        <field name="active">True</field>
+    </record>
+
+    <!-- II. Living & Accommodation -->
+    <record id="allowance_type_living" model="hr.allowance.type">
+        <field name="name">Living and Accommodation</field>
+        <field name="type_code">200</field>
+        <field name="description">Allowances that cover employee housing, utilities, and living conditions.</field>
+        <field name="active">True</field>
+    </record>
+
+    <!-- III. Transportation & Mobility -->
+    <record id="allowance_type_transport" model="hr.allowance.type">
+        <field name="name">Transportation and Mobility</field>
+        <field name="type_code">300</field>
+        <field name="description">Allowances for commuting, travel, or maintaining personal or company vehicles.</field>
+        <field name="active">True</field>
+    </record>
+
+    <!-- IV. Daily Life & Personal Expenses -->
+    <record id="allowance_type_personal" model="hr.allowance.type">
+        <field name="name">Daily Life and Personal Expenses</field>
+        <field name="type_code">400</field>
+        <field name="description">Covering day-to-day personal needs such as food, communication, or clothing.</field>
+        <field name="active">True</field>
+    </record>
+
+    <!-- V. Work & Role-Based -->
+    <record id="allowance_type_work_role" model="hr.allowance.type">
+        <field name="name">Work and Role-Based</field>
+        <field name="type_code">500</field>
+        <field name="description">Linked to the employee’s specific duties, work environment, or skill level.</field>
+        <field name="active">True</field>
+    </record>
+
+    <!-- VI. Family & Dependents -->
+    <record id="allowance_type_family" model="hr.allowance.type">
+        <field name="name">Family and Dependents</field>
+        <field name="type_code">600</field>
+        <field name="description">Support for employees with dependents, covering family, education, and medical needs.</field>
+        <field name="active">True</field>
+    </record>
+
+    <!-- VII. Special, Occasion-Based & Performance -->
+    <record id="allowance_type_special" model="hr.allowance.type">
+        <field name="name">Special, Occasion-Based and Performance</field>
+        <field name="type_code">700</field>
+        <field name="description">Occasional or bonus-based allowances tied to performance, holidays, or relocation.</field>
+        <field name="active">True</field>
+    </record>
+
+    <!-- VIII. Optional / Sector-Specific -->
+    <record id="allowance_type_optional" model="hr.allowance.type">
+        <field name="name">Optional / Sector-Specific</field>
+        <field name="type_code">800</field>
+        <field name="description">Additional or industry-specific allowances offered depending on company policy or work type.</field>
+        <field name="active">True</field>
+    </record>
+
+</odoo>

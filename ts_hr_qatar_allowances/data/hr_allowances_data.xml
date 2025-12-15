@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- I. Core Salary Components -->
+    <record id="allowance_fixed" model="hr.allowance">
+        <field name="name">Fixed Allowance</field>
+        <field name="description">Lump-sum monthly fixed amount in addition to base salary.</field>
+        <field name="code">101</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="allowance_type_core"/>
+        <field name="active">True</field>
+    </record>
+
+    <!-- II. Living and Accommodation -->
+    <record id="allowance_housing" model="hr.allowance">
+        <field name="name">Housing Allowance</field>
+        <field name="description">Covers rent or accommodation expenses, may depend on marital status.</field>
+        <field name="code">201</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_living"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_utilities" model="hr.allowance">
+        <field name="name">Utilities Allowance</field>
+        <field name="description">Covers utilities like electricity, water, and gas.</field>
+        <field name="code">202</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_living"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_furniture" model="hr.allowance">
+        <field name="name">Furniture Allowance</field>
+        <field name="description">Allowance for furnishing accommodation (common in UAE, KSA).</field>
+        <field name="code">203</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_living"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_maintenance" model="hr.allowance">
+        <field name="name">Maintenance Allowance</field>
+        <field name="description">Allowance for maintenance of accommodation or housing facilities.</field>
+        <field name="code">204</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_living"/>
+        <field name="active">True</field>
+    </record>
+
+    <!-- III. Transportation and Mobility -->
+    <record id="allowance_transport" model="hr.allowance">
+        <field name="name">Transportation Allowance</field>
+        <field name="description">Covers daily commuting or private car usage.</field>
+        <field name="code">301</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_transport"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_fuel" model="hr.allowance">
+        <field name="name">Fuel Allowance</field>
+        <field name="description">Allowance to cover cost of fuel for commuting.</field>
+        <field name="code">302</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_transport"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_vehicle" model="hr.allowance">
+        <field name="name">Vehicle / Car Allowance</field>
+        <field name="description">Substitute for company car; may include maintenance.</field>
+        <field name="code">303</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_transport"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_travel" model="hr.allowance">
+        <field name="name">Travel / Ticket Allowance</field>
+        <field name="description">For home-country travel or leave ticket (annual or prorated).</field>
+        <field name="code">304</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_transport"/>
+        <field name="active">True</field>
+    </record>
+
+    <!-- IV. Daily Life and Personal Expenses -->
+    <record id="allowance_food" model="hr.allowance">
+        <field name="name">Food / Meal Allowance</field>
+        <field name="description">Covers meals or food expenses (cash or canteen).</field>
+        <field name="code">401</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_personal"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_communication" model="hr.allowance">
+        <field name="name">Communication Allowance</field>
+        <field name="description">Covers mobile and internet usage costs.</field>
+        <field name="code">402</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_personal"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_clothing" model="hr.allowance">
+        <field name="name">Clothing / Uniform Allowance</field>
+        <field name="description">For uniforms or clothing related to work.</field>
+        <field name="code">403</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_personal"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_personal" model="hr.allowance">
+        <field name="name">Personal Allowance</field>
+        <field name="description">General-purpose allowance for personal needs.</field>
+        <field name="code">404</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_personal"/>
+        <field name="active">True</field>
+    </record>
+
+    <!-- V. Work and Role-Based -->
+    <record id="allowance_technical" model="hr.allowance">
+        <field name="name">Technical / Skill Allowance</field>
+        <field name="description">Allowance for technical expertise or certifications.</field>
+        <field name="code">501</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_work_role"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_project" model="hr.allowance">
+        <field name="name">Project / Site Allowance</field>
+        <field name="description">Allowance for site, field, or offshore work.</field>
+        <field name="code">502</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_work_role"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_risk" model="hr.allowance">
+        <field name="name">Risk / Hazard Allowance</field>
+        <field name="description">Allowance for hazardous or risky working conditions.</field>
+        <field name="code">503</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_work_role"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_oncall" model="hr.allowance">
+        <field name="name">On-Call Allowance</field>
+        <field name="description">Allowance for being available outside normal work hours.</field>
+        <field name="code">504</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_work_role"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_shift" model="hr.allowance">
+        <field name="name">Shift Allowance</field>
+        <field name="description">Allowance for employees working rotating or night shifts.</field>
+        <field name="code">505</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_work_role"/>
+        <field name="active">True</field>
+    </record>
+
+    <!-- VI. Family and Dependents -->
+    <record id="allowance_family" model="hr.allowance">
+        <field name="name">Family Allowance</field>
+        <field name="description">Allowance for supporting spouse or dependents.</field>
+        <field name="code">601</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_family"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_child_education" model="hr.allowance">
+        <field name="name">Child Education Allowance</field>
+        <field name="description">Covers schooling or educational fees for dependents.</field>
+        <field name="code">602</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_family"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_dependent_visa" model="hr.allowance">
+        <field name="name">Dependent Visa Allowance</field>
+        <field name="description">Covers dependents' residence visa fees.</field>
+        <field name="code">603</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_family"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_medical" model="hr.allowance">
+        <field name="name">Medical / Insurance Allowance</field>
+        <field name="description">Covers healthcare or insurance costs for self and family.</field>
+        <field name="code">604</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_family"/>
+        <field name="active">True</field>
+    </record>
+
+    <!-- VII. Special / Occasion-Based / Performance -->
+    <record id="allowance_eid" model="hr.allowance">
+        <field name="name">Eid / Ramadan Allowance</field>
+        <field name="description">Given during Ramadan or religious festivals.</field>
+        <field name="code">701</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_special"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_performance" model="hr.allowance">
+        <field name="name">Performance Bonus</field>
+        <field name="description">Based on employee or company performance.</field>
+        <field name="code">702</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_special"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_relocation" model="hr.allowance">
+        <field name="name">Joining / Relocation Allowance</field>
+        <field name="description">Covers relocation or joining expenses for new hires.</field>
+        <field name="code">703</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_special"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_eosb" model="hr.allowance">
+        <field name="name">End-of-Service Benefit (EOSB)</field>
+        <field name="description">End-of-service benefit or gratuity entitlement.</field>
+        <field name="code">704</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_special"/>
+        <field name="active">True</field>
+    </record>
+
+    <!-- VIII. Optional / Sector-Specific -->
+    <record id="allowance_tool" model="hr.allowance">
+        <field name="name">Tool / Equipment Allowance</field>
+        <field name="description">Allowance for tools, kits, or equipment required for work.</field>
+        <field name="code">801</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_optional"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_internet" model="hr.allowance">
+        <field name="name">Internet Allowance (WFH)</field>
+        <field name="description">Allowance for internet costs when working remotely.</field>
+        <field name="code">802</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_optional"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_cola" model="hr.allowance">
+        <field name="name">Cost of Living Allowance (COLA)</field>
+        <field name="description">Allowance to offset cost-of-living differences in regions.</field>
+        <field name="code">803</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_optional"/>
+        <field name="active">True</field>
+    </record>
+
+    <record id="allowance_training" model="hr.allowance">
+        <field name="name">Training Allowance</field>
+        <field name="description">Allowance to support professional development or training.</field>
+        <field name="code">804</field>
+        <field name="amount">0.00</field>
+        <field name="allowance_type_id" ref="ts_hr_qatar_allowances.allowance_type_optional"/>
+        <field name="active">True</field>
+    </record>
+
+</odoo>

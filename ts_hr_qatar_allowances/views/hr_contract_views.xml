@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hr_employee_form_inherit_allowance_tab" model="ir.ui.view">
+        <field name="name">hr.employee.form.allowance.tab</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//page[@name='payroll_information']" position="after">
+                <page name="allowances" string="Allowances" groups="hr.group_hr_manager">
+
+                    <field name="allowance_ids">
+                        <list editable="bottom">
+                            <field name="allowance_id"/>
+                            <field name="code"/>
+                            <field name="allowance_type_id"/>
+                            <field name="amount"/>
+                        </list>
+                    </field>
+                    <group>
+                        <field name="allowance_total" readonly="1"/>
+                    </group>
+
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

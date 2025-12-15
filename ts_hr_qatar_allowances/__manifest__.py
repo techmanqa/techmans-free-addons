@@ -1,0 +1,23 @@
+{
+    'name': 'HR Qatar Allowances',
+    'version': '19.0.1.0.2',
+    'category': 'Human Resources',
+    'summary': 'Manage Employee Allowances',
+    'description': 'This module allows you to define and manage different types of employee allowances.',
+    'author': 'Techman Solutions',
+    'website': 'https://techman.qa',
+    'license': 'LGPL-3',
+    'depends': ['hr','hr_payroll', 'hr_contract_salary' ],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/hr_allowance_type_data.xml',
+        'data/hr_allowances_data.xml',
+        'views/hr_allowances_views.xml',
+        'views/hr_allowance_type_views.xml',
+        'views/hr_contract_salary_totals.xml',
+        'views/hr_contract_views.xml',
+    ],
+    'images': ['static/description/icon.png'],  # 👈 module icon
+    'installable': True,
+    'application': False,
+}
