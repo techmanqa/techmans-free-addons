@@ -19,7 +19,7 @@
         'views/hr_contract_salary_totals.xml',
         'views/hr_contract_views.xml',
     ],
-    'images': ['static/description/icon.png', 'static/description/banner.png'],
+    'images': ['static/description/banner.png'],
     'installable': True,
     'application': False,
 }
