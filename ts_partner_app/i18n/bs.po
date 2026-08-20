@@ -1,0 +1,3838 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ts_partner_app
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e-20251208\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-19 09:01+0000\n"
+"PO-Revision-Date: 2026-08-19 09:01+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: bs_BA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid " Message: %s"
+msgstr " Poruka: %s"
+
+#. module: ts_partner_app
+#: model:ir.actions.report,print_report_name:ts_partner_app.action_report_client_credentials
+msgid "'Client Credentials'"
+msgstr "'Kredencijali klijenta'"
+
+#. module: ts_partner_app
+#: model:ir.actions.report,print_report_name:ts_partner_app.action_report_client_infrastructure
+msgid "'Client Infrastructure Report'"
+msgstr "'Izvještaj o infrastrukturi klijenta'"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+msgid ""
+")<br/>\n"
+"                                        <span class=\"text-muted\">Access Token:</span>"
+msgstr ""
+")<br/>\n"
+"                                        <span class=\"text-muted\">Pristupni token:</span>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                        <span class=\"text-muted\">DR Plan Documented:</span>"
+msgstr ""
+"<br/>\n"
+"                                        <span class=\"text-muted\">Plan oporavka dokumentovan:</span>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                        <span class=\"text-muted\">Decision Maker:</span>"
+msgstr ""
+"<br/>\n"
+"                                        <span class=\"text-muted\">Osoba koja odlučuje:</span>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                        <span class=\"text-muted\">Emergency Contact:</span>"
+msgstr ""
+"<br/>\n"
+"                                        <span class=\"text-muted\">Kontakt za hitne slučajeve:</span>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                        <span class=\"text-muted\">Gross Margin:</span>"
+msgstr ""
+"<br/>\n"
+"                                        <span class=\"text-muted\">Bruto marža:</span>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                        <span class=\"text-muted\">Monitoring Active:</span>"
+msgstr ""
+"<br/>\n"
+"                                        <span class=\"text-muted\">Nadzor aktivan:</span>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                        <span class=\"text-muted\">Monthly Billing:</span>"
+msgstr ""
+"<br/>\n"
+"                                        <span class=\"text-muted\">Mjesečno fakturisanje:</span>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+msgid ""
+"<br/>\n"
+"                                        <span class=\"text-muted\">Password:</span>"
+msgstr ""
+"<br/>\n"
+"                                        <span class=\"text-muted\">Lozinka:</span>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+msgid ""
+"<br/>\n"
+"                                        <span class=\"text-muted\">User:</span>"
+msgstr ""
+"<br/>\n"
+"                                        <span class=\"text-muted\">Korisnik:</span>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                        <strong>Campaign:</strong>"
+msgstr ""
+"<br/>\n"
+"                                        <strong>Kampanja:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                        <strong>Last Upgrade:</strong>"
+msgstr ""
+"<br/>\n"
+"                                        <strong>Zadnja nadogradnja:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                        <strong>Latest Version:</strong>"
+msgstr ""
+"<br/>\n"
+"                                        <strong>Najnovija verzija:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                        <strong>Licenses:</strong>"
+msgstr ""
+"<br/>\n"
+"                                        <strong>Licence:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                        <strong>Tags:</strong>"
+msgstr ""
+"<br/>\n"
+"                                        <strong>Oznake:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                    <strong>Branch:</strong>"
+msgstr ""
+"<br/>\n"
+"                                    <strong>Grana:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                    <strong>Database:</strong>"
+msgstr ""
+"<br/>\n"
+"                                    <strong>Baza podataka:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                    <strong>GitHub Branch:</strong>"
+msgstr ""
+"<br/>\n"
+"                                    <strong>GitHub grana:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                    <strong>GitHub Repository:</strong>"
+msgstr ""
+"<br/>\n"
+"                                    <strong>GitHub repozitorij:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                    <strong>Provider:</strong>"
+msgstr ""
+"<br/>\n"
+"                                    <strong>Provajder:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                    <strong>SSH:</strong>"
+msgstr ""
+"<br/>\n"
+"                                    <strong>SSH:</strong>"
+
+#. module: ts_partner_app
+#: model:mail.template,body_html:ts_partner_app.mail_template_asset_expiry
+msgid ""
+"<div style=\"margin:0px;padding:0px;font-size:14px;\">\n"
+"    <p>Hello <t t-out=\"object.user_id.name or ''\"/>,</p>\n"
+"    <p>\n"
+"        The asset <strong t-out=\"object.name\"/>\n"
+"        (<t t-out=\"dict(object._fields['type']._description_selection(object.env)).get(object.type, object.type)\"/>)\n"
+"        for customer <strong t-out=\"object.partner_id.name or ''\"/> is approaching its end date.\n"
+"    </p>\n"
+"    <ul>\n"
+"        <li>End date: <t t-out=\"object.end_date or ''\"/></li>\n"
+"        <li>Monthly billing: <t t-out=\"object.monthly_billing_client or 0\"/> <t t-out=\"object.currency_id.name or ''\"/></li>\n"
+"    </ul>\n"
+"    <p>Please handle the renewal in time.</p>\n"
+"</div>\n"
+msgstr ""
+"<div style=\"margin:0px;padding:0px;font-size:14px;\">\n"
+"    <p>Zdravo <t t-out=\"object.user_id.name or ''\"/>,</p>\n"
+"    <p>\n"
+"        Sredstvo <strong t-out=\"object.name\"/>\n"
+"        (<t t-out=\"dict(object._fields['type']._description_selection(object.env)).get(object.type, object.type)\"/>)\n"
+"        za klijenta <strong t-out=\"object.partner_id.name or ''\"/> se približava svom krajnjem datumu.\n"
+"    </p>\n"
+"    <ul>\n"
+"        <li>Krajnji datum: <t t-out=\"object.end_date or ''\"/></li>\n"
+"        <li>Mjesečno fakturisanje: <t t-out=\"object.monthly_billing_client or 0\"/> <t t-out=\"object.currency_id.name or ''\"/></li>\n"
+"    </ul>\n"
+"    <p>Molimo obradite obnovu na vrijeme.</p>\n"
+"</div>\n"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_kanban
+msgid "<i class=\"fa fa-exclamation-triangle\"/> High Risk"
+msgstr "<i class=\"fa fa-exclamation-triangle\"/> Visok rizik"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid ""
+"<i class=\"fa fa-info-circle mr-1\"/>\n"
+"                                Proper documentation of backup checks and disaster recovery plans provides essential legal protection for your managed services."
+msgstr ""
+"<i class=\"fa fa-info-circle mr-1\"/>\n"
+"                                Pravilno dokumentovanje provjera sigurnosne kopije i planova oporavka od katastrofe pruža ključnu pravnu zaštitu za vaše usluge upravljanja."
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/demo_import_wizard.py:0
+msgid ""
+"<p>This creates a few demo clients with sample domains, hosting, SSL and "
+"server assets (some expiring soon, some overdue, one with negative margin) "
+"so you can explore the Dashboard, Financial Overview and expiry "
+"reminders.</p><p>Running it again will not duplicate data — use <b>Remove "
+"Demo Data</b> first if you want a clean slate.</p>"
+msgstr ""
+"<p>Ovo kreira nekoliko demo klijenata sa uzorkom domena, hostinga, SSL i "
+"server sredstava (neka uskoro ističu, neka su zakašnjela, jedno sa "
+"negativnom maržom) kako biste mogli istražiti Kontrolnu tablu, Finansijski "
+"pregled i podsjetnike za istek.</p><p>Ponovno pokretanje neće duplirati "
+"podatke — koristite <b>Ukloni demo podatke</b> prvo ako želite čisto "
+"stanje.</p>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+msgid "<small class=\"text-muted\">(secondary)</small>"
+msgstr "<small class=\"text-muted\">(sekundarno)</small>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.res_partner_view_form_inherit_asset
+msgid ""
+"<span class=\"o_stat_text\" invisible=\"not infrastructure_id\">Infrastructure</span>\n"
+"                        <span class=\"o_stat_text\" invisible=\"infrastructure_id\">Add Infrastructure</span>"
+msgstr ""
+"<span class=\"o_stat_text\" invisible=\"not infrastructure_id\">Infrastruktura</span>\n"
+"                        <span class=\"o_stat_text\" invisible=\"infrastructure_id\">Dodaj infrastrukturu</span>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<strong>Backup &amp; Risk</strong><br/>\n"
+"                                        <span class=\"text-muted\">Last Backup Check:</span>"
+msgstr ""
+"<strong>Sigurnosna kopija i rizik</strong><br/>\n"
+"                                        <span class=\"text-muted\">Zadnja provjera sigurnosne kopije:</span>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<strong>Cost &amp; Margin</strong><br/>\n"
+"                                        <span class=\"text-muted\">Infra Monthly Cost:</span>"
+msgstr ""
+"<strong>Troškovi i marža</strong><br/>\n"
+"                                        <span class=\"text-muted\">Mjesečni trošak infrastrukture:</span>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "<strong>Current Version:</strong>"
+msgstr "<strong>Trenutna verzija:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "<strong>Custom Modules</strong>"
+msgstr "<strong>Prilagođeni moduli</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "<strong>Disaster recovery documented:</strong>"
+msgstr "<strong>Oporavak od katastrofe dokumentovan:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_asset_detail
+msgid "<strong>End date:</strong>"
+msgstr "<strong>Krajnji datum:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+msgid "<strong>GitHub</strong>"
+msgstr "<strong>GitHub</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "<strong>Host / IP:</strong>"
+msgstr "<strong>Host / IP:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "<strong>Native Odoo Apps Used</strong><br/>"
+msgstr "<strong>Korištene nativne Odoo aplikacije</strong><br/>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "<strong>Odoo Login URL:</strong>"
+msgstr "<strong>URL za Odoo prijavu:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+msgid "<strong>Odoo Login</strong>"
+msgstr "<strong>Odoo prijava</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_asset_detail
+msgid "<strong>Odoo version:</strong>"
+msgstr "<strong>Odoo verzija:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "<strong>Project URL:</strong>"
+msgstr "<strong>URL projekta:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+msgid ""
+"<strong>Restricted document.</strong> Contains live credentials. Managers only —\n"
+"                            do not forward or store outside a secure location."
+msgstr ""
+"<strong>Ograničen dokument.</strong> Sadrži važeće kredencijale. Samo za menadžere —\n"
+"                            ne prosljeđujte niti čuvajte van sigurne lokacije."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "<strong>Sale Order:</strong>"
+msgstr "<strong>Prodajni nalog:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+msgid "<strong>Server SSH</strong>"
+msgstr "<strong>Server SSH</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_asset_detail
+msgid "<strong>Start date:</strong>"
+msgstr "<strong>Početni datum:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_asset_detail
+msgid "<strong>Subscription:</strong>"
+msgstr "<strong>Pretplata:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<strong>Technical Contacts</strong><br/>\n"
+"                                        <span class=\"text-muted\">IT Contact:</span>"
+msgstr ""
+"<strong>Tehnički kontakti</strong><br/>\n"
+"                                        <span class=\"text-muted\">IT kontakt:</span>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_asset_detail
+msgid "<strong>Type:</strong>"
+msgstr "<strong>Tip:</strong>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_asset_detail
+msgid "<strong>URL:</strong>"
+msgstr "<strong>URL:</strong>"
+
+#. module: ts_partner_app
+#: model:ir.model.constraint,message:ts_partner_app.constraint_partner_asset_credential_log_asset_or_infra_required
+msgid ""
+"A credential log entry must be linked to an asset or an infrastructure "
+"profile."
+msgstr ""
+"Zapis u dnevniku kredencijala mora biti povezan sa sredstvom ili profilom "
+"infrastrukture."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__github_token
+msgid "Access Token"
+msgstr "Pristupni token"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__github_token_encrypted
+msgid "Access Token (encrypted)"
+msgstr "Pristupni token (šifrovano)"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_accounting
+msgid "Accounting"
+msgstr "Računovodstvo"
+
+#. module: ts_partner_app
+#: model:project.project,name:ts_partner_app.demo_project_acme
+msgid "Acme Retail Group"
+msgstr ""
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_credential_log__action
+msgid "Action"
+msgstr "Akcija"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__message_needaction
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__message_needaction
+msgid "Action Needed"
+msgstr "Potrebna akcija"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "Active Assets"
+msgstr "Aktivna sredstva"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__activity_ids
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__activity_ids
+msgid "Activities"
+msgstr "Aktivnosti"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__activity_exception_decoration
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Oznaka izuzetka aktivnosti"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__activity_state
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__activity_state
+msgid "Activity State"
+msgstr "Status aktivnosti"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__activity_type_icon
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Ikona tipa aktivnosti"
+
+#. module: ts_partner_app
+#: model_terms:ir.actions.act_window,help:ts_partner_app.partner_infrastructure_action
+msgid "Add a client's infrastructure profile!"
+msgstr "Dodajte profil infrastrukture klijenta!"
+
+#. module: ts_partner_app
+#: model_terms:ir.actions.act_window,help:ts_partner_app.partner_asset_native_module_action
+msgid "Add a native Odoo app!"
+msgstr "Dodajte nativnu Odoo aplikaciju!"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_form
+msgid "Additional information..."
+msgstr "Dodatne informacije..."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_native_module__name
+msgid "App Name"
+msgstr "Naziv aplikacije"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_appointments
+msgid "Appointments"
+msgstr "Termini"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_credential_log__asset_id
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_custom_module__asset_id
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__asset_id
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "Asset"
+msgstr "Sredstvo"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_graph
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_pivot
+msgid "Asset Analysis"
+msgstr "Analiza sredstava"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_calendar
+msgid "Asset Expiries"
+msgstr "Isteci sredstava"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "Asset Expiry Reminder"
+msgstr "Podsjetnik za istek sredstva"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+msgid "Asset Logins"
+msgstr "Prijave sredstva"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Asset Name (e.g. example.com)"
+msgstr "Naziv sredstva (npr. example.com)"
+
+#. module: ts_partner_app
+#: model:product.template,name:ts_partner_app.product_asset_renewal_product_template
+msgid "Asset Renewal Service"
+msgstr "Usluga obnove sredstva"
+
+#. module: ts_partner_app
+#: model:mail.template,subject:ts_partner_app.mail_template_asset_expiry
+msgid "Asset expiring soon: {{ object.name }}"
+msgstr "Sredstvo uskoro ističe: {{ object.name }}"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "Assets Overview"
+msgstr "Pregled sredstava"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__message_attachment_count
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__message_attachment_count
+msgid "Attachment Count"
+msgstr "Broj priloga"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__attachment_ids
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Attachments"
+msgstr "Prilozi"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_custom_module__author
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "Author"
+msgstr "Autor"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Backup & Risk"
+msgstr "Sigurnosna kopija i rizik"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__backup_cost
+msgid "Backup Cost"
+msgstr "Trošak sigurnosne kopije"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Backup Monitoring"
+msgstr "Nadzor sigurnosne kopije"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "Backup Stale"
+msgstr "Zastarjela sigurnosna kopija"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__backup_verified
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "Backup Verified"
+msgstr "Sigurnosna kopija provjerena"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "Backup not verified in 60+ days"
+msgstr "Sigurnosna kopija nije provjerena 60+ dana"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Billing & Margin"
+msgstr "Fakturisanje i marža"
+
+#. module: ts_partner_app
+#: model:project.project,name:ts_partner_app.demo_project_blueharbor
+msgid "Blue Harbor Logistics"
+msgstr ""
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "By Stage"
+msgstr "Po fazi"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_crm
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_module_crm
+msgid "CRM"
+msgstr "CRM"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__campaign_id
+msgid ""
+"CRM/marketing campaign this asset is linked to (e.g. the campaign that "
+"brought in this client or this upsell)."
+msgstr ""
+"CRM/marketinška kampanja na koju je ovo sredstvo povezano (npr. kampanja "
+"koja je dovela ovog klijenta ili ovaj upsell)."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__campaign_id
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_search
+msgid "Campaign"
+msgstr "Kampanja"
+
+#. module: ts_partner_app
+#: model:res.groups,comment:ts_partner_app.group_partner_asset_user
+msgid ""
+"Can view, create and edit client assets. Cannot delete assets, manage "
+"stages, or view stored credentials."
+msgstr ""
+"Može pregledati, kreirati i uređivati sredstva klijenata. Ne može brisati "
+"sredstva, upravljati fazama niti pregledati sačuvane kredencijale."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset_stage__color
+msgid "Cards in this stage take this color on the Kanban board."
+msgstr "Kartice u ovoj fazi dobijaju ovu boju na Kanban tabli."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Check Now"
+msgstr "Provjeri sada"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__partner_id
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__partner_id
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_form
+msgid "Client"
+msgstr "Klijent"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_project_task__asset_id
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.view_task_search_form_inherit_asset
+msgid "Client Asset"
+msgstr "Sredstvo klijenta"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.utm_campaign_view_form_inherit_asset
+msgid "Client Assets"
+msgstr "Sredstva klijenta"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_utm_campaign__asset_count
+msgid "Client Assets Count"
+msgstr "Broj sredstava klijenta"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+msgid "Client Credentials"
+msgstr "Kredencijali klijenta"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__client_it_contact
+msgid "Client IT contact"
+msgstr "IT kontakt klijenta"
+
+#. module: ts_partner_app
+#: model:ir.actions.act_window,name:ts_partner_app.partner_infrastructure_action
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_form
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_list
+msgid "Client Infrastructure"
+msgstr "Infrastruktura klijenta"
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_partner_infrastructure
+msgid "Client Infrastructure Profile"
+msgstr "Profil infrastrukture klijenta"
+
+#. module: ts_partner_app
+#: model:ir.actions.report,name:ts_partner_app.action_report_client_infrastructure
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "Client Infrastructure Report"
+msgstr "Izvještaj o infrastrukturi klijenta"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__client_project_id
+msgid "Client Project"
+msgstr "Projekat klijenta"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__client_project_task_count
+msgid "Client Project Task Count"
+msgstr "Broj zadataka projekta klijenta"
+
+#. module: ts_partner_app
+#: model:ir.actions.act_window,name:ts_partner_app.partner_asset_project_action
+msgid "Client Projects"
+msgstr "Projekti klijenata"
+
+#. module: ts_partner_app
+#: model:project.project,name:ts_partner_app.project_client_tasks
+msgid "Client Tasks"
+msgstr "Zadaci klijenata"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Client Technical Contacts"
+msgstr "Tehnički kontakti klijenta"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_project_task__asset_id
+msgid "Client asset (domain, hosting, server…) this task relates to."
+msgstr ""
+"Sredstvo klijenta (domena, hosting, server…) na koje se ovaj zadatak odnosi."
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_partner_asset
+msgid "Client-Related Asset"
+msgstr "Sredstvo vezano za klijenta"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.demo_import_wizard_view_form
+msgid "Close"
+msgstr "Zatvori"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset__state__closed
+#: model:partner.asset.stage,name:ts_partner_app.stage_closed
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_search
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_asset_detail
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_my_assets
+msgid "Closed"
+msgstr "Zatvoreno"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__code_repository_branch
+msgid "Code Repository Branch"
+msgstr "Grana repozitorija koda"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_tag__color
+msgid "Color"
+msgstr "Boja"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__color
+msgid "Color Index"
+msgstr "Indeks boje"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__company_id
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__company_id
+msgid "Company"
+msgstr "Kompanija"
+
+#. module: ts_partner_app
+#: model:ir.ui.menu,name:ts_partner_app.partner_asset_menu_config
+msgid "Configuration"
+msgstr "Konfiguracija"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid ""
+"Connect to the URL to verify uptime and read the real SSL certificate "
+"expiry."
+msgstr ""
+"Povezuje se na URL kako bi provjerio dostupnost i pročitao stvarni datum "
+"isteka SSL certifikata."
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Cost & Margin"
+msgstr "Troškovi i marža"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "Could not load the dashboard data."
+msgstr "Nije moguće učitati podatke kontrolne table."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Create Renewal Quote"
+msgstr "Kreiraj ponudu za obnovu"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Create Task"
+msgstr "Kreiraj zadatak"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Create a draft Sale Order for the renewal of this asset."
+msgstr "Kreira nacrt prodajnog naloga za obnovu ovog sredstva."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Create a follow-up task for this asset."
+msgstr "Kreira zadatak za praćenje ovog sredstva."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__create_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_credential_log__create_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_custom_module__create_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_native_module__create_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_stage__create_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_tag__create_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__create_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_task__create_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__create_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard_line__create_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_ts_partner_app_demo_import_wizard__create_uid
+msgid "Created by"
+msgstr "Kreirao"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__create_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_credential_log__create_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_custom_module__create_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_native_module__create_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_stage__create_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_tag__create_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__create_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_task__create_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__create_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard_line__create_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_ts_partner_app_demo_import_wizard__create_date
+msgid "Created on"
+msgstr "Kreirano"
+
+#. module: ts_partner_app
+#: model_terms:ir.actions.act_window,help:ts_partner_app.partner_asset_project_action
+msgid ""
+"Created via the \"New Client Project\" button on an asset — for a real\n"
+"                multi-task engagement (onboarding, a migration) as opposed to a single\n"
+"                follow-up task."
+msgstr ""
+"Kreirano putem dugmeta \"Novi projekat klijenta\" na sredstvu — za stvaran\n"
+"                višezadatni angažman (uvođenje, migracija) za razliku od jednog\n"
+"                zadatka praćenja."
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_partner_asset_credential_log
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__credential_log_ids
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__credential_log_ids
+msgid "Credential Access Log"
+msgstr "Dnevnik pristupa kredencijalima"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_form
+msgid "Credential Log"
+msgstr "Dnevnik kredencijala"
+
+#. module: ts_partner_app
+#: model:ir.actions.report,name:ts_partner_app.action_report_client_credentials
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Credentials"
+msgstr "Kredencijali"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"Credentials are intentionally excluded from this report (asset and Infrastructure\n"
+"                            Profile passwords, access tokens)."
+msgstr ""
+"Kredencijali su namjerno izostavljeni iz ovog izvještaja (lozinke sredstava i\n"
+"                            profila infrastrukture, pristupni tokeni)."
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset__technical_debt_level__critical
+msgid "Critical"
+msgstr "Kritično"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__currency_id
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__current_version
+msgid "Current Odoo Version"
+msgstr "Trenutna Odoo verzija"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset__type__custom
+msgid "Custom"
+msgstr "Prilagođeno"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Custom Modules"
+msgstr "Prilagođeni moduli"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__custom_module_ids
+msgid "Custom Modules Installed"
+msgstr "Instalirani prilagođeni moduli"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_infrastructure__hosting_type__custom_server
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_search
+msgid "Custom Server"
+msgstr "Prilagođeni server"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_form
+msgid "Custom Server Details"
+msgstr "Detalji prilagođenog servera"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__partner_id
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_search
+msgid "Customer"
+msgstr "Kupac"
+
+#. module: ts_partner_app
+#: model:partner.asset.tag,name:ts_partner_app.tag_customization
+msgid "Customization"
+msgstr "Prilagodba"
+
+#. module: ts_partner_app
+#: model:ir.actions.client,name:ts_partner_app.partner_asset_action_dashboard
+#: model:ir.ui.menu,name:ts_partner_app.partner_asset_menu_dashboard_owl
+msgid "Dashboard"
+msgstr "Kontrolna tabla"
+
+#. module: ts_partner_app
+#: model:partner.asset.tag,name:ts_partner_app.tag_data_import
+msgid "Data Import"
+msgstr "Uvoz podataka"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__odoo_sh_database
+msgid "Database Name"
+msgstr "Naziv baze podataka"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_form
+msgid "Date"
+msgstr "Datum"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__expiry_date
+msgid ""
+"Date on which the expiry reminder fires. Automatically computed as End Date "
+"- Reminder Days, but can be overridden manually."
+msgstr ""
+"Datum na koji se pokreće podsjetnik za istek. Automatski se izračunava kao "
+"Krajnji datum - Dana za podsjetnik, ali se može ručno prepisati."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__decision_maker_contact
+msgid "Decision maker"
+msgstr "Osoba koja odlučuje"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__color
+msgid "Defaults to the stage's Kanban color; override freely per card."
+msgstr "Podrazumijeva boju Kanban table faze; slobodno prepišite po kartici."
+
+#. module: ts_partner_app
+#: model_terms:ir.actions.act_window,help:ts_partner_app.partner_asset_stage_action
+msgid "Define your asset stages!"
+msgstr "Definišite faze vaših sredstava!"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_stage_view_form
+msgid "Describe the purpose of this stage..."
+msgstr "Opišite svrhu ove faze..."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_stage__description
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_stage_view_form
+msgid "Description"
+msgstr "Opis"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__dr_plan_documented
+msgid "Disaster Recovery Plan Documented"
+msgstr "Plan oporavka od katastrofe dokumentovan"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__display_name
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_credential_log__display_name
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_custom_module__display_name
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_native_module__display_name
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_stage__display_name
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_tag__display_name
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__display_name
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_task__display_name
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__display_name
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard_line__display_name
+#: model:ir.model.fields,field_description:ts_partner_app.field_project_task__display_name
+#: model:ir.model.fields,field_description:ts_partner_app.field_res_partner__display_name
+#: model:ir.model.fields,field_description:ts_partner_app.field_sale_order__display_name
+#: model:ir.model.fields,field_description:ts_partner_app.field_ts_partner_app_demo_import_wizard__display_name
+#: model:ir.model.fields,field_description:ts_partner_app.field_utm_campaign__display_name
+msgid "Display Name"
+msgstr "Prikazani naziv"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_documents
+msgid "Documents"
+msgstr "Dokumenti"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_my_home_assets
+msgid "Domains, hosting and services we manage for you"
+msgstr "Domene, hosting i usluge kojima upravljamo za vas"
+
+#. module: ts_partner_app
+#: model:project.task.type,name:ts_partner_app.project_task_stage_done
+msgid "Done"
+msgstr "Završeno"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_email_marketing
+msgid "Email Marketing"
+msgstr "Email marketing"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__emergency_contact_phone
+msgid "Emergency Phone"
+msgstr "Telefon za hitne slučajeve"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__emergency_contact
+msgid "Emergency contact"
+msgstr "Kontakt za hitne slučajeve"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_employees
+msgid "Employees"
+msgstr "Zaposlenici"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_my_assets
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "End"
+msgstr "Kraj"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__end_date
+msgid "End Date"
+msgstr "Krajnji datum"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_kanban
+msgid "End Date:"
+msgstr "Krajnji datum:"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__escalation_path
+msgid "Escalation path"
+msgstr "Put eskalacije"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_events
+msgid "Events"
+msgstr "Događaji"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "Every client has a profile."
+msgstr "Svaki klijent ima profil."
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_expenses
+msgid "Expenses"
+msgstr "Troškovi"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_search
+msgid "Expired"
+msgstr "Isteklo"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.res_partner_view_form_inherit_asset
+msgid "Expiring Soon"
+msgstr "Uskoro ističe"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_res_partner__expiring_soon_count
+#: model:ir.model.fields,field_description:ts_partner_app.field_res_users__expiring_soon_count
+msgid "Expiring Soon Count"
+msgstr "Broj koji uskoro ističu"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_search
+msgid "Expiring in 30 Days"
+msgstr "Ističe za 30 dana"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "Expiring in the next 30 days"
+msgstr "Ističe u narednih 30 dana"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__expiry_notified
+msgid "Expiry Notification Sent"
+msgstr "Obavještenje o isteku poslano"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__expiry_date
+msgid "Expiry date"
+msgstr "Datum isteka"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_ts_partner_app_demo_import_wizard__info
+msgid "Explanatory text only."
+msgstr "Samo objašnjavajući tekst."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__external_services_cost
+msgid "External Services Cost"
+msgstr "Trošak vanjskih usluga"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_credential_log__field_name
+msgid "Field"
+msgstr "Polje"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_field_service
+msgid "Field Service"
+msgstr "Terenska usluga"
+
+#. module: ts_partner_app
+#: model_terms:ir.actions.act_window,help:ts_partner_app.partner_asset_action_finance
+msgid ""
+"Fill in monthly billing and infrastructure costs on your assets to see MRR, "
+"total cost and gross margin per customer."
+msgstr ""
+"Popunite mjesečno fakturisanje i troškove infrastrukture na vašim sredstvima"
+" da vidite MRR, ukupan trošak i bruto maržu po kupcu."
+
+#. module: ts_partner_app
+#: model:ir.actions.act_window,name:ts_partner_app.partner_asset_action_finance
+#: model:ir.ui.menu,name:ts_partner_app.partner_asset_menu_dashboard
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_graph_finance
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_pivot_finance
+msgid "Financial Overview"
+msgstr "Finansijski pregled"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_stage__fold
+msgid "Folded in Kanban"
+msgstr "Presavijeno u Kanbanu"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "Follow up: %s"
+msgstr "Praćenje: %s"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__message_follower_ids
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__message_follower_ids
+msgid "Followers"
+msgstr "Pratioci"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__message_partner_ids
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Pratioci (partneri)"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__activity_type_icon
+#: model:ir.model.fields,help:ts_partner_app.field_partner_infrastructure__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Font awesome ikona npr. fa-tasks"
+
+#. module: ts_partner_app
+#: model:res.groups,comment:ts_partner_app.group_partner_asset_manager
+msgid ""
+"Full access: delete assets, configure stages, and view/edit stored "
+"credentials (logins and passwords)."
+msgstr ""
+"Puni pristup: brisanje sredstava, konfiguracija faza i pregled/uređivanje "
+"sačuvanih kredencijala (prijava i lozinki)."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "Generated on"
+msgstr "Generisano dana"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_form
+msgid "GitHub / Code Repository"
+msgstr "GitHub / Repozitorij koda"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__github_branch
+msgid "GitHub Branch"
+msgstr "GitHub grana"
+
+#. module: ts_partner_app
+#: model:partner.asset.tag,name:ts_partner_app.tag_go_live
+msgid "Go-Live"
+msgstr "Pokretanje uživo"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__gross_margin
+msgid "Gross Margin"
+msgstr "Bruto marža"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "Gross Margin ("
+msgstr "Bruto marža ("
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__margin_pct
+msgid "Gross margin as a percentage of client billing."
+msgstr "Bruto marža kao procenat fakturisanja klijentu."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__has_message
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__has_message
+msgid "Has Message"
+msgstr "Ima poruku"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "Health check escalated risk to High: %s."
+msgstr "Provjera stanja je eskalirala rizik na Visok: %s."
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_helpdesk
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_module_helpdesk
+msgid "Helpdesk"
+msgstr "Podrška"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_form
+msgid "Hide Password"
+msgstr "Sakrij lozinku"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_form
+msgid "Hide Token"
+msgstr "Sakrij token"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset__risk_level__high
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset__technical_debt_level__high
+msgid "High"
+msgstr "Visok"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "High / critical technical debt"
+msgstr "Visok / kritičan tehnički dug"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_kanban
+msgid "High Risk"
+msgstr "Visok rizik"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__hosting_provider
+msgid "Hosting Provider"
+msgstr "Provajder hostinga"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__hosting_type
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_search
+msgid "Hosting Type"
+msgstr "Tip hostinga"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__id
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_credential_log__id
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_custom_module__id
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_native_module__id
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_stage__id
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_tag__id
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__id
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_task__id
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__id
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard_line__id
+#: model:ir.model.fields,field_description:ts_partner_app.field_project_task__id
+#: model:ir.model.fields,field_description:ts_partner_app.field_res_partner__id
+#: model:ir.model.fields,field_description:ts_partner_app.field_sale_order__id
+#: model:ir.model.fields,field_description:ts_partner_app.field_ts_partner_app_demo_import_wizard__id
+#: model:ir.model.fields,field_description:ts_partner_app.field_utm_campaign__id
+msgid "ID"
+msgstr "ID"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__activity_exception_icon
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__activity_exception_icon
+msgid "Icon"
+msgstr "Ikona"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__activity_exception_icon
+#: model:ir.model.fields,help:ts_partner_app.field_partner_infrastructure__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Ikona koja označava izuzetnu aktivnost."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__message_needaction
+#: model:ir.model.fields,help:ts_partner_app.field_partner_infrastructure__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Ako je označeno, nove poruke zahtijevaju vašu pažnju."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__message_has_error
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__message_has_sms_error
+#: model:ir.model.fields,help:ts_partner_app.field_partner_infrastructure__message_has_error
+#: model:ir.model.fields,help:ts_partner_app.field_partner_infrastructure__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Ako je označeno, neke poruke imaju grešku u dostavi."
+
+#. module: ts_partner_app
+#: model:partner.asset.tag,name:ts_partner_app.tag_implementation
+msgid "Implementation"
+msgstr "Implementacija"
+
+#. module: ts_partner_app
+#: model:ir.actions.act_window,name:ts_partner_app.demo_import_wizard_action
+#: model:ir.ui.menu,name:ts_partner_app.partner_asset_menu_demo_import
+msgid "Import Demo"
+msgstr "Uvoz demo podataka"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.demo_import_wizard_view_form
+msgid "Import Demo Data"
+msgstr "Uvezi demo podatke"
+
+#. module: ts_partner_app
+#: model:project.task.type,name:ts_partner_app.project_task_stage_in_progress
+msgid "In Progress"
+msgstr "U toku"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_ts_partner_app_demo_import_wizard__info
+msgid "Info"
+msgstr "Info"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__infra_monthly_cost
+msgid "Infra Monthly Cost"
+msgstr "Mjesečni trošak infrastrukture"
+
+#. module: ts_partner_app
+#: model:ir.ui.menu,name:ts_partner_app.partner_infrastructure_menu
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Infrastructure"
+msgstr "Infrastruktura"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "Infrastructure Coverage"
+msgstr "Pokrivenost infrastrukture"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_credential_log__infrastructure_id
+#: model:ir.model.fields,field_description:ts_partner_app.field_res_partner__infrastructure_id
+#: model:ir.model.fields,field_description:ts_partner_app.field_res_users__infrastructure_id
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "Infrastructure Profile"
+msgstr "Profil infrastrukture"
+
+#. module: ts_partner_app
+#: model:partner.asset.tag,name:ts_partner_app.tag_integration
+msgid "Integration"
+msgstr "Integracija"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_inventory
+msgid "Inventory"
+msgstr "Zalihe"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_invoicing
+msgid "Invoicing"
+msgstr "Fakturisanje"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__message_is_follower
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__message_is_follower
+msgid "Is Follower"
+msgstr "Je pratilac"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_stage__color
+msgid "Kanban Color"
+msgstr "Kanban boja"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_knowledge
+msgid "Knowledge"
+msgstr "Znanje"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__last_backup_check
+msgid "Last Backup Check Date"
+msgstr "Datum zadnje provjere sigurnosne kopije"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__last_health_check
+msgid "Last Health Check"
+msgstr "Zadnja provjera stanja"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__write_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_credential_log__write_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_custom_module__write_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_native_module__write_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_stage__write_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_tag__write_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__write_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_task__write_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__write_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard_line__write_uid
+#: model:ir.model.fields,field_description:ts_partner_app.field_ts_partner_app_demo_import_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Zadnje ažurirao"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__write_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_credential_log__write_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_custom_module__write_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_native_module__write_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_stage__write_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_tag__write_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__write_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_task__write_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__write_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard_line__write_date
+#: model:ir.model.fields,field_description:ts_partner_app.field_ts_partner_app_demo_import_wizard__write_date
+msgid "Last Updated on"
+msgstr "Zadnje ažurirano"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__last_upgrade_date
+msgid "Last Upgrade Date"
+msgstr "Datum zadnje nadogradnje"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__latest_version
+msgid "Latest Available Version"
+msgstr "Najnovija dostupna verzija"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__license_cost
+msgid "License Cost (per license)"
+msgstr "Trošak licence (po licenci)"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__license_count
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "Licenses"
+msgstr "Licence"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_custom_module__link
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "Link"
+msgstr "Link"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_live_chat
+msgid "Live Chat"
+msgstr "Chat uživo"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Live Health Monitoring"
+msgstr "Nadzor stanja uživo"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "Loading…"
+msgstr "Učitavanje…"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__odoo_login_email
+msgid "Login Email"
+msgstr "Email za prijavu"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__odoo_login_password
+msgid "Login Password"
+msgstr "Lozinka za prijavu"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__odoo_login_password_encrypted
+msgid "Login Password (encrypted)"
+msgstr "Lozinka za prijavu (šifrovano)"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset__risk_level__low
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset__technical_debt_level__low
+msgid "Low"
+msgstr "Nizak"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__maintenance_cost
+msgid "Maintenance Cost"
+msgstr "Trošak održavanja"
+
+#. module: ts_partner_app
+#: model_terms:ir.actions.act_window,help:ts_partner_app.partner_asset_action
+msgid "Manage domains, hosting, Odoo.sh, and more in one place."
+msgstr "Upravljajte domenama, hostingom, Odoo.sh i drugim na jednom mjestu."
+
+#. module: ts_partner_app
+#: model:res.groups,name:ts_partner_app.group_partner_asset_manager
+msgid "Manager"
+msgstr "Menadžer"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_manufacturing
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_module_manufacturing
+msgid "Manufacturing"
+msgstr "Proizvodnja"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__margin_pct
+msgid "Margin %"
+msgstr "Marža %"
+
+#. module: ts_partner_app
+#: model_terms:ir.actions.act_window,help:ts_partner_app.partner_infrastructure_action
+msgid ""
+"Mark it Odoo.sh or Custom Server, then fill in the Odoo login and\n"
+"                GitHub details for that client."
+msgstr ""
+"Označite Odoo.sh ili Prilagođeni server, zatim popunite Odoo prijavu i\n"
+"                GitHub detalje za tog klijenta."
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_marketing_automation
+msgid "Marketing Automation"
+msgstr "Automatizacija marketinga"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset__risk_level__medium
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset__technical_debt_level__medium
+msgid "Medium"
+msgstr "Srednji"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__message_has_error
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__message_has_error
+msgid "Message Delivery error"
+msgstr "Greška u dostavi poruke"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__message_ids
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__message_ids
+msgid "Messages"
+msgstr "Poruke"
+
+#. module: ts_partner_app
+#: model:partner.asset.tag,name:ts_partner_app.tag_migration
+msgid "Migration"
+msgstr "Migracija"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_custom_module__name
+msgid "Module Name"
+msgstr "Naziv modula"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__monitoring_active
+msgid "Monitoring Active"
+msgstr "Nadzor aktivan"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "Monthly Billing"
+msgstr "Mjesečno fakturisanje"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__monthly_billing_client
+msgid "Monthly Billing to Client"
+msgstr "Mjesečno fakturisanje klijentu"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Monthly Cost Breakdown"
+msgstr "Raspodjela mjesečnih troškova"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__server_cost
+msgid "Monthly Server Cost"
+msgstr "Mjesečni trošak servera"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__license_cost
+msgid ""
+"Monthly cost of a single license. Multiplied by Licenses (Version & Upgrade "
+"tab) to get the Total License Cost below."
+msgstr ""
+"Mjesečni trošak jedne licence. Množi se sa brojem Licenci (kartica Verzija i"
+" nadogradnja) da bi se dobio Ukupan trošak licenci ispod."
+
+#. module: ts_partner_app
+#: model:partner.asset.tag,name:ts_partner_app.tag_multi_company
+msgid "Multi-Company"
+msgstr "Više kompanija"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__my_activity_date_deadline
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Rok moje aktivnosti"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_task__name
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard_line__name
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_my_assets
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "Name"
+msgstr "Naziv"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__name
+msgid "Name / Label"
+msgstr "Naziv / Oznaka"
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_partner_asset_native_module
+msgid "Native Odoo App"
+msgstr "Nativna Odoo aplikacija"
+
+#. module: ts_partner_app
+#: model:ir.actions.act_window,name:ts_partner_app.partner_asset_native_module_action
+#: model:ir.ui.menu,name:ts_partner_app.partner_asset_menu_native_modules
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_native_module_view_tree
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_search
+msgid "Native Odoo Apps"
+msgstr "Nativne Odoo aplikacije"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__native_module_ids
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Native Odoo Apps Used"
+msgstr "Korištene nativne Odoo aplikacije"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "Negative Margin"
+msgstr "Negativna marža"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "Negative gross margin"
+msgstr "Negativna bruto marža"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset__state__new
+#: model:partner.asset.stage,name:ts_partner_app.stage_new
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_search
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_asset_detail
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_my_assets
+msgid "New"
+msgstr "Novo"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "New Client"
+msgstr "Novi klijent"
+
+#. module: ts_partner_app
+#: model:ir.actions.act_window,name:ts_partner_app.project_template_wizard_action
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_wizard_view_form
+msgid "New Client Project"
+msgstr "Novi projekat klijenta"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "New client project created: %s"
+msgstr "Kreiran novi projekat klijenta: %s"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__activity_date_deadline
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Rok sljedeće aktivnosti"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__activity_summary
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__activity_summary
+msgid "Next Activity Summary"
+msgstr "Sažetak sljedeće aktivnosti"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__activity_type_id
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tip sljedeće aktivnosti"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset__monitoring_active__no
+msgid "No"
+msgstr "Ne"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "No Infrastructure Profile configured for this client yet."
+msgstr "Za ovog klijenta još nije konfigurisan profil infrastrukture."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+msgid "No Infrastructure Profile configured for this client."
+msgstr "Za ovog klijenta nije konfigurisan profil infrastrukture."
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "No Stage"
+msgstr "Bez faze"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "No active assets yet."
+msgstr "Još nema aktivnih sredstava."
+
+#. module: ts_partner_app
+#: model_terms:ir.actions.act_window,help:ts_partner_app.partner_asset_task_action
+msgid "No client asset tasks yet"
+msgstr "Još nema zadataka za sredstva klijenata"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "No client projects yet."
+msgstr "Još nema projekata klijenata."
+
+#. module: ts_partner_app
+#: model_terms:ir.actions.act_window,help:ts_partner_app.partner_asset_project_action
+msgid "No dedicated client projects yet"
+msgstr "Još nema posebnih projekata klijenata"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/demo_import_wizard.py:0
+msgid "No demo data found — nothing to remove."
+msgstr "Demo podaci nisu pronađeni — nema šta da se ukloni."
+
+#. module: ts_partner_app
+#: model_terms:ir.actions.act_window,help:ts_partner_app.partner_asset_action_finance
+msgid "No financial data yet"
+msgstr "Još nema finansijskih podataka"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "No infrastructure profiles yet."
+msgstr "Još nema profila infrastrukture."
+
+#. module: ts_partner_app
+#: model:project.project,name:ts_partner_app.demo_project_nordic
+msgid "Nordic Tech Solutions"
+msgstr ""
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__notes
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__notes
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_form
+msgid "Notes"
+msgstr "Bilješke"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "Nothing expiring soon."
+msgstr "Ništa ne ističe uskoro."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__message_needaction_counter
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Broj akcija"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__reminder_days
+msgid ""
+"Number of days before the End Date at which the expiry reminder is "
+"triggered. Used to compute the Expiry (reminder) date below."
+msgstr ""
+"Broj dana prije Krajnjeg datuma na koji se pokreće podsjetnik za istek. "
+"Koristi se za izračun Datuma isteka (podsjetnika) ispod."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__message_has_error_counter
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__message_has_error_counter
+msgid "Number of errors"
+msgstr "Broj grešaka"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__message_needaction_counter
+#: model:ir.model.fields,help:ts_partner_app.field_partner_infrastructure__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Broj poruka koje zahtijevaju akciju"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__message_has_error_counter
+#: model:ir.model.fields,help:ts_partner_app.field_partner_infrastructure__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Broj poruka sa greškom u dostavi"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__license_count
+msgid "Number of user licenses / seats this client is on."
+msgstr "Broj korisničkih licenci / mjesta koje ovaj klijent ima."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.res_partner_view_form_inherit_asset
+msgid "Odoo Assets"
+msgstr "Odoo sredstva"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_res_partner__asset_count
+#: model:ir.model.fields,field_description:ts_partner_app.field_res_users__asset_count
+msgid "Odoo Assets Count"
+msgstr "Broj Odoo sredstava"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_form
+msgid "Odoo Login"
+msgstr "Odoo prijava"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__odoo_login_url
+msgid "Odoo Login URL"
+msgstr "URL za Odoo prijavu"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset__type__odoo_sh
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_infrastructure__hosting_type__odoo_sh
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_search
+msgid "Odoo.sh"
+msgstr "Odoo.sh"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__odoo_sh_branch
+msgid "Odoo.sh Branch"
+msgstr "Odoo.sh grana"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_form
+msgid "Odoo.sh Details"
+msgstr "Odoo.sh detalji"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__odoo_sh_url
+msgid "Odoo.sh Project URL"
+msgstr "URL Odoo.sh projekta"
+
+#. module: ts_partner_app
+#: model:partner.asset.tag,name:ts_partner_app.tag_on_premise
+msgid "On-Premise"
+msgstr "Lokalna instalacija"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset__type__online
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_infrastructure__hosting_type__online
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_search
+msgid "Online"
+msgstr "Online"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_form
+msgid "Open"
+msgstr "Otvori"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid ""
+"Open (or create) a dedicated project for this client — for a real multi-task"
+" engagement like onboarding or a migration, as opposed to a single follow-up"
+" task."
+msgstr ""
+"Otvara (ili kreira) poseban projekat za ovog klijenta — za stvaran "
+"višezadatni angažman poput uvođenja ili migracije, za razliku od jednog "
+"zadatka praćenja."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid ""
+"Open this client's Infrastructure profile (hosting, Odoo login, GitHub)."
+msgstr ""
+"Otvara profil infrastrukture ovog klijenta (hosting, Odoo prijava, GitHub)."
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "Other"
+msgstr "Ostalo"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Partner Asset"
+msgstr "Sredstvo partnera"
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_partner_asset_custom_module
+msgid "Partner Asset Custom Module"
+msgstr "Prilagođeni modul sredstva partnera"
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_partner_asset_stage
+msgid "Partner Asset Stage"
+msgstr "Faza sredstva partnera"
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_partner_asset_tag
+msgid "Partner Asset Tag"
+msgstr "Oznaka sredstva partnera"
+
+#. module: ts_partner_app
+#: model:ir.actions.server,name:ts_partner_app.ir_cron_partner_asset_expiry_notification_ir_actions_server
+msgid "Partner Asset: Expiry Notification"
+msgstr "Sredstvo partnera: Obavještenje o isteku"
+
+#. module: ts_partner_app
+#: model:ir.actions.server,name:ts_partner_app.ir_cron_partner_asset_health_check_ir_actions_server
+msgid "Partner Asset: SSL & Uptime Health Check"
+msgstr "Sredstvo partnera: SSL i provjera dostupnosti"
+
+#. module: ts_partner_app
+#: model:ir.actions.server,name:ts_partner_app.ir_cron_partner_asset_weekly_digest_ir_actions_server
+msgid "Partner Asset: Weekly Manager Digest"
+msgstr "Sredstvo partnera: Sedmični pregled za menadžere"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_tree
+msgid "Partner Assets"
+msgstr "Sredstva partnera"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__password
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+msgid "Password"
+msgstr "Lozinka"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__password_encrypted
+msgid "Password (encrypted)"
+msgstr "Lozinka (šifrovano)"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__password2
+msgid "Password 2"
+msgstr "Lozinka 2"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__password2_encrypted
+msgid "Password 2 (encrypted)"
+msgstr "Lozinka 2 (šifrovano)"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_infrastructure__github_token
+msgid "Personal Access Token used to grant access to the repository, if any."
+msgstr ""
+"Lični pristupni token koji omogućava pristup repozitoriju, ako postoji."
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_planning
+msgid "Planning"
+msgstr "Planiranje"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_point_of_sale
+msgid "Point of Sale"
+msgstr "Prodajno mjesto"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "Portal renewal request"
+msgstr "Zahtjev za obnovu preko portala"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "Portfolio Mix"
+msgstr "Struktura portfolija"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "Portfolio overview"
+msgstr "Pregled portfolija"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_project
+msgid "Project"
+msgstr "Projekat"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Project Tasks"
+msgstr "Zadaci projekta"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+#: model:ir.ui.menu,name:ts_partner_app.partner_asset_menu_projects
+msgid "Projects"
+msgstr "Projekti"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "Provisioning confirmed — the site is live. Moved from New to Running."
+msgstr ""
+"Uspostavljanje potvrđeno — sajt je aktivan. Premješteno iz Novo u Aktivno."
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_purchase
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_module_purchase
+msgid "Purchase"
+msgstr "Nabavka"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_quality
+msgid "Quality"
+msgstr "Kvalitet"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__rating_ids
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__rating_ids
+msgid "Ratings"
+msgstr "Ocjene"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_recruitment
+msgid "Recruitment"
+msgstr "Zapošljavanje"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__reminder_days
+msgid "Remind (days before end)"
+msgstr "Podsjeti (dana prije kraja)"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "Reminder: the asset '%(name)s' is approaching its end date (%(date)s)."
+msgstr ""
+"Podsjetnik: sredstvo '%(name)s' se približava svom krajnjem datumu "
+"(%(date)s)."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.demo_import_wizard_view_form
+msgid "Remove Demo Data"
+msgstr "Ukloni demo podatke"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__renewal_period
+msgid "Renewal Period (months)"
+msgstr "Period obnove (mjeseci)"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/sale_order.py:0
+msgid "Renewal confirmed via %(order)s. End date extended to %(date)s."
+msgstr "Obnova potvrđena putem %(order)s. Krajnji datum produžen do %(date)s."
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "Renewal quotation %(order)s created."
+msgstr "Kreirana ponuda za obnovu %(order)s."
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "Renewal: %(name)s (%(type)s)"
+msgstr "Obnova: %(name)s (%(type)s)"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__github_url
+msgid "Repository URL"
+msgstr "URL repozitorija"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_asset_detail
+msgid "Request Renewal"
+msgstr "Zatraži obnovu"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_asset_detail
+msgid "Request a renewal or leave us a note:"
+msgstr "Zatražite obnovu ili nam ostavite poruku:"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__activity_user_id
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__user_id
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__activity_user_id
+msgid "Responsible User"
+msgstr "Odgovorni korisnik"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset_credential_log__action__reveal
+msgid "Revealed"
+msgstr "Otkriveno"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "Risk"
+msgstr "Rizik"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Risk & Compliance"
+msgstr "Rizik i usklađenost"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__risk_level
+msgid "Risk Level"
+msgstr "Nivo rizika"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset__state__running
+#: model:partner.asset.stage,name:ts_partner_app.stage_running
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_search
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_asset_detail
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_my_assets
+msgid "Running"
+msgstr "Aktivno"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "Running Projects & Tasks"
+msgstr "Aktivni projekti i zadaci"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__message_has_sms_error
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Greška u dostavi SMS-a"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__server_ssh_port
+msgid "SSH Port"
+msgstr "SSH port"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__server_ssh_user
+msgid "SSH User"
+msgstr "SSH korisnik"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__ssl_expiry_date
+msgid "SSL Certificate Expiry"
+msgstr "Istek SSL certifikata"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__ssl_days_left
+msgid "SSL Days Left"
+msgstr "Preostalo dana za SSL"
+
+#. module: ts_partner_app
+#: model:partner.asset.tag,name:ts_partner_app.tag_saas
+msgid "SaaS / Odoo Online"
+msgstr "SaaS / Odoo Online"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__sale_order_id
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_search
+msgid "Sale Order / Subscription"
+msgstr "Prodajni nalog / Pretplata"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_sales
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_module_sales
+msgid "Sales"
+msgstr "Prodaja"
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_sale_order
+msgid "Sales Order"
+msgstr "Prodajni nalog"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Sales, Inventory, Accounting..."
+msgstr "Prodaja, zalihe, računovodstvo..."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_search
+msgid "Search Client Infrastructure"
+msgstr "Pretraga infrastrukture klijenta"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_search
+msgid "Search Partner Assets"
+msgstr "Pretraga sredstava partnera"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_stage__sequence
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_task__sequence
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard_line__sequence
+msgid "Sequence"
+msgstr "Redoslijed"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__server_host
+msgid "Server Host / IP"
+msgstr "Host / IP servera"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__show_github_token
+msgid "Show Access Token"
+msgstr "Prikaži pristupni token"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__show_odoo_login_password
+msgid "Show Login Password"
+msgstr "Prikaži lozinku za prijavu"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__show_password
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_form
+msgid "Show Password"
+msgstr "Prikaži lozinku"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__show_password2
+msgid "Show Password 2"
+msgstr "Prikaži lozinku 2"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_infrastructure_view_form
+msgid "Show Token"
+msgstr "Prikaži token"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_sign
+msgid "Sign"
+msgstr "Potpis"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "Sites currently unreachable"
+msgstr "Sajtovi trenutno nedostupni"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__stage_id
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_search
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "Stage"
+msgstr "Faza"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_stage__name
+msgid "Stage Name"
+msgstr "Naziv faze"
+
+#. module: ts_partner_app
+#: model_terms:ir.actions.act_window,help:ts_partner_app.partner_asset_stage_action
+msgid ""
+"Stages allow you to track the lifecycle of an asset (e.g. Running, To Renew,"
+" Closed)."
+msgstr ""
+"Faze vam omogućavaju praćenje životnog ciklusa sredstva (npr. Aktivno, Za "
+"obnovu, Zatvoreno)."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__native_module_ids
+msgid ""
+"Standard Odoo apps this client uses (Sales, Inventory, Accounting...). For "
+"bespoke development, use Custom Modules below instead."
+msgstr ""
+"Standardne Odoo aplikacije koje ovaj klijent koristi (Prodaja, Zalihe, "
+"Računovodstvo...). Za prilagođeni razvoj, koristite Prilagođene module "
+"ispod."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_my_assets
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "Start"
+msgstr "Početak"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__start_date
+msgid "Start Date"
+msgstr "Početni datum"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__state
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_search
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_my_assets
+msgid "Status"
+msgstr "Status"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__activity_state
+#: model:ir.model.fields,help:ts_partner_app.field_partner_infrastructure__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Status na osnovu aktivnosti\n"
+"Kasni: Rok je već prošao\n"
+"Danas: Datum aktivnosti je danas\n"
+"Planirano: Buduće aktivnosti."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__subscription_number
+msgid "Subscription Number"
+msgstr "Broj pretplate"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_subscriptions
+msgid "Subscriptions"
+msgstr "Pretplate"
+
+#. module: ts_partner_app
+#: model:project.project,name:ts_partner_app.demo_project_sunrise
+msgid "Sunrise Media Agency"
+msgstr ""
+
+#. module: ts_partner_app
+#: model:partner.asset.tag,name:ts_partner_app.tag_support
+msgid "Support & Maintenance"
+msgstr "Podrška i održavanje"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_tag__name
+msgid "Tag Name"
+msgstr "Naziv oznake"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__tag_ids
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_search
+msgid "Tags"
+msgstr "Oznake"
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_project_task
+msgid "Task"
+msgstr "Zadatak"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__task_count
+msgid "Task Count"
+msgstr "Broj zadataka"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "Task created: %s"
+msgstr "Kreiran zadatak: %s"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+#: model:ir.actions.act_window,name:ts_partner_app.partner_asset_task_action
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__task_ids
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_wizard__state__tasks
+#: model:ir.ui.menu,name:ts_partner_app.partner_asset_menu_tasks
+#: model:project.project,label_tasks:ts_partner_app.project_client_tasks
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Tasks"
+msgstr "Zadaci"
+
+#. module: ts_partner_app
+#: model_terms:ir.actions.act_window,help:ts_partner_app.partner_asset_task_action
+msgid ""
+"Tasks linked to a Client Asset show up here — e.g. the \"Tasks\" smart button\n"
+"                on an asset, or the renewal follow-up created automatically for overdue assets."
+msgstr ""
+"Zadaci povezani sa sredstvom klijenta prikazuju se ovdje — npr. pametno dugme \"Zadaci\"\n"
+"                na sredstvu, ili automatski kreirano praćenje obnove za zakašnjela sredstva."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__technical_debt_level
+msgid "Technical Debt Level"
+msgstr "Nivo tehničkog duga"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Technical Details"
+msgstr "Tehnički detalji"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_asset_detail
+msgid "Thank you! Your renewal request has been sent to our team."
+msgstr "Hvala! Vaš zahtjev za obnovu je poslan našem timu."
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid ""
+"The asset '%(name)s' will expire on %(date)s. Please handle the renewal."
+msgstr "Sredstvo '%(name)s' će isteći %(date)s. Molimo obradite obnovu."
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "The customer requested a renewal of this asset via the portal."
+msgstr "Kupac je zatražio obnovu ovog sredstva putem portala."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_my_assets
+msgid "There are currently no assets registered for your account."
+msgstr "Trenutno nema registrovanih sredstava za vaš račun."
+
+#. module: ts_partner_app
+#: model:ir.model.constraint,message:ts_partner_app.constraint_partner_infrastructure_partner_uniq
+msgid "This client already has an infrastructure profile."
+msgstr "Ovaj klijent već ima profil infrastrukture."
+
+#. module: ts_partner_app
+#: model_terms:ir.actions.act_window,help:ts_partner_app.partner_asset_native_module_action
+msgid ""
+"This is the catalog offered on the asset's \"Native Odoo Apps Used\" field."
+msgstr ""
+"Ovo je katalog ponuđen na polju \"Korištene nativne Odoo aplikacije\" "
+"sredstva."
+
+#. module: ts_partner_app
+#: model:ir.model.constraint,message:ts_partner_app.constraint_partner_asset_native_module_name_uniq
+msgid "This native app is already in the list."
+msgstr "Ova nativna aplikacija je već na listi."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+msgid ""
+"This reveal has been recorded in the Credential Access Log for each asset and\n"
+"                            infrastructure profile shown above."
+msgstr ""
+"Ovo otkrivanje je zabilježeno u Dnevniku pristupa kredencijalima za svako sredstvo i\n"
+"                            profil infrastrukture prikazan iznad."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.demo_import_wizard_view_form
+msgid ""
+"This will delete all demo clients and assets created by this wizard. "
+"Continue?"
+msgstr ""
+"Ovo će obrisati sve demo klijente i sredstva kreirana ovim čarobnjakom. "
+"Nastaviti?"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_time_off
+msgid "Time Off"
+msgstr "Odsustvo"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_timesheets
+msgid "Timesheets"
+msgstr "Radni listovi"
+
+#. module: ts_partner_app
+#: model:project.task.type,name:ts_partner_app.project_task_stage_todo
+msgid "To Do"
+msgstr "Za uraditi"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset__state__to_renew
+#: model:partner.asset.stage,name:ts_partner_app.stage_to_renew
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_search
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_asset_detail
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_my_assets
+msgid "To Renew"
+msgstr "Za obnovu"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_tree
+msgid "Total Cost"
+msgstr "Ukupan trošak"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__license_cost_total
+msgid "Total License Cost"
+msgstr "Ukupan trošak licenci"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_tree
+msgid "Total MRR"
+msgstr "Ukupan MRR"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_tree
+msgid "Total Margin"
+msgstr "Ukupna marža"
+
+#. module: ts_partner_app
+#: model_terms:ir.actions.act_window,help:ts_partner_app.partner_asset_action
+msgid "Track your client-related assets!"
+msgstr "Pratite sredstva vezana za vaše klijente!"
+
+#. module: ts_partner_app
+#: model:partner.asset.tag,name:ts_partner_app.tag_training
+msgid "Training"
+msgstr "Obuka"
+
+#. module: ts_partner_app
+#: model:partner.asset.tag,name:ts_partner_app.demo_tag_trial
+msgid "Trial"
+msgstr "Probni period"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__type
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_search
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_my_assets
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "Type"
+msgstr "Tip"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__activity_exception_decoration
+#: model:ir.model.fields,help:ts_partner_app.field_partner_infrastructure__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tip izuzetne aktivnosti na zapisu."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+msgid "URL"
+msgstr "URL"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__url
+msgid "URL / Link"
+msgstr "URL / Link"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__url2
+msgid "URL / Link 2"
+msgstr "URL / Link 2"
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_utm_campaign
+msgid "UTM Campaign"
+msgstr "UTM kampanja"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "Unreachable"
+msgstr "Nedostupno"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset_credential_log__action__update
+msgid "Updated"
+msgstr "Ažurirano"
+
+#. module: ts_partner_app
+#: model:partner.asset.tag,name:ts_partner_app.tag_upgrade
+msgid "Upgrade"
+msgstr "Nadogradnja"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_project_task__display_name
+msgid ""
+"Use these keywords in the title to set new tasks:\n"
+"\n"
+"            #tags Set tags on the task\n"
+"            @user Assign the task to a user\n"
+"            ! Set the task a medium priority\n"
+"            !! Set the task a high priority\n"
+"            !!! Set the task a urgent priority\n"
+"\n"
+"            Make sure to use the right format and order e.g. Improve the configuration screen #feature #v16 @Mitchell !"
+msgstr ""
+"Koristite ove ključne riječi u naslovu za postavljanje novih zadataka:\n"
+"\n"
+"            #oznake Postavi oznake na zadatak\n"
+"            @korisnik Dodijeli zadatak korisniku\n"
+"            ! Postavi zadatku srednji prioritet\n"
+"            !! Postavi zadatku visok prioritet\n"
+"            !!! Postavi zadatku hitan prioritet\n"
+"\n"
+"            Pazite da koristite ispravan format i redoslijed npr. Poboljšaj ekran za konfiguraciju #feature #v16 @Mitchell !"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_credential_log__user_id
+#: model:res.groups,name:ts_partner_app.group_partner_asset_user
+msgid "User"
+msgstr "Korisnik"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+msgid "Username"
+msgstr "Korisničko ime"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__login_email
+msgid "Username / Login email"
+msgstr "Korisničko ime / Email za prijavu"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__login_email2
+msgid "Username / Login email 2"
+msgstr "Korisničko ime / Email za prijavu 2"
+
+#. module: ts_partner_app
+#: model:partner.asset.tag,name:ts_partner_app.demo_tag_vip
+msgid "VIP Client"
+msgstr "VIP klijent"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset_custom_module__version
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "Version"
+msgstr "Verzija"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Version & Upgrade"
+msgstr "Verzija i nadogradnja"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Version Information"
+msgstr "Informacije o verziji"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "View all →"
+msgstr "Prikaži sve →"
+
+#. module: ts_partner_app
+#: model:project.task.type,name:ts_partner_app.project_task_stage_waiting_client
+msgid "Waiting on Client"
+msgstr "Čeka se klijent"
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_website
+msgid "Website"
+msgstr "Web stranica"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__website_message_ids
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_infrastructure__website_message_ids
+msgid "Website Messages"
+msgstr "Poruke web stranice"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__website_up
+msgid "Website Reachable"
+msgstr "Web stranica dostupna"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__website_message_ids
+#: model:ir.model.fields,help:ts_partner_app.field_partner_infrastructure__website_message_ids
+msgid "Website communication history"
+msgstr "Historija komunikacije web stranice"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__renewal_period
+msgid ""
+"When the linked renewal Sale Order is confirmed, the End Date is extended by"
+" this many months."
+msgstr ""
+"Kada se povezani prodajni nalog za obnovu potvrdi, Krajnji datum se "
+"produžava za ovoliko mjeseci."
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_asset__monitoring_active__yes
+msgid "Yes"
+msgstr "Da"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_breadcrumbs_assets
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_my_assets
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_my_home_assets
+msgid "Your Assets"
+msgstr "Vaša sredstva"
+
+#. module: ts_partner_app
+#: model:project.project,label_tasks:ts_partner_app.demo_project_acme
+#: model:project.project,label_tasks:ts_partner_app.demo_project_blueharbor
+#: model:project.project,label_tasks:ts_partner_app.demo_project_nordic
+#: model:project.project,label_tasks:ts_partner_app.demo_project_sunrise
+msgid "Zadaci"
+msgstr "Zadaci"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"asset(s)\n"
+"                            —"
+msgstr ""
+"sredstvo(a)\n"
+"                            —"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "asset_id"
+msgstr ""
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_credentials
+msgid "by"
+msgstr "od"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "client(s) without a profile →"
+msgstr "klijent(a) bez profila →"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.portal_asset_detail
+msgid "e.g. Please renew this domain for another year."
+msgstr "npr. Molimo obnovite ovu domenu za još jednu godinu."
+
+#. module: ts_partner_app
+#: model:partner.asset.native.module,name:ts_partner_app.native_module_ecommerce
+msgid "eCommerce"
+msgstr "eCommerce"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "license(s)"
+msgstr "licenca(e)"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid "license(s) total"
+msgstr "licenca(e) ukupno"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "open task(s)"
+msgstr "otvoren(ih) zadataka"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "running project(s)"
+msgstr "aktivan(ih) projekat(a)"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "the SSL certificate expires on %s"
+msgstr "SSL certifikat ističe %s"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "the site is unreachable"
+msgstr "sajt je nedostupan"
+
+#. module: ts_partner_app
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+#: model:ir.ui.menu,name:ts_partner_app.partner_asset_menu_assets
+msgid "Clients"
+msgstr "Klijenti"
+
+#. module: ts_partner_app
+#: model:ir.actions.act_window,name:ts_partner_app.partner_asset_stage_action
+#: model:ir.ui.menu,name:ts_partner_app.partner_asset_menu_stages
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_stage_view_tree
+msgid "Client Stages"
+msgstr "Faze klijenata"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_stage_view_form
+msgid "Client Stage"
+msgstr "Faza klijenta"
+
+#. module: ts_partner_app
+#: model:ir.actions.act_window,name:ts_partner_app.partner_asset_tag_action
+#: model:ir.ui.menu,name:ts_partner_app.partner_asset_menu_tags
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_tag_view_tree
+msgid "Client Tags"
+msgstr "Oznake klijenata"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_wizard_view_form
+msgid "Next: Modules →"
+msgstr "Sljedeće: Moduli →"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/project_template_wizard.py:0
+msgid ""
+"%(count)s tasks added to project %(project)s from the implementation "
+"template, scheduled from %(start)s."
+msgstr ""
+"%(count)s zadataka dodano u projekat %(project)s iz predloška "
+"implementacije, zakazano od %(start)s."
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,note:ts_partner_app.tmpl_pm_status_meetings
+msgid "10-15% of total hours, use Recalculate below"
+msgstr "10-15% od ukupnog broja sati, koristite Preračunaj ispod"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,note:ts_partner_app.tmpl_integration_simple_change
+msgid "2-6h each, typical value shown"
+msgstr "2-6h svaki, prikazana tipična vrijednost"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,note:ts_partner_app.tmpl_integration_small
+msgid "24-40h each, typical value shown"
+msgstr "24-40h svaki, prikazana tipična vrijednost"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,note:ts_partner_app.tmpl_integration_automation
+msgid "4-8h each, typical value shown"
+msgstr "4-8h svaki, prikazana tipična vrijednost"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,note:ts_partner_app.tmpl_integration_pdf_report
+msgid "6-16h each, typical value shown"
+msgstr "6-16h svaki, prikazana tipična vrijednost"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,note:ts_partner_app.tmpl_integration_medium
+msgid "60-120h each, typical value shown"
+msgstr "60-120h svaki, prikazana tipična vrijednost"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,note:ts_partner_app.tmpl_pm_documentation
+msgid "8-16h"
+msgstr "8-16h"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_task__active
+msgid "Active"
+msgstr "Aktivno"
+
+#. module: ts_partner_app
+#: model_terms:ir.actions.act_window,help:ts_partner_app.project_template_task_action
+msgid "Add a project template task!"
+msgstr "Dodajte predložak zadatka projekta!"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_wizard_view_form
+msgid "Adding to existing project"
+msgstr "Dodavanje u postojeći projekat"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_training_admin
+msgid "Administrator/key-user training"
+msgstr "Obuka administratora/ključnih korisnika"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_task_view_search
+msgid "Archived"
+msgstr "Arhivirano"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_foundation_tax
+msgid "Base accounting and tax localization review"
+msgstr "Pregled osnovnog računovodstva i poreske lokalizacije"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_discovery_workshops
+msgid "Business-process discovery workshops"
+msgstr "Radionice za otkrivanje poslovnih procesa"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_wizard_view_form
+msgid "Cancel"
+msgstr "Otkaži"
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_partner_project_template_task
+msgid "Client Project Template Task"
+msgstr "Predložak zadatka projekta klijenta"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_foundation_company
+msgid "Company, branches, currencies, and languages"
+msgstr "Kompanija, ogranci, valute i jezici"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_migration_contacts
+msgid "Contacts and suppliers"
+msgstr "Kontakti i dobavljači"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_wizard_view_form
+msgid "Create Project"
+msgstr "Kreiraj projekat"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_integration_pdf_report
+msgid "Custom PDF report"
+msgstr "Prilagođeni PDF izvještaj"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_integration_custom_module
+msgid "Custom module"
+msgstr "Prilagođeni modul"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__line_migration_ids
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_task__phase__migration
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_wizard_line__phase__migration
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_wizard_view_form
+msgid "Data Migration"
+msgstr "Migracija podataka"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_migration_mapping
+msgid "Data review, mapping, and cleansing support"
+msgstr "Pregled, mapiranje i čišćenje podataka"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_foundation_env
+msgid "Database and environment setup"
+msgstr "Postavljanje baze podataka i okruženja"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_task__default_hours
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard_line__default_hours
+msgid "Default Hours"
+msgstr "Zadani sati"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_testing_defects
+msgid "Defect correction allowance"
+msgstr "Rezerva za ispravku grešaka"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__line_discovery_foundation_ids
+msgid "Discovery & Foundation"
+msgstr "Otkrivanje i temelji"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_task__phase__discovery
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_wizard_line__phase__discovery
+msgid "Discovery & Planning"
+msgstr "Otkrivanje i planiranje"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_wizard_view_form
+msgid "Discovery & Planning / Environment & Foundation"
+msgstr "Otkrivanje i planiranje / Okruženje i temelji"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_pm_documentation
+msgid "Documentation and handover"
+msgstr "Dokumentacija i primopredaja"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_foundation_email
+msgid "Email server, document templates, and branding"
+msgstr "Email server, predlošci dokumenata i brendiranje"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_module_hr
+msgid "Employees and basic HR"
+msgstr "Zaposlenici i osnovni HR"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_training_end_user
+msgid "End-user training"
+msgstr "Obuka krajnjih korisnika"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_task__phase__foundation
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_wizard_line__phase__foundation
+msgid "Environment & Foundation"
+msgstr "Okruženje i temelji"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__existing_project_id
+msgid "Existing Project"
+msgstr "Postojeći projekat"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_migration_final
+msgid "Final production migration"
+msgstr "Konačna produkcijska migracija"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_training_golive_prep
+msgid "Go-live preparation and checklist"
+msgstr "Priprema za pokretanje uživo i kontrolna lista"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_training_golive_support
+msgid "Go-live support"
+msgstr "Podrška pri pokretanju uživo"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard_line__planned_hours
+msgid "Hours"
+msgstr "Sati"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__line_integration_ids
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_task__phase__integration
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_wizard_line__phase__integration
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_wizard_view_form
+msgid "Integrations & Customization"
+msgstr "Integracije i prilagodbe"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_testing_internal
+msgid "Internal functional testing"
+msgstr "Interno funkcionalno testiranje"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_module_inventory
+msgid "Inventory and warehouse"
+msgstr "Zalihe i skladište"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_module_accounting
+msgid "Invoicing and accounting"
+msgstr "Fakturisanje i računovodstvo"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_discovery_kickoff
+msgid "Kickoff and stakeholder alignment"
+msgstr "Pokretanje i usklađivanje sa zainteresovanim stranama"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_integration_medium
+msgid "Medium external integration"
+msgstr "Srednja vanjska integracija"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_migration_planning
+msgid "Migration planning and templates"
+msgstr "Planiranje migracije i predlošci"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_task__phase__modules
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_wizard_line__phase__modules
+msgid "Module Configuration"
+msgstr "Konfiguracija modula"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__line_modules_ids
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_wizard__state__modules
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Modules"
+msgstr "Moduli"
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_partner_project_template_wizard
+msgid "New Client Project Wizard"
+msgstr "Čarobnjak za novi projekat klijenta"
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_partner_project_template_wizard_line
+msgid "New Client Project Wizard Line"
+msgstr "Stavka čarobnjaka za novi projekat klijenta"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_task__note
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard_line__note
+msgid "Note"
+msgstr "Bilješka"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_migration_open_docs
+msgid "Open sales and purchase documents"
+msgstr "Otvoreni dokumenti prodaje i nabavke"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_migration_balances
+msgid "Opening accounting balances"
+msgstr "Početna računovodstvena stanja"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_migration_inventory
+msgid "Opening inventory"
+msgstr "Početne zalihe"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_task__phase
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard_line__phase
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_task_view_search
+msgid "Phase"
+msgstr "Faza"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_training_stabilization
+msgid "Post-go-live stabilization"
+msgstr "Stabilizacija nakon pokretanja uživo"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_migration_products
+msgid "Products and price lists"
+msgstr "Proizvodi i cjenovnici"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__line_pm_ids
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_task__phase__pm
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_wizard_line__phase__pm
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_wizard_view_form
+msgid "Project Management"
+msgstr "Upravljanje projektom"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__start_date
+msgid "Project Start Date"
+msgstr "Datum početka projekta"
+
+#. module: ts_partner_app
+#: model:ir.actions.act_window,name:ts_partner_app.project_template_task_action
+#: model:ir.ui.menu,name:ts_partner_app.partner_asset_menu_project_templates
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_task_view_list
+msgid "Project Task Templates"
+msgstr "Predlošci zadataka projekta"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_module_project
+msgid "Project and timesheets"
+msgstr "Projekat i radni listovi"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_discovery_governance
+msgid "Project plan, governance, and risk register"
+msgstr "Plan projekta, upravljanje i registar rizika"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_wizard_view_form
+msgid "Recalculate 'Status meetings' as 12.5% of selected hours"
+msgstr "Preračunaj 'Sastanke o statusu' kao 12.5% odabranih sati"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_testing_regression
+msgid "Regression testing"
+msgstr "Regresijsko testiranje"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_discovery_gap_analysis
+msgid "Requirements and gap analysis"
+msgstr "Analiza zahtjeva i nedostataka"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_task_view_search
+msgid "Search Project Task Templates"
+msgstr "Pretraga predložaka zadataka projekta"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/project_template_wizard.py:0
+msgid "Select at least one task before creating the project."
+msgstr "Odaberite barem jedan zadatak prije kreiranja projekta."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard_line__selected
+msgid "Selected"
+msgstr "Odabrano"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__selected_count
+msgid "Selected Count"
+msgstr "Broj odabranih"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_wizard_view_form
+msgid "Selected Tasks"
+msgstr "Odabrani zadaci"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_project_template_wizard__start_date
+msgid ""
+"Selected tasks are auto-scheduled from this date: packed onto business days "
+"up to 12h/day, with longer tasks spanning consecutive days."
+msgstr ""
+"Odabrani zadaci se automatski zakazuju od ovog datuma: raspoređuju se na "
+"radne dane do 12h/dan, a duži zadaci se protežu na uzastopne dane."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_project_template_task__note
+msgid "Shown next to the task in the wizard, e.g. an hour range or condition."
+msgstr "Prikazano pored zadatka u čarobnjaku, npr. raspon sati ili uslov."
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_integration_automation
+msgid "Simple automated action or approval"
+msgstr "Jednostavna automatizovana akcija ili odobrenje"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_integration_simple_change
+msgid "Simple field, view, or report change"
+msgstr "Jednostavna izmjena polja, pregleda ili izvještaja"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_integration_small
+msgid "Small external integration"
+msgstr "Mala vanjska integracija"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_discovery_blueprint
+msgid "Solution blueprint and scope confirmation"
+msgstr "Nacrt rješenja i potvrda obima"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__state
+msgid "State"
+msgstr "Status"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_pm_status_meetings
+msgid "Status meetings, reporting, coordination"
+msgstr "Sastanci o statusu, izvještavanje, koordinacija"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_wizard_view_form
+msgid ""
+"Step 1 of 2 — tick the implementation tasks that apply to this client, then\n"
+"                        click <strong>Next: Modules</strong> below (or <strong>Modules</strong> above)\n"
+"                        to continue. Hours are pre-filled from the template catalog\n"
+"                        (Configuration &gt; Project Task Templates) but can be adjusted per line."
+msgstr ""
+"Korak 1 od 2 — označite zadatke implementacije koji se odnose na ovog klijenta, zatim\n"
+"                        kliknite <strong>Sljedeće: Moduli</strong> ispod (ili <strong>Moduli</strong> iznad)\n"
+"                        za nastavak. Sati su unaprijed popunjeni iz predloška kataloga\n"
+"                        (Konfiguracija &gt; Predlošci zadataka projekta) ali se mogu prilagoditi po stavci."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_wizard_view_form
+msgid "Step 2 of 2 — tick the native Odoo apps this client will use."
+msgstr ""
+"Korak 2 od 2 — označite nativne Odoo aplikacije koje će ovaj klijent "
+"koristiti."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_project_template_task__default_hours
+msgid ""
+"Suggested planned hours, used to pre-fill the New Client Project wizard. "
+"Editable per selection there."
+msgstr ""
+"Predloženi planirani sati, koriste se za popunjavanje čarobnjaka za novi "
+"projekat klijenta. Mogu se uređivati po odabiru."
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_integration_design
+msgid "Technical design per customization"
+msgstr "Tehnički dizajn po prilagodbi"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard_line__template_task_id
+msgid "Template Task"
+msgstr "Predložak zadatka"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_testing_plan
+msgid "Test-plan preparation"
+msgstr "Priprema plana testiranja"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_task__phase__testing
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_wizard_line__phase__testing
+msgid "Testing"
+msgstr "Testiranje"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__line_testing_training_ids
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_wizard_view_form
+msgid "Testing & Training"
+msgstr "Testiranje i obuka"
+
+#. module: ts_partner_app
+#: model_terms:ir.actions.act_window,help:ts_partner_app.project_template_task_action
+msgid ""
+"This catalog powers the \"New Client Project\" wizard: pick the phases and modules\n"
+"                that apply and it pre-fills a project with these tasks and default hours."
+msgstr ""
+"Ovaj katalog pokreće čarobnjak \"Novi projekat klijenta\": odaberite faze i module\n"
+"                koji se odnose i on će unaprijed popuniti projekat ovim zadacima i zadanim satima."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_wizard_view_form
+msgid "Total Hours"
+msgstr "Ukupno sati"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard__total_hours
+msgid "Total Selected Hours"
+msgstr "Ukupno odabranih sati"
+
+#. module: ts_partner_app
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_task__phase__training
+#: model:ir.model.fields.selection,name:ts_partner_app.selection__partner_project_template_wizard_line__phase__training
+msgid "Training & Go-Live"
+msgstr "Obuka i pokretanje uživo"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_training_materials
+msgid "Training materials and recordings"
+msgstr "Materijali za obuku i snimci"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_migration_trial
+msgid "Trial import and validation"
+msgstr "Probni uvoz i validacija"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_testing_uat
+msgid "User acceptance testing support"
+msgstr "Podrška za korisničko prihvatno testiranje"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_foundation_users
+msgid "Users, roles, and access rights"
+msgstr "Korisnici, uloge i prava pristupa"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,name:ts_partner_app.tmpl_module_website
+msgid "Website and eCommerce"
+msgstr "Web stranica i eCommerce"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_wizard_line__wizard_id
+msgid "Wizard"
+msgstr "Čarobnjak"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,note:ts_partner_app.tmpl_integration_custom_module
+msgid "estimate separately"
+msgstr "procijeniti posebno"
+
+#. module: ts_partner_app
+#: model:partner.project.template.task,note:ts_partner_app.tmpl_module_helpdesk
+#: model:partner.project.template.task,note:ts_partner_app.tmpl_module_manufacturing
+#: model:partner.project.template.task,note:ts_partner_app.tmpl_module_website
+msgid "if required"
+msgstr "ako je potrebno"
+
+#. module: ts_partner_app
+#: model:ir.model.constraint,message:ts_partner_app.constraint_partner_asset_tag_name_uniq
+msgid "Tag name already exists!"
+msgstr "Naziv oznake već postoji!"
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+msgid "Active Client Assets"
+msgstr "Aktivna sredstva klijenta"
+
+#. module: ts_partner_app
+#: model:mail.template,body_html:ts_partner_app.mail_template_asset_expiry_client
+msgid ""
+"<div style=\"margin:0px;padding:0px;font-size:14px;\">\n"
+"    <p>Hello <t t-out=\"object.partner_id.name or ''\"/>,</p>\n"
+"    <p>\n"
+"        This is a reminder that your\n"
+"        <strong t-out=\"dict(object._fields['type']._description_selection(object.env)).get(object.type, object.type)\"/>\n"
+"        <strong t-out=\"object.name\"/> is due to expire on\n"
+"        <strong t-out=\"object.end_date or ''\"/>.\n"
+"    </p>\n"
+"    <p>\n"
+"        Please get in touch or let us know if you'd like to renew, so we can make sure\n"
+"        there's no interruption to your service.\n"
+"    </p>\n"
+"    <p>\n"
+"        <a t-attf-href=\"#{object.get_base_url()}/my/assets/#{object.id}\" style=\"background-color:#875A7B;color:#ffffff;padding:8px 16px;text-decoration:none;border-radius:3px;\">\n"
+"            View &amp; Request Renewal\n"
+"        </a>\n"
+"    </p>\n"
+"    <p>Thank you for your business.</p>\n"
+"</div>\n"
+"            "
+msgstr ""
+"<div style=\"margin:0px;padding:0px;font-size:14px;\">\n"
+"    <p>Zdravo <t t-out=\"object.partner_id.name or ''\"/>,</p>\n"
+"    <p>\n"
+"        Ovo je podsjetnik da vaš\n"
+"        <strong t-out=\"dict(object._fields['type']._description_selection(object.env)).get(object.type, object.type)\"/>\n"
+"        <strong t-out=\"object.name\"/> ističe\n"
+"        <strong t-out=\"object.end_date or ''\"/>.\n"
+"    </p>\n"
+"    <p>\n"
+"        Molimo javite nam se ako želite obnoviti, kako bismo osigurali\n"
+"        da nema prekida vaše usluge.\n"
+"    </p>\n"
+"    <p>\n"
+"        <a t-attf-href=\"#{object.get_base_url()}/my/assets/#{object.id}\" style=\"background-color:#875A7B;color:#ffffff;padding:8px 16px;text-decoration:none;border-radius:3px;\">\n"
+"            Pregledaj i zatraži obnovu\n"
+"        </a>\n"
+"    </p>\n"
+"    <p>Hvala vam na povjerenju.</p>\n"
+"</div>\n"
+"            "
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__notify_client_on_expiry
+msgid "Email Client on Expiry"
+msgstr "Pošalji email klijentu pri isteku"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_asset__notify_client_on_expiry
+msgid ""
+"Send the client a renewal reminder email (in addition to the internal "
+"reminder to the Responsible User) when this asset reaches its expiry date."
+msgstr ""
+"Pošalji klijentu email podsjetnik za obnovu (pored internog podsjetnika "
+"odgovornom korisniku) kada ovo sredstvo dostigne datum isteka."
+
+#. module: ts_partner_app
+#: model:mail.template,subject:ts_partner_app.mail_template_asset_expiry_client
+msgid "Your {{ object.name }} is expiring soon — action needed"
+msgstr "Vaš {{ object.name }} uskoro ističe — potrebna akcija"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "<p>Weekly Odoo Clients 360 digest:</p>"
+msgstr "<p>Sedmični pregled Odoo Clients 360:</p>"
+
+#. module: ts_partner_app
+#: model:ir.module.category,description:ts_partner_app.module_category_client_hub
+msgid "Access levels for the Odoo Clients 360 application."
+msgstr "Nivoi pristupa za aplikaciju Odoo Clients 360."
+
+#. module: ts_partner_app
+#. odoo-javascript
+#: code:addons/ts_partner_app/static/src/dashboard/client_hub_dashboard.xml:0
+#: model:ir.actions.act_window,name:ts_partner_app.partner_asset_action
+#: model:ir.module.category,name:ts_partner_app.module_category_client_hub
+#: model:ir.ui.menu,name:ts_partner_app.partner_asset_menu_root
+#: model:res.groups.privilege,name:ts_partner_app.privilege_client_hub
+msgid "Odoo Clients 360"
+msgstr ""
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "Odoo Clients 360 Weekly Digest — %s"
+msgstr "Sedmični pregled Odoo Clients 360 — %s"
+
+#. module: ts_partner_app
+#: model:mail.template,name:ts_partner_app.mail_template_asset_expiry
+msgid "Odoo Clients 360: Asset Expiry Reminder"
+msgstr "Odoo Clients 360: Podsjetnik za istek sredstva"
+
+#. module: ts_partner_app
+#: model:mail.template,name:ts_partner_app.mail_template_asset_expiry_client
+msgid "Odoo Clients 360: Client Renewal Reminder"
+msgstr "Odoo Clients 360: Podsjetnik za obnovu klijenta"
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_ts_partner_app_demo_import_wizard
+msgid "Odoo Clients 360: Import Demo Data (temporary dev helper)"
+msgstr "Odoo Clients 360: Uvoz demo podataka (privremeni razvojni alat)"
+
+#. module: ts_partner_app
+#: model:product.template,description_sale:ts_partner_app.product_asset_renewal_product_template
+msgid "Renewal of a client asset managed via Odoo Clients 360."
+msgstr "Obnova sredstva klijenta kojim se upravlja putem Odoo Clients 360."
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/demo_import_wizard.py:0
+msgid ""
+"<p>This creates 4 demo clients exercising every part of the app: domains, "
+"hosting, SSL and server assets in every stage/risk level, credentials, "
+"custom &amp; native modules, tags, a campaign link, a linked (draft) renewal"
+" quote, infrastructure profiles with credentials, technical contacts, and "
+"client projects with tasks in every stage — some expiring soon, some "
+"overdue, one with negative margin, one client email notification turned off "
+"on purpose.</p><p>Running it again will not duplicate data — use <b>Remove "
+"Demo Data</b> first if you want a clean slate.</p>"
+msgstr ""
+"<p>Ovo kreira 4 demo klijenta koji obuhvataju svaki dio aplikacije: domene, "
+"hosting, SSL i server sredstva u svakoj fazi/nivou rizika, kredencijale, "
+"prilagođene i nativne module, oznake, vezu na kampanju, povezanu (nacrt) "
+"ponudu za obnovu, profile infrastrukture sa kredencijalima, tehničke "
+"kontakte i projekte klijenata sa zadacima u svakoj fazi — neki uskoro "
+"ističu, neki su zakašnjeli, jedan sa negativnom maržom, jedno obavještenje "
+"klijenta putem emaila namjerno isključeno.</p><p>Ponovno pokretanje neće "
+"duplirati podatke — koristite <b>Ukloni demo podatke</b> prvo ako želite "
+"čisto stanje.</p>"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/demo_import_wizard.py:0
+msgid "Renewal: %(name)s (Odoo.sh)"
+msgstr "Obnova: %(name)s (Odoo.sh)"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Primary Access"
+msgstr "Primarni pristup"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Secondary Access"
+msgstr "Sekundarni pristup"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid ""
+"Who to contact and in what order if the primary IT contact is unreachable "
+"during an incident..."
+msgstr ""
+"Koga kontaktirati i kojim redoslijedom ako primarni IT kontakt nije dostupan"
+" tokom incidenta..."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                            <span class=\"text-muted\">Escalation Path:</span>"
+msgstr ""
+"<br/>\n"
+"                                            <span class=\"text-muted\">Put eskalacije:</span>"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.report_client_infrastructure
+msgid ""
+"<br/>\n"
+"                                        <strong>Sale Order:</strong>"
+msgstr ""
+"<br/>\n"
+"                                        <strong>Prodajni nalog:</strong>"
+
+#. module: ts_partner_app
+#: model:product.template,name:ts_partner_app.product_client_services_product_template
+msgid "Client Services"
+msgstr "Usluge klijentu"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Create Invoice"
+msgstr "Kreiraj fakturu"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid ""
+"Create a draft Sale Order for one-off billing — project work or ad-hoc "
+"maintenance, as opposed to a recurring renewal."
+msgstr ""
+"Kreira nacrt prodajnog naloga za jednokratno fakturisanje — rad na projektu "
+"ili ad-hoc održavanje, za razliku od periodične obnove."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__invoice_count
+msgid "Invoice Count"
+msgstr "Broj faktura"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "Invoice quotation %(order)s created."
+msgstr "Kreirana ponuda za fakturu %(order)s."
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_asset__invoice_ids
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid "Invoices"
+msgstr "Fakture"
+
+#. module: ts_partner_app
+#: model:product.template,description_sale:ts_partner_app.product_client_services_product_template
+msgid ""
+"One-off client services — project work or maintenance, billed via Odoo "
+"Clients 360."
+msgstr ""
+"Jednokratne usluge klijentu — rad na projektu ili održavanje, fakturisano "
+"putem Odoo Clients 360."
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/partner_asset.py:0
+msgid "Services: %s"
+msgstr "Usluge: %s"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_sale_order__asset_id
+msgid ""
+"Set automatically when this order was created from a client asset (renewal "
+"quote or one-off invoice), so it shows up on that asset's Invoices smart "
+"button."
+msgstr ""
+"Postavlja se automatski kada je ovaj nalog kreiran iz sredstva klijenta "
+"(ponuda za obnovu ili jednokratna faktura), tako da se prikazuje na pametnom"
+" dugmetu Fakture tog sredstva."
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/project_template_import_wizard.py:0
+msgid "%(hours)s default hours (%(phase)s)"
+msgstr "%(hours)s zadanih sati (%(phase)s)"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_task_import_wizard_view_form
+msgid ""
+"Creates one Sales product (service) per Project Task Template, priced at\n"
+"                    Default Hours × the hourly rate below — so each phase/task can be quoted or\n"
+"                    invoiced as its own line item. Running this again updates the same products\n"
+"                    instead of duplicating them, so you can safely re-run it after changing hours\n"
+"                    or the rate."
+msgstr ""
+"Kreira jedan Sales proizvod (usluga) po predlošku zadatka projekta, po cijeni\n"
+"                    Zadanih sati × satnice ispod — tako da se svaka faza/zadatak može ponuditi ili\n"
+"                    fakturisati kao zasebna stavka. Ponovno pokretanje ažurira iste proizvode\n"
+"                    umjesto dupliranja, tako da je sigurno ponovo pokrenuti nakon promjene sati\n"
+"                    ili satnice."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_project_template_task_import_wizard__hourly_rate
+msgid ""
+"Each template task's product is priced at its Default Hours multiplied by "
+"this rate. Leave at 0 to import the products with hours recorded in the "
+"description but the price left at 0 for you to set manually per product."
+msgstr ""
+"Proizvod svakog predloška zadatka se cijeni po Zadanim satima pomnoženim "
+"ovom satnicom. Ostavite na 0 da uvezete proizvode sa satima zabilježenim u "
+"opisu, ali cijenom ostavljenom na 0 za ručno postavljanje po proizvodu."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_task_import_wizard__hourly_rate
+msgid "Hourly Rate"
+msgstr "Satnica"
+
+#. module: ts_partner_app
+#: model:ir.actions.act_window,name:ts_partner_app.project_template_task_import_wizard_action
+#: model:ir.ui.menu,name:ts_partner_app.partner_asset_menu_project_template_import
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_task_import_wizard_view_form
+msgid "Import Products"
+msgstr "Uvezi proizvode"
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_partner_project_template_task_import_wizard
+msgid "Import Products from Project Task Templates"
+msgstr "Uvezi proizvode iz predložaka zadataka projekta"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_project_template_task__product_id
+msgid "Linked Product"
+msgstr "Povezani proizvod"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/project_template_import_wizard.py:0
+msgid "Products"
+msgstr "Proizvodi"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,help:ts_partner_app.field_partner_project_template_task__product_id
+msgid ""
+"Set by Configuration > Import Products — the Sales service product generated"
+" from this template task, priced at Default Hours × the hourly rate used at "
+"import time."
+msgstr ""
+"Postavlja se putem Konfiguracija > Uvezi proizvode — Sales uslužni proizvod "
+"generisan iz ovog predloška zadatka, po cijeni Zadanih sati × satnice "
+"korištene prilikom uvoza."
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/project_template_import_wizard.py:0
+msgid ""
+"%(count)s couldn't be removed because they're already used elsewhere (e.g. a"
+" sale order or invoice): %(names)s"
+msgstr ""
+"%(count)s se nije moglo ukloniti jer su već korišteni negdje drugo (npr. "
+"prodajni nalog ili faktura): %(names)s"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/project_template_import_wizard.py:0
+msgid "%(removed)s product(s) removed."
+msgstr "%(removed)s proizvod(a) uklonjeno."
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/project_template_import_wizard.py:0
+msgid "No imported products found — nothing to remove."
+msgstr "Nema uvezenih proizvoda — nema šta da se ukloni."
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/project_template_import_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_task_import_wizard_view_form
+msgid "Remove Imported Products"
+msgstr "Ukloni uvezene proizvode"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.project_template_task_import_wizard_view_form
+msgid ""
+"This will delete every product previously created by Import Products. "
+"Products already used on a confirmed sale order or invoice can't be deleted "
+"— you'll get an error naming which ones. Continue?"
+msgstr ""
+"Ovo će obrisati svaki proizvod prethodno kreiran putem Uvezi proizvode. "
+"Proizvodi koji su već korišteni na potvrđenom prodajnom nalogu ili fakturi "
+"ne mogu se obrisati — dobit ćete grešku sa nazivima kojih. Nastaviti?"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.sale_offer_wizard_view_form
+msgid "Create Quotation"
+msgstr "Kreiraj ponudu"
+
+#. module: ts_partner_app
+#: model:ir.actions.act_window,name:ts_partner_app.sale_offer_wizard_action
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.sale_offer_wizard_view_form
+msgid "Create Sale Offer"
+msgstr "Kreiraj prodajnu ponudu"
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_partner_sale_offer_wizard_line
+msgid "Create Sale Offer Wizard Line"
+msgstr "Stavka čarobnjaka za kreiranje prodajne ponude"
+
+#. module: ts_partner_app
+#: model:ir.model,name:ts_partner_app.model_partner_sale_offer_wizard
+msgid "Create Sale Offer from Service Products"
+msgstr "Kreiraj prodajnu ponudu od uslužnih proizvoda"
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.sale_offer_wizard_view_form
+msgid ""
+"No service products yet — go to Configuration &gt; Import Products first\n"
+"                    to turn the Project Task Templates catalog into quotable services."
+msgstr ""
+"Još nema uslužnih proizvoda — prvo idite na Konfiguracija &gt; Uvezi proizvode\n"
+"                    da pretvorite katalog predložaka zadataka projekta u ponudive usluge."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.partner_asset_view_form
+msgid ""
+"Pick from the service products created by Configuration > Import Products "
+"and generate a quotation for this client."
+msgstr ""
+"Odaberite od uslužnih proizvoda kreiranih putem Konfiguracija > Uvezi "
+"proizvode i generišite ponudu za ovog klijenta."
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_sale_offer_wizard_line__product_id
+msgid "Product"
+msgstr "Proizvod"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_sale_offer_wizard_line__quantity
+msgid "Quantity"
+msgstr "Količina"
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/sale_offer_wizard.py:0
+msgid "Sale offer %(order)s created with %(count)s service(s)."
+msgstr "Prodajna ponuda %(order)s kreirana sa %(count)s usluga(e)."
+
+#. module: ts_partner_app
+#. odoo-python
+#: code:addons/ts_partner_app/models/sale_offer_wizard.py:0
+msgid "Select at least one service before creating the quotation."
+msgstr "Odaberite barem jednu uslugu prije kreiranja ponude."
+
+#. module: ts_partner_app
+#: model_terms:ir.ui.view,arch_db:ts_partner_app.sale_offer_wizard_view_form
+msgid "Selected Services"
+msgstr "Odabrane usluge"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_sale_offer_wizard__line_ids
+msgid "Services"
+msgstr "Usluge"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_sale_offer_wizard__total_amount
+msgid "Total Amount"
+msgstr "Ukupan iznos"
+
+#. module: ts_partner_app
+#: model:ir.model.fields,field_description:ts_partner_app.field_partner_sale_offer_wizard_line__price_unit
+msgid "Unit Price"
+msgstr "Jedinična cijena"

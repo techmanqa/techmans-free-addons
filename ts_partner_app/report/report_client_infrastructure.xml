@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_client_infrastructure" model="ir.actions.report">
+        <field name="name">Client Infrastructure Report</field>
+        <field name="model">partner.asset</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ts_partner_app.report_client_infrastructure</field>
+        <field name="report_file">ts_partner_app.report_client_infrastructure</field>
+        <field name="binding_model_id" ref="model_partner_asset"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Client Infrastructure Report'</field>
+    </record>
+
+    <template id="report_client_infrastructure">
+        <t t-call="web.html_container">
+            <t t-foreach="docs.mapped('partner_id')" t-as="partner">
+                <t t-set="partner_assets" t-value="docs.filtered(lambda a: a.partner_id == partner)"/>
+                <t t-set="infra" t-value="partner.env['partner.infrastructure'].search([('partner_id', '=', partner.id)], limit=1)"/>
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Client Infrastructure Report</h2>
+                        <h4 t-out="partner.name"/>
+                        <p class="text-muted">
+                            Generated on <span t-out="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/>
+                            &#8212; <span t-out="len(partner_assets)"/> asset(s)
+                            &#8212; <span t-out="sum(partner_assets.mapped('license_count'))"/> license(s) total
+                        </p>
+
+                        <!-- ================= Infrastructure Profile ================= -->
+                        <h3 class="mt-4">Infrastructure Profile</h3>
+                        <div t-if="not infra" class="text-muted">
+                            No Infrastructure Profile configured for this client yet.
+                        </div>
+                        <div t-if="infra" class="border rounded p-3 mt-2">
+                            <span t-attf-class="badge #{'bg-info' if infra.hosting_type == 'odoo_sh' else ('bg-warning text-dark' if infra.hosting_type == 'custom_server' else 'bg-secondary')}"
+                                  t-out="dict(infra._fields['hosting_type']._description_selection(infra.env)).get(infra.hosting_type, infra.hosting_type)"/>
+                            <div class="row mt-2">
+                                <div t-if="infra.hosting_type == 'odoo_sh'" class="col-6">
+                                    <strong>Project URL:</strong> <span t-out="infra.odoo_sh_url or '-'"/><br/>
+                                    <strong>Branch:</strong> <span t-out="infra.odoo_sh_branch or '-'"/><br/>
+                                    <strong>Database:</strong> <span t-out="infra.odoo_sh_database or '-'"/>
+                                </div>
+                                <div t-if="infra.hosting_type == 'custom_server'" class="col-6">
+                                    <strong>Host / IP:</strong> <span t-out="infra.server_host or '-'"/><br/>
+                                    <strong>SSH:</strong> <span t-out="'%s@%s:%s' % (infra.server_ssh_user or '-', infra.server_host or '-', infra.server_ssh_port or '-')"/><br/>
+                                    <strong>Provider:</strong> <span t-out="infra.hosting_provider or '-'"/>
+                                </div>
+                                <div class="col-6">
+                                    <strong>Odoo Login URL:</strong> <span t-out="infra.odoo_login_url or '-'"/><br/>
+                                    <strong>GitHub Repository:</strong> <span t-out="infra.github_url or '-'"/><br/>
+                                    <strong>GitHub Branch:</strong> <span t-out="infra.github_branch or '-'"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ================= Assets overview ================= -->
+                        <h3 class="mt-4">Assets Overview</h3>
+                        <table class="table table-sm mt-2">
+                            <thead>
+                                <tr>
+                                    <th>Client Asset</th>
+                                    <th>Type</th>
+                                    <th>Stage</th>
+                                    <th>Start</th>
+                                    <th>End</th>
+                                    <th>Licenses</th>
+                                    <th>Risk</th>
+                                    <th>Backup Verified</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="partner_assets" t-as="asset">
+                                    <td><span t-out="asset.name"/></td>
+                                    <td><span t-out="dict(asset._fields['type']._description_selection(asset.env)).get(asset.type, asset.type)"/></td>
+                                    <td><span t-out="asset.stage_id.name or '-'"/></td>
+                                    <td><span t-field="asset.start_date"/></td>
+                                    <td><span t-field="asset.end_date"/></td>
+                                    <td><span t-out="asset.license_count or 0"/></td>
+                                    <td><span t-out="dict(asset._fields['risk_level']._description_selection(asset.env)).get(asset.risk_level, '-')"/></td>
+                                    <td><span t-out="'Yes' if asset.backup_verified else 'No'"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="mt-2">
+                            <strong>Disaster recovery documented:</strong>
+                            <span t-out="'%s of %s assets' % (len(partner_assets.filtered('dr_plan_documented')), len(partner_assets))"/>
+                        </div>
+
+                        <!-- ================= Per-asset detail ================= -->
+                        <t t-foreach="partner_assets" t-as="asset">
+                            <div style="page-break-inside: avoid;" class="mt-4 pt-3 border-top">
+                                <h4>
+                                    <span t-out="asset.name"/>
+                                    <small class="text-muted">
+                                        (<span t-out="dict(asset._fields['type']._description_selection(asset.env)).get(asset.type, asset.type)"/>
+                                        &#8212; <span t-out="asset.stage_id.name or '-'"/>)
+                                    </small>
+                                </h4>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <strong>Subscription:</strong> <span t-out="asset.subscription_number or '-'"/><br/>
+                                        <strong>Sale Order:</strong> <span t-out="asset.sale_order_id.name or '-'"/><br/>
+                                        <strong>Campaign:</strong> <span t-out="asset.campaign_id.title or '-'"/><br/>
+                                        <strong>Tags:</strong> <span t-out="', '.join(asset.tag_ids.mapped('name')) or '-'"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <strong>Current Version:</strong> <span t-out="asset.current_version or '-'"/><br/>
+                                        <strong>Latest Version:</strong> <span t-out="asset.latest_version or '-'"/><br/>
+                                        <strong>Last Upgrade:</strong> <span t-field="asset.last_upgrade_date"/><br/>
+                                        <strong>Licenses:</strong> <span t-out="asset.license_count or 0"/>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-2">
+                                    <div class="col-6">
+                                        <strong>Technical Contacts</strong><br/>
+                                        <span class="text-muted">IT Contact:</span> <span t-out="asset.client_it_contact.name or '-'"/><br/>
+                                        <span class="text-muted">Decision Maker:</span> <span t-out="asset.decision_maker_contact.name or '-'"/><br/>
+                                        <span class="text-muted">Emergency Contact:</span>
+                                        <span t-out="asset.emergency_contact.name or '-'"/>
+                                        <span t-if="asset.emergency_contact_phone" t-out="'(%s)' % asset.emergency_contact_phone"/>
+                                        <t t-if="asset.escalation_path">
+                                            <br/>
+                                            <span class="text-muted">Escalation Path:</span>
+                                            <span t-field="asset.escalation_path"/>
+                                        </t>
+                                    </div>
+                                    <div class="col-6">
+                                        <strong>Backup &amp; Risk</strong><br/>
+                                        <span class="text-muted">Last Backup Check:</span> <span t-field="asset.last_backup_check"/><br/>
+                                        <span class="text-muted">Monitoring Active:</span> <span t-out="'Yes' if asset.monitoring_active == 'yes' else 'No'"/><br/>
+                                        <span class="text-muted">DR Plan Documented:</span> <span t-out="'Yes' if asset.dr_plan_documented else 'No'"/>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-2">
+                                    <div class="col-6">
+                                        <strong>Cost &amp; Margin</strong><br/>
+                                        <span class="text-muted">Infra Monthly Cost:</span>
+                                        <span t-field="asset.infra_monthly_cost" t-options="{'widget': 'monetary', 'display_currency': asset.currency_id}"/><br/>
+                                        <span class="text-muted">Monthly Billing:</span>
+                                        <span t-field="asset.monthly_billing_client" t-options="{'widget': 'monetary', 'display_currency': asset.currency_id}"/><br/>
+                                        <span class="text-muted">Gross Margin:</span>
+                                        <span t-field="asset.gross_margin" t-options="{'widget': 'monetary', 'display_currency': asset.currency_id}"/>
+                                        (<span t-out="'%.1f' % asset.margin_pct"/>%)
+                                    </div>
+                                    <div class="col-6">
+                                        <strong>Native Odoo Apps Used</strong><br/>
+                                        <span t-out="', '.join(asset.native_module_ids.mapped('name')) or 'None recorded'"/>
+                                    </div>
+                                </div>
+
+                                <div t-if="asset.custom_module_ids" class="mt-2">
+                                    <strong>Custom Modules</strong>
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th><th>Version</th><th>Author</th><th>Link</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr t-foreach="asset.custom_module_ids" t-as="module">
+                                                <td><span t-out="module.name"/></td>
+                                                <td><span t-out="module.version or '-'"/></td>
+                                                <td><span t-out="module.author or '-'"/></td>
+                                                <td><span t-out="module.link or '-'"/></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </t>
+
+                        <p class="text-muted mt-4" style="font-size:11px;">
+                            Credentials are intentionally excluded from this report (asset and Infrastructure
+                            Profile passwords, access tokens).
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

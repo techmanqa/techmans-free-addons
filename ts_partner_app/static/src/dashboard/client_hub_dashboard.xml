@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="ts_partner_app.ClientHubDashboard">
+        <div class="o_client_hub_dashboard">
+            <div class="o_client_hub_header">
+                <h2>Odoo Clients 360</h2>
+                <span class="text-muted">Portfolio overview</span>
+                <div class="ms-auto d-flex gap-2">
+                    <button class="btn btn-primary btn-sm" t-on-click="openNewClientAsset">
+                        <i class="fa fa-plus me-1"/> New Client
+                    </button>
+                    <button class="btn btn-outline-primary btn-sm" t-on-click="openProjects">
+                        <i class="fa fa-folder-open me-1"/> Projects
+                    </button>
+                </div>
+            </div>
+
+            <div t-if="state.error" class="alert alert-danger m-3" role="alert">
+                Could not load the dashboard data.
+            </div>
+
+            <div t-if="!state.data and !state.error" class="o_client_hub_loading">
+                <i class="fa fa-circle-o-notch fa-spin"/> Loading…
+            </div>
+
+            <t t-if="state.data">
+                <!-- KPI row -->
+                <div class="o_client_hub_kpis">
+                    <div class="o_client_hub_kpi o_client_hub_kpi_clickable" t-on-click="openClients">
+                        <span class="o_client_hub_kpi_value" t-esc="state.data.kpi.client_count"/>
+                        <span class="o_client_hub_kpi_label">Clients</span>
+                    </div>
+                    <div class="o_client_hub_kpi o_client_hub_kpi_clickable" t-on-click="openActiveAssets">
+                        <span class="o_client_hub_kpi_value" t-esc="state.data.kpi.asset_count"/>
+                        <span class="o_client_hub_kpi_label">Active Client Assets</span>
+                    </div>
+                    <div class="o_client_hub_kpi">
+                        <span class="o_client_hub_kpi_value" t-esc="formatMoney(state.data.kpi.mrr)"/>
+                        <span class="o_client_hub_kpi_label">Monthly Billing</span>
+                    </div>
+                    <div class="o_client_hub_kpi">
+                        <span class="o_client_hub_kpi_value" t-esc="formatMoney(state.data.kpi.margin)"/>
+                        <span class="o_client_hub_kpi_label">
+                            Gross Margin (<t t-esc="formatPct(state.data.kpi.margin_pct)"/>)
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Risk row -->
+                <div class="o_client_hub_risk_row">
+                    <div class="o_client_hub_risk_card o_risk_danger" t-on-click="openHighRisk">
+                        <i class="fa fa-exclamation-triangle"/>
+                        <div>
+                            <span class="o_client_hub_risk_value" t-esc="state.data.risk.high_risk_count"/>
+                            <span class="o_client_hub_risk_label">High Risk</span>
+                        </div>
+                    </div>
+                    <div class="o_client_hub_risk_card o_risk_danger" t-on-click="openDown">
+                        <i class="fa fa-plug"/>
+                        <div>
+                            <span class="o_client_hub_risk_value" t-esc="state.data.risk.down_count"/>
+                            <span class="o_client_hub_risk_label">Unreachable</span>
+                        </div>
+                    </div>
+                    <div class="o_client_hub_risk_card o_risk_warning" t-on-click="openBackupStale">
+                        <i class="fa fa-database"/>
+                        <div>
+                            <span class="o_client_hub_risk_value" t-esc="state.data.risk.backup_stale_count"/>
+                            <span class="o_client_hub_risk_label">Backup Stale</span>
+                        </div>
+                    </div>
+                    <div class="o_client_hub_risk_card o_risk_warning" t-on-click="openNegativeMargin">
+                        <i class="fa fa-arrow-down"/>
+                        <div>
+                            <span class="o_client_hub_risk_value" t-esc="state.data.risk.negative_margin_count"/>
+                            <span class="o_client_hub_risk_label">Negative Margin</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="o_client_hub_columns">
+                    <!-- Portfolio mix -->
+                    <div class="o_client_hub_card">
+                        <h4>Portfolio Mix</h4>
+                        <div t-if="!state.data.by_type.length" class="text-muted">No active assets yet.</div>
+                        <div t-foreach="state.data.by_type" t-as="row" t-key="row.type"
+                             class="o_client_hub_bar_row" t-on-click="() => this.openByType(row)">
+                            <span class="o_client_hub_bar_label" t-esc="row.label"/>
+                            <div class="o_client_hub_bar_track">
+                                <div class="o_client_hub_bar_fill" t-attf-style="width: #{barPct(row.count)}%"/>
+                            </div>
+                            <span class="o_client_hub_bar_count" t-esc="row.count"/>
+                        </div>
+                    </div>
+
+                    <!-- Expiring soon -->
+                    <div class="o_client_hub_card">
+                        <h4>Expiring in 30 Days</h4>
+                        <div t-if="!state.data.expiring_soon.length" class="text-muted">Nothing expiring soon.</div>
+                        <table t-if="state.data.expiring_soon.length" class="o_client_hub_table">
+                            <tr t-foreach="state.data.expiring_soon" t-as="row" t-key="row.id"
+                                t-on-click="() => this.openAsset(row.id)">
+                                <td t-esc="row.name"/>
+                                <td class="text-muted" t-esc="row.partner"/>
+                                <td class="text-end text-nowrap" t-esc="row.expiry_date"/>
+                            </tr>
+                        </table>
+                        <a href="#" class="o_client_hub_view_all" t-on-click.prevent="openExpiringSoon">
+                            View all →
+                        </a>
+                    </div>
+
+                    <!-- Stage pipeline -->
+                    <div class="o_client_hub_card">
+                        <h4>By Stage</h4>
+                        <div t-if="!state.data.by_stage.length" class="text-muted">No active assets yet.</div>
+                        <div t-foreach="state.data.by_stage" t-as="row" t-key="row.stage" class="o_client_hub_bar_row">
+                            <span class="o_client_hub_bar_label" t-esc="row.stage"/>
+                            <div class="o_client_hub_bar_track">
+                                <div class="o_client_hub_bar_fill o_bar_stage" t-attf-style="width: #{barPct(row.count)}%"/>
+                            </div>
+                            <span class="o_client_hub_bar_count" t-esc="row.count"/>
+                        </div>
+                    </div>
+
+                    <!-- Infrastructure coverage -->
+                    <div class="o_client_hub_card">
+                        <h4>Infrastructure Coverage</h4>
+                        <div t-if="!state.data.infrastructure.by_hosting_type.length" class="text-muted">
+                            No infrastructure profiles yet.
+                        </div>
+                        <div t-foreach="state.data.infrastructure.by_hosting_type" t-as="row" t-key="row.hosting_type"
+                             class="o_client_hub_bar_row" t-on-click="() => this.openInfraByHostingType(row)">
+                            <span class="o_client_hub_bar_label" t-esc="row.label"/>
+                            <div class="o_client_hub_bar_track">
+                                <div class="o_client_hub_bar_fill o_bar_stage" t-attf-style="width: #{infraBarPct(row.count)}%"/>
+                            </div>
+                            <span class="o_client_hub_bar_count" t-esc="row.count"/>
+                        </div>
+                        <a t-if="state.data.infrastructure.missing_count" href="#" class="o_client_hub_view_all"
+                           t-on-click.prevent="openMissingInfra">
+                            <t t-esc="state.data.infrastructure.missing_count"/> client(s) without a profile →
+                        </a>
+                        <span t-elif="state.data.infrastructure.by_hosting_type.length" class="o_client_hub_view_all text-muted">
+                            Every client has a profile.
+                        </span>
+                    </div>
+
+                    <!-- Client projects -->
+                    <div class="o_client_hub_card">
+                        <h4>Running Projects &amp; Tasks</h4>
+                        <div class="o_client_hub_project_stats">
+                            <span><strong t-esc="state.data.projects.project_count"/> running project(s)</span>
+                            <span><strong t-esc="state.data.projects.open_task_count"/> open task(s)</span>
+                        </div>
+                        <div t-if="!state.data.projects.by_stage.length" class="text-muted">
+                            No client projects yet.
+                        </div>
+                        <div t-foreach="state.data.projects.by_stage" t-as="row" t-key="row.stage_id"
+                             class="o_client_hub_bar_row" t-on-click="() => this.openTasksByStage(row)">
+                            <span class="o_client_hub_bar_label" t-esc="row.label"/>
+                            <div class="o_client_hub_bar_track">
+                                <div class="o_client_hub_bar_fill o_bar_stage" t-attf-style="width: #{projectBarPct(row.count)}%"/>
+                            </div>
+                            <span class="o_client_hub_bar_count" t-esc="row.count"/>
+                        </div>
+                        <a href="#" class="o_client_hub_view_all" t-on-click.prevent="openAllProjectTasks">
+                            View all →
+                        </a>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+
+</templates>

@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- 1. Discovery and planning -->
+        <record id="tmpl_discovery_kickoff" model="partner.project.template.task">
+            <field name="name">Kickoff and stakeholder alignment</field>
+            <field name="phase">discovery</field>
+            <field name="sequence">10</field>
+            <field name="default_hours">2</field>
+        </record>
+        <record id="tmpl_discovery_workshops" model="partner.project.template.task">
+            <field name="name">Business-process discovery workshops</field>
+            <field name="phase">discovery</field>
+            <field name="sequence">20</field>
+            <field name="default_hours">8</field>
+        </record>
+        <record id="tmpl_discovery_gap_analysis" model="partner.project.template.task">
+            <field name="name">Requirements and gap analysis</field>
+            <field name="phase">discovery</field>
+            <field name="sequence">30</field>
+            <field name="default_hours">8</field>
+        </record>
+        <record id="tmpl_discovery_blueprint" model="partner.project.template.task">
+            <field name="name">Solution blueprint and scope confirmation</field>
+            <field name="phase">discovery</field>
+            <field name="sequence">40</field>
+            <field name="default_hours">6</field>
+        </record>
+        <record id="tmpl_discovery_governance" model="partner.project.template.task">
+            <field name="name">Project plan, governance, and risk register</field>
+            <field name="phase">discovery</field>
+            <field name="sequence">50</field>
+            <field name="default_hours">4</field>
+        </record>
+
+        <!-- 2. Environment and foundation -->
+        <record id="tmpl_foundation_env" model="partner.project.template.task">
+            <field name="name">Database and environment setup</field>
+            <field name="phase">foundation</field>
+            <field name="sequence">10</field>
+            <field name="default_hours">2</field>
+        </record>
+        <record id="tmpl_foundation_company" model="partner.project.template.task">
+            <field name="name">Company, branches, currencies, and languages</field>
+            <field name="phase">foundation</field>
+            <field name="sequence">20</field>
+            <field name="default_hours">4</field>
+        </record>
+        <record id="tmpl_foundation_users" model="partner.project.template.task">
+            <field name="name">Users, roles, and access rights</field>
+            <field name="phase">foundation</field>
+            <field name="sequence">30</field>
+            <field name="default_hours">5</field>
+        </record>
+        <record id="tmpl_foundation_email" model="partner.project.template.task">
+            <field name="name">Email server, document templates, and branding</field>
+            <field name="phase">foundation</field>
+            <field name="sequence">40</field>
+            <field name="default_hours">4</field>
+        </record>
+        <record id="tmpl_foundation_tax" model="partner.project.template.task">
+            <field name="name">Base accounting and tax localization review</field>
+            <field name="phase">foundation</field>
+            <field name="sequence">50</field>
+            <field name="default_hours">5</field>
+        </record>
+
+        <!-- 3. Module configuration -->
+        <record id="tmpl_module_crm" model="partner.project.template.task">
+            <field name="name">CRM</field>
+            <field name="phase">modules</field>
+            <field name="sequence">10</field>
+            <field name="default_hours">10</field>
+        </record>
+        <record id="tmpl_module_sales" model="partner.project.template.task">
+            <field name="name">Sales</field>
+            <field name="phase">modules</field>
+            <field name="sequence">20</field>
+            <field name="default_hours">12</field>
+        </record>
+        <record id="tmpl_module_purchase" model="partner.project.template.task">
+            <field name="name">Purchase</field>
+            <field name="phase">modules</field>
+            <field name="sequence">30</field>
+            <field name="default_hours">10</field>
+        </record>
+        <record id="tmpl_module_inventory" model="partner.project.template.task">
+            <field name="name">Inventory and warehouse</field>
+            <field name="phase">modules</field>
+            <field name="sequence">40</field>
+            <field name="default_hours">16</field>
+        </record>
+        <record id="tmpl_module_accounting" model="partner.project.template.task">
+            <field name="name">Invoicing and accounting</field>
+            <field name="phase">modules</field>
+            <field name="sequence">50</field>
+            <field name="default_hours">24</field>
+        </record>
+        <record id="tmpl_module_project" model="partner.project.template.task">
+            <field name="name">Project and timesheets</field>
+            <field name="phase">modules</field>
+            <field name="sequence">60</field>
+            <field name="default_hours">12</field>
+        </record>
+        <record id="tmpl_module_hr" model="partner.project.template.task">
+            <field name="name">Employees and basic HR</field>
+            <field name="phase">modules</field>
+            <field name="sequence">70</field>
+            <field name="default_hours">8</field>
+        </record>
+        <record id="tmpl_module_website" model="partner.project.template.task">
+            <field name="name">Website and eCommerce</field>
+            <field name="phase">modules</field>
+            <field name="sequence">80</field>
+            <field name="default_hours">24</field>
+            <field name="note">if required</field>
+        </record>
+        <record id="tmpl_module_manufacturing" model="partner.project.template.task">
+            <field name="name">Manufacturing</field>
+            <field name="phase">modules</field>
+            <field name="sequence">90</field>
+            <field name="default_hours">32</field>
+            <field name="note">if required</field>
+        </record>
+        <record id="tmpl_module_helpdesk" model="partner.project.template.task">
+            <field name="name">Helpdesk</field>
+            <field name="phase">modules</field>
+            <field name="sequence">100</field>
+            <field name="default_hours">10</field>
+            <field name="note">if required</field>
+        </record>
+
+        <!-- 4. Data migration -->
+        <record id="tmpl_migration_planning" model="partner.project.template.task">
+            <field name="name">Migration planning and templates</field>
+            <field name="phase">migration</field>
+            <field name="sequence">10</field>
+            <field name="default_hours">4</field>
+        </record>
+        <record id="tmpl_migration_mapping" model="partner.project.template.task">
+            <field name="name">Data review, mapping, and cleansing support</field>
+            <field name="phase">migration</field>
+            <field name="sequence">20</field>
+            <field name="default_hours">8</field>
+        </record>
+        <record id="tmpl_migration_contacts" model="partner.project.template.task">
+            <field name="name">Contacts and suppliers</field>
+            <field name="phase">migration</field>
+            <field name="sequence">30</field>
+            <field name="default_hours">4</field>
+        </record>
+        <record id="tmpl_migration_products" model="partner.project.template.task">
+            <field name="name">Products and price lists</field>
+            <field name="phase">migration</field>
+            <field name="sequence">40</field>
+            <field name="default_hours">6</field>
+        </record>
+        <record id="tmpl_migration_inventory" model="partner.project.template.task">
+            <field name="name">Opening inventory</field>
+            <field name="phase">migration</field>
+            <field name="sequence">50</field>
+            <field name="default_hours">4</field>
+        </record>
+        <record id="tmpl_migration_balances" model="partner.project.template.task">
+            <field name="name">Opening accounting balances</field>
+            <field name="phase">migration</field>
+            <field name="sequence">60</field>
+            <field name="default_hours">8</field>
+        </record>
+        <record id="tmpl_migration_open_docs" model="partner.project.template.task">
+            <field name="name">Open sales and purchase documents</field>
+            <field name="phase">migration</field>
+            <field name="sequence">70</field>
+            <field name="default_hours">6</field>
+        </record>
+        <record id="tmpl_migration_trial" model="partner.project.template.task">
+            <field name="name">Trial import and validation</field>
+            <field name="phase">migration</field>
+            <field name="sequence">80</field>
+            <field name="default_hours">8</field>
+        </record>
+        <record id="tmpl_migration_final" model="partner.project.template.task">
+            <field name="name">Final production migration</field>
+            <field name="phase">migration</field>
+            <field name="sequence">90</field>
+            <field name="default_hours">6</field>
+        </record>
+
+        <!-- 5. Integrations and customization -->
+        <record id="tmpl_integration_design" model="partner.project.template.task">
+            <field name="name">Technical design per customization</field>
+            <field name="phase">integration</field>
+            <field name="sequence">10</field>
+            <field name="default_hours">4</field>
+        </record>
+        <record id="tmpl_integration_simple_change" model="partner.project.template.task">
+            <field name="name">Simple field, view, or report change</field>
+            <field name="phase">integration</field>
+            <field name="sequence">20</field>
+            <field name="default_hours">4</field>
+            <field name="note">2-6h each, typical value shown</field>
+        </record>
+        <record id="tmpl_integration_automation" model="partner.project.template.task">
+            <field name="name">Simple automated action or approval</field>
+            <field name="phase">integration</field>
+            <field name="sequence">30</field>
+            <field name="default_hours">6</field>
+            <field name="note">4-8h each, typical value shown</field>
+        </record>
+        <record id="tmpl_integration_pdf_report" model="partner.project.template.task">
+            <field name="name">Custom PDF report</field>
+            <field name="phase">integration</field>
+            <field name="sequence">40</field>
+            <field name="default_hours">11</field>
+            <field name="note">6-16h each, typical value shown</field>
+        </record>
+        <record id="tmpl_integration_small" model="partner.project.template.task">
+            <field name="name">Small external integration</field>
+            <field name="phase">integration</field>
+            <field name="sequence">50</field>
+            <field name="default_hours">32</field>
+            <field name="note">24-40h each, typical value shown</field>
+        </record>
+        <record id="tmpl_integration_medium" model="partner.project.template.task">
+            <field name="name">Medium external integration</field>
+            <field name="phase">integration</field>
+            <field name="sequence">60</field>
+            <field name="default_hours">90</field>
+            <field name="note">60-120h each, typical value shown</field>
+        </record>
+        <record id="tmpl_integration_custom_module" model="partner.project.template.task">
+            <field name="name">Custom module</field>
+            <field name="phase">integration</field>
+            <field name="sequence">70</field>
+            <field name="default_hours">0</field>
+            <field name="note">estimate separately</field>
+        </record>
+
+        <!-- 6. Testing -->
+        <record id="tmpl_testing_plan" model="partner.project.template.task">
+            <field name="name">Test-plan preparation</field>
+            <field name="phase">testing</field>
+            <field name="sequence">10</field>
+            <field name="default_hours">4</field>
+        </record>
+        <record id="tmpl_testing_internal" model="partner.project.template.task">
+            <field name="name">Internal functional testing</field>
+            <field name="phase">testing</field>
+            <field name="sequence">20</field>
+            <field name="default_hours">12</field>
+        </record>
+        <record id="tmpl_testing_uat" model="partner.project.template.task">
+            <field name="name">User acceptance testing support</field>
+            <field name="phase">testing</field>
+            <field name="sequence">30</field>
+            <field name="default_hours">12</field>
+        </record>
+        <record id="tmpl_testing_defects" model="partner.project.template.task">
+            <field name="name">Defect correction allowance</field>
+            <field name="phase">testing</field>
+            <field name="sequence">40</field>
+            <field name="default_hours">12</field>
+        </record>
+        <record id="tmpl_testing_regression" model="partner.project.template.task">
+            <field name="name">Regression testing</field>
+            <field name="phase">testing</field>
+            <field name="sequence">50</field>
+            <field name="default_hours">6</field>
+        </record>
+
+        <!-- 7. Training and go-live -->
+        <record id="tmpl_training_admin" model="partner.project.template.task">
+            <field name="name">Administrator/key-user training</field>
+            <field name="phase">training</field>
+            <field name="sequence">10</field>
+            <field name="default_hours">8</field>
+        </record>
+        <record id="tmpl_training_end_user" model="partner.project.template.task">
+            <field name="name">End-user training</field>
+            <field name="phase">training</field>
+            <field name="sequence">20</field>
+            <field name="default_hours">12</field>
+        </record>
+        <record id="tmpl_training_materials" model="partner.project.template.task">
+            <field name="name">Training materials and recordings</field>
+            <field name="phase">training</field>
+            <field name="sequence">30</field>
+            <field name="default_hours">6</field>
+        </record>
+        <record id="tmpl_training_golive_prep" model="partner.project.template.task">
+            <field name="name">Go-live preparation and checklist</field>
+            <field name="phase">training</field>
+            <field name="sequence">40</field>
+            <field name="default_hours">4</field>
+        </record>
+        <record id="tmpl_training_golive_support" model="partner.project.template.task">
+            <field name="name">Go-live support</field>
+            <field name="phase">training</field>
+            <field name="sequence">50</field>
+            <field name="default_hours">16</field>
+        </record>
+        <record id="tmpl_training_stabilization" model="partner.project.template.task">
+            <field name="name">Post-go-live stabilization</field>
+            <field name="phase">training</field>
+            <field name="sequence">60</field>
+            <field name="default_hours">16</field>
+        </record>
+
+        <!-- 8. Project management -->
+        <record id="tmpl_pm_status_meetings" model="partner.project.template.task">
+            <field name="name">Status meetings, reporting, coordination</field>
+            <field name="phase">pm</field>
+            <field name="sequence">10</field>
+            <field name="default_hours">0</field>
+            <field name="note">10-15% of total hours, use Recalculate below</field>
+        </record>
+        <record id="tmpl_pm_documentation" model="partner.project.template.task">
+            <field name="name">Documentation and handover</field>
+            <field name="phase">pm</field>
+            <field name="sequence">20</field>
+            <field name="default_hours">12</field>
+            <field name="note">8-16h</field>
+        </record>
+
+    </data>
+</odoo>

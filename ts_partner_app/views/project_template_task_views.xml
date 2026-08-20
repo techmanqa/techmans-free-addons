@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_template_task_view_list" model="ir.ui.view">
+        <field name="name">partner.project.template.task.list</field>
+        <field name="model">partner.project.template.task</field>
+        <field name="arch" type="xml">
+            <list string="Project Task Templates" editable="bottom" default_order="phase, sequence">
+                <field name="sequence" widget="handle"/>
+                <field name="phase"/>
+                <field name="name"/>
+                <field name="default_hours"/>
+                <field name="note"/>
+                <field name="product_id" readonly="1" optional="show"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="project_template_task_view_search" model="ir.ui.view">
+        <field name="name">partner.project.template.task.search</field>
+        <field name="model">partner.project.template.task</field>
+        <field name="arch" type="xml">
+            <search string="Search Project Task Templates">
+                <field name="name"/>
+                <filter name="inactive" string="Archived" domain="[('active', '=', False)]"/>
+                <group name="group_by">
+                    <filter name="group_by_phase" string="Phase" context="{'group_by': 'phase'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="project_template_task_action" model="ir.actions.act_window">
+        <field name="name">Project Task Templates</field>
+        <field name="res_model">partner.project.template.task</field>
+        <field name="view_mode">list</field>
+        <field name="context">{'search_default_group_by_phase': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a project template task!
+            </p>
+            <p>
+                This catalog powers the "New Client Project" wizard: pick the phases and modules
+                that apply and it pre-fills a project with these tasks and default hours.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="partner_asset_menu_project_templates"
+              name="Project Task Templates"
+              parent="partner_asset_menu_config"
+              action="project_template_task_action"
+              sequence="30"/>
+
+    <record id="project_template_task_import_wizard_view_form" model="ir.ui.view">
+        <field name="name">partner.project.template.task.import.wizard.form</field>
+        <field name="model">partner.project.template.task.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import Products">
+                <p>
+                    Creates one Sales product (service) per Project Task Template, priced at
+                    Default Hours &#215; the hourly rate below — so each phase/task can be quoted or
+                    invoiced as its own line item. Running this again updates the same products
+                    instead of duplicating them, so you can safely re-run it after changing hours
+                    or the rate.
+                </p>
+                <group>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="hourly_rate" widget="monetary"/>
+                </group>
+                <footer>
+                    <button name="action_import_products" type="object"
+                            string="Import Products" class="btn-primary"/>
+                    <button name="action_remove_products" type="object"
+                            string="Remove Imported Products" class="btn-secondary"
+                            confirm="This will delete every product previously created by Import Products. Products already used on a confirmed sale order or invoice can't be deleted — you'll get an error naming which ones. Continue?"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="project_template_task_import_wizard_action" model="ir.actions.act_window">
+        <field name="name">Import Products</field>
+        <field name="res_model">partner.project.template.task.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="partner_asset_menu_project_template_import"
+              name="Import Products"
+              parent="partner_asset_menu_config"
+              action="project_template_task_import_wizard_action"
+              sequence="35"/>
+</odoo>

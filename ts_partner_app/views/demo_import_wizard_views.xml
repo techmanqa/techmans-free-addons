@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ==================================================================
+         TEMPORARY DEMO/DEV HELPER — see models/demo_import_wizard.py
+         Remove this file + its menu item + manifest/access lines when
+         the "Import Demo" feature is dismissed.
+         ================================================================== -->
+    <record id="demo_import_wizard_view_form" model="ir.ui.view">
+        <field name="name">ts.partner.app.demo.import.wizard.form</field>
+        <field name="model">ts.partner.app.demo.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import Demo Data">
+                <field name="info"/>
+                <footer>
+                    <button name="action_import_demo_data" type="object"
+                            string="Import Demo Data" class="btn-primary"/>
+                    <button name="action_remove_demo_data" type="object"
+                            string="Remove Demo Data" class="btn-secondary"
+                            confirm="This will delete all demo clients and assets created by this wizard. Continue?"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="demo_import_wizard_action" model="ir.actions.act_window">
+        <field name="name">Import Demo</field>
+        <field name="res_model">ts.partner.app.demo.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="partner_asset_menu_demo_import"
+              name="Import Demo"
+              parent="partner_asset_menu_config"
+              action="demo_import_wizard_action"
+              sequence="90"/>
+</odoo>

@@ -1,0 +1,14 @@
+# Changelog - Odoo Clients 360 (ts_partner_app)
+
+## [19.0.1] - 2026-08-20
+### Added
+- Initial public release. Free and open source (LGPL-3).
+- Portfolio dashboard, client infrastructure profiles, encrypted credentials with
+  access audit log, live SSL & uptime monitoring, renewal automation, one-off
+  invoicing, project task templates turned into sale products, a guided new-client
+  onboarding wizard, client self-service portal, and per-client infrastructure PDF
+  report.
+- App-listing description page (`static/description/index.html`) with the real app
+  icon and a screenshot gallery.
+- `static/description/banner.jpg` (Odoo Apps Store cover image) and manifest
+  `images` list (banner + 4 screenshots) for the Apps Store listing.

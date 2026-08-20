@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_asset_rule_company" model="ir.rule">
+        <field name="name">Partner Asset: multi-company</field>
+        <field name="model_id" ref="model_partner_asset"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="partner_infrastructure_rule_company" model="ir.rule">
+        <field name="name">Client Infrastructure: multi-company</field>
+        <field name="model_id" ref="model_partner_infrastructure"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="partner_asset_rule_portal" model="ir.rule">
+        <field name="name">Partner Asset: portal sees own company assets</field>
+        <field name="model_id" ref="model_partner_asset"/>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+        <field name="domain_force">[('partner_id', 'child_of', user.partner_id.commercial_partner_id.id)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+</odoo>

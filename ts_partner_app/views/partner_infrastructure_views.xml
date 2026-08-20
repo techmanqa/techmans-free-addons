@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_infrastructure_view_list" model="ir.ui.view">
+        <field name="name">partner.infrastructure.list</field>
+        <field name="model">partner.infrastructure</field>
+        <field name="arch" type="xml">
+            <list string="Client Infrastructure">
+                <field name="partner_id"/>
+                <field name="hosting_type" widget="badge" decoration-info="hosting_type == 'odoo_sh'" decoration-warning="hosting_type == 'custom_server'" decoration-muted="hosting_type == 'online'"/>
+                <field name="odoo_sh_url" optional="hide"/>
+                <field name="server_host" optional="hide"/>
+                <field name="github_url" optional="hide"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="partner_infrastructure_view_search" model="ir.ui.view">
+        <field name="name">partner.infrastructure.search</field>
+        <field name="model">partner.infrastructure</field>
+        <field name="arch" type="xml">
+            <search string="Search Client Infrastructure">
+                <field name="partner_id"/>
+                <field name="odoo_sh_url"/>
+                <field name="server_host"/>
+                <field name="github_url"/>
+                <filter string="Online" name="filter_online" domain="[('hosting_type', '=', 'online')]"/>
+                <filter string="Odoo.sh" name="filter_odoo_sh" domain="[('hosting_type', '=', 'odoo_sh')]"/>
+                <filter string="Custom Server" name="filter_custom_server" domain="[('hosting_type', '=', 'custom_server')]"/>
+                <group name="group_by">
+                    <filter string="Hosting Type" name="group_hosting_type" context="{'group_by': 'hosting_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="partner_infrastructure_view_form" model="ir.ui.view">
+        <field name="name">partner.infrastructure.form</field>
+        <field name="model">partner.infrastructure</field>
+        <field name="arch" type="xml">
+            <form string="Client Infrastructure">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="partner_id"/>
+                        <h1>
+                            <field name="partner_id" placeholder="Client" options="{'no_create': True}"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="hosting_type" widget="radio" options="{'horizontal': true}"/>
+                    </group>
+
+                    <group invisible="hosting_type != 'odoo_sh'">
+                        <group string="Odoo.sh Details">
+                            <label for="odoo_sh_url"/>
+                            <div class="o_row">
+                                <field name="odoo_sh_url" widget="url"/>
+                                <button name="action_open_odoo_sh_url" type="object" icon="fa-external-link" string="Open" invisible="not odoo_sh_url" class="btn btn-link"/>
+                            </div>
+                            <field name="odoo_sh_branch"/>
+                            <field name="odoo_sh_database"/>
+                        </group>
+                    </group>
+
+                    <group invisible="hosting_type != 'custom_server'">
+                        <group string="Custom Server Details">
+                            <field name="server_host"/>
+                            <field name="server_ssh_port"/>
+                            <field name="server_ssh_user"/>
+                            <field name="hosting_provider"/>
+                        </group>
+                    </group>
+
+                    <group groups="ts_partner_app.group_partner_asset_manager">
+                        <group string="Odoo Login">
+                            <label for="odoo_login_url"/>
+                            <div class="o_row">
+                                <field name="odoo_login_url" widget="url"/>
+                                <button name="action_open_odoo_login_url" type="object" icon="fa-external-link" string="Open" invisible="not odoo_login_url" class="btn btn-link"/>
+                            </div>
+                            <field name="odoo_login_email"/>
+                            <label for="odoo_login_password"/>
+                            <div class="o_row">
+                                <field name="odoo_login_password" password="True" invisible="show_odoo_login_password"/>
+                                <field name="odoo_login_password" invisible="not show_odoo_login_password"/>
+                                <field name="show_odoo_login_password" invisible="1"/>
+                                <button name="toggle_odoo_login_password" type="object" icon="fa-eye" title="Show Password" invisible="show_odoo_login_password" class="btn btn-link"/>
+                                <button name="toggle_odoo_login_password" type="object" icon="fa-eye-slash" title="Hide Password" invisible="not show_odoo_login_password" class="btn btn-link"/>
+                            </div>
+                        </group>
+                        <group string="GitHub / Code Repository">
+                            <label for="github_url"/>
+                            <div class="o_row">
+                                <field name="github_url" widget="url"/>
+                                <button name="action_open_github_url" type="object" icon="fa-external-link" string="Open" invisible="not github_url" class="btn btn-link"/>
+                            </div>
+                            <field name="github_branch"/>
+                            <label for="github_token"/>
+                            <div class="o_row">
+                                <field name="github_token" password="True" invisible="show_github_token"/>
+                                <field name="github_token" invisible="not show_github_token"/>
+                                <field name="show_github_token" invisible="1"/>
+                                <button name="toggle_github_token" type="object" icon="fa-eye" title="Show Token" invisible="show_github_token" class="btn btn-link"/>
+                                <button name="toggle_github_token" type="object" icon="fa-eye-slash" title="Hide Token" invisible="not show_github_token" class="btn btn-link"/>
+                            </div>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Notes" name="notes">
+                            <field name="notes" placeholder="Additional information..." widget="text"/>
+                        </page>
+                        <page string="Credential Log" name="credential_log" groups="ts_partner_app.group_partner_asset_manager">
+                            <field name="credential_log_ids" nolabel="1" readonly="1">
+                                <list>
+                                    <field name="create_date" string="Date"/>
+                                    <field name="user_id"/>
+                                    <field name="action"/>
+                                    <field name="field_name"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="partner_infrastructure_action" model="ir.actions.act_window">
+        <field name="name">Client Infrastructure</field>
+        <field name="res_model">partner.infrastructure</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a client's infrastructure profile!
+            </p>
+            <p>
+                Mark it Odoo.sh or Custom Server, then fill in the Odoo login and
+                GitHub details for that client.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="partner_infrastructure_menu"
+              name="Infrastructure"
+              parent="partner_asset_menu_root"
+              action="partner_infrastructure_action"
+              sequence="15"/>
+</odoo>
