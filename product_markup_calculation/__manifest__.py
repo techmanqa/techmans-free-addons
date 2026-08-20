@@ -13,11 +13,12 @@
     'support': 'odoo@techman.qa',
     'website': 'https://www.techman.qa',
     'license': 'LGPL-3',
-    'depends': ['sale', 'product'],
+    'depends': ['product'],
     'data': [
         'views/product_template_view.xml',
     ],
     'image': 'static/description/icon.png',
+    'images': ['static/description/banner.jpeg'],
     'installable': True,
     'application': False,
     'auto_install': False,
