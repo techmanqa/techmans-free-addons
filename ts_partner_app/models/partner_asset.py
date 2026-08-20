@@ -315,11 +315,11 @@ class PartnerAsset(models.Model):
             record.task_count = counts.get(record.id, 0)
 
     def _compute_client_project(self):
-        shared = self.env.ref('ts_partner_app.project_client_tasks', raise_if_not_found=False)
+        client_app_tag = self.env.ref('ts_partner_app.project_tag_client_app', raise_if_not_found=False)
         partner_ids = self.mapped('partner_id').ids
         projects = self.env['project.project'].search([
             ('partner_id', 'in', partner_ids),
-            ('id', '!=', shared.id if shared else 0),
+            ('tag_ids', 'in', client_app_tag.id if client_app_tag else 0),
         ])
         project_by_partner = {project.partner_id.id: project for project in projects}
         task_counts = {
@@ -625,9 +625,9 @@ class PartnerAsset(models.Model):
         covered_partner_ids = set(Infra.search([]).partner_id.ids)
         missing_infra_partner_ids = [pid for pid in assets.partner_id.ids if pid not in covered_partner_ids]
 
-        shared_project = self.env.ref('ts_partner_app.project_client_tasks', raise_if_not_found=False)
+        client_app_tag = self.env.ref('ts_partner_app.project_tag_client_app', raise_if_not_found=False)
         client_projects = self.env['project.project'].search([
-            ('id', '!=', shared_project.id if shared_project else 0),
+            ('tag_ids', 'in', client_app_tag.id if client_app_tag else 0),
         ])
         project_tasks = self.env['project.task'].search([('project_id', 'in', client_projects.ids)])
         open_project_tasks = project_tasks.filtered(lambda t: not t.stage_id.fold)
@@ -805,9 +805,11 @@ class PartnerAsset(models.Model):
             ('id', '!=', shared_project.id if shared_project else 0),
         ], limit=1)
         if not project:
+            client_app_tag = self.env.ref('ts_partner_app.project_tag_client_app', raise_if_not_found=False)
             project = self.env['project.project'].create({
                 'name': partner.name,
                 'partner_id': partner.id,
+                'tag_ids': [(4, client_app_tag.id)] if client_app_tag else False,
             })
             stage_xmlids = ['project_task_stage_todo', 'project_task_stage_in_progress',
                            'project_task_stage_waiting_client', 'project_task_stage_done']

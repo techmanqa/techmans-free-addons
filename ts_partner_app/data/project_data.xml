@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="0">
+        <record id="project_tag_client_app" model="project.tags">
+            <field name="name">Client App</field>
+        </record>
+
         <record id="project_client_tasks" model="project.project">
             <field name="name">Client Tasks</field>
         </record>
