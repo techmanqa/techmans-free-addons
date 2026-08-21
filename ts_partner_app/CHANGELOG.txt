@@ -1,5 +1,54 @@
 # Changelog - Odoo Clients 360 (ts_partner_app)
 
+## [19.0.5] - 2026-08-21
+### Changed
+- Redesigned `static/description/index.html` (the Odoo Apps Store listing page) after
+  the `salon_spa_scheduler` module's listing: full HTML document with SEO meta/JSON-LD,
+  a top status bar, four core highlight cards, a 16-item feature checklist grid, and an
+  interactive tabbed section (Screenshots / Day-to-Day Workflow / Under the Hood /
+  Tags & Specification). Confirmed live on another listing that apps.odoo.com already
+  has Bootstrap's tab JS loaded globally, so `data-bs-toggle="tab"` navigation works on
+  the Apps Store page without needing our own `<script>` (which gets stripped anyway).
+  Still inline-styles-only, per the 19.0.4 fix — no `<style>` block.
+
+## [19.0.4] - 2026-08-21
+### Fixed
+- Rebuilt `static/description/index.html` (the Odoo Apps Store listing page) to use
+  only inline `style="..."` attributes and Bootstrap grid classes instead of a `<style>`
+  block. apps.odoo.com strips `<style>` tags from module descriptions, so the page was
+  rendering as unstyled plain text on the live listing even though it looked correct
+  locally.
+- Fixed the 4 screenshot images in that page 404ing on the live listing: they were
+  referenced via a `../screenshots/...` path that escapes the directory the Apps Store
+  CDN actually serves (only `static/description/` is exposed, flattened). Screenshots
+  are now duplicated into `static/description/` (`shot-*.png`) and referenced by bare
+  filename, the same way `icon.png` already worked.
+
+## [19.0.3] - 2026-08-21
+### Added
+- Client Reference (`res.partner.client_ref`): auto-generated for every new top-level
+  client from their name plus a running number (e.g. `ACME-0001`). Numbering is driven
+  by an `ir.sequence` configurable at Settings > Technical > Sequences & Identifiers >
+  Sequences; the field itself is read-only and can't be edited by hand. Sub-contacts and
+  addresses created under a company don't get their own reference.
+- Asset Name / Label is now auto-generated (read-only) from the Customer's Client
+  Reference and the asset Type as soon as both are chosen (e.g. `ACME-0001 - Online`),
+  and stays in sync if either changes later. A running number is appended for
+  duplicates of the same type on the same client (e.g. `ACME-0001 - Online (2)`).
+- Each Cost & Margin line (Server, License, Backup, Maintenance, External Services)
+  now has a "Billed by Us" toggle; Infra Monthly Cost and Gross Margin only sum the
+  toggled-on lines instead of always summing everything. Reflects that clients often
+  pay license (and, on Odoo.sh, storage) costs directly to Odoo, and a custom server
+  may or may not be billed through us — only Maintenance defaults to billed by us.
+  Existing assets are recomputed on upgrade to match.
+
+### Changed
+- The asset header's "Infrastructure" button is now a smart button in the top button
+  box (matching Tasks/Project Tasks/Invoices), instead of a classic header button.
+- That Infrastructure smart button now shows an actual count, like Tasks/Project
+  Tasks/Invoices do, and is hidden when the count is 0 (same as those) instead of
+  showing static "Infrastructure"/"Add Infrastructure" text.
+
 ## [19.0.2] - 2026-08-20
 ### Fixed
 - Dashboard "Running Projects & Tasks" card and the "Client Projects" menu were listing

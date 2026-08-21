@@ -24,7 +24,9 @@ class PartnerAsset(models.Model):
     _description = 'Client-Related Asset'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    name = fields.Char(string='Name / Label', required=True, tracking=True)
+    name = fields.Char(string='Name / Label', required=True, tracking=True, readonly=True,
+                      help="Automatically set to the Customer's Client Reference and asset Type "
+                           "once both are chosen (kept unique across a customer's assets).")
     partner_id = fields.Many2one('res.partner', string='Customer', required=True, tracking=True)
     company_id = fields.Many2one('res.company', string='Company',
                                  default=lambda self: self.env.company, index=True)
@@ -109,16 +111,38 @@ class PartnerAsset(models.Model):
     currency_id = fields.Many2one('res.currency', string='Currency',
                                   default=lambda self: self.env.company.currency_id)
     server_cost = fields.Monetary(string='Monthly Server Cost', currency_field='currency_id', tracking=True)
+    server_cost_billed = fields.Boolean(
+        string='Billed by Us', default=False, tracking=True,
+        help="Included in Gross Margin only if checked. Leave unchecked when the client pays "
+             "the server directly (their own hosting/provider account) rather than through us.")
     license_cost = fields.Monetary(string='License Cost (per license)', currency_field='currency_id', tracking=True,
                                    help="Monthly cost of a single license. Multiplied by Licenses "
                                         "(Version & Upgrade tab) to get the Total License Cost below.")
+    license_cost_billed = fields.Boolean(
+        string='Billed by Us', default=False, tracking=True,
+        help="Included in Gross Margin only if checked. Leave unchecked when the client pays "
+             "Odoo directly for licenses, which is the common case.")
     license_cost_total = fields.Monetary(string='Total License Cost', compute='_compute_license_cost_total',
                                          currency_field='currency_id', store=True)
     backup_cost = fields.Monetary(string='Backup Cost', currency_field='currency_id', tracking=True)
+    backup_cost_billed = fields.Boolean(
+        string='Billed by Us', default=False, tracking=True,
+        help="Included in Gross Margin only if checked. Leave unchecked when this is Odoo.sh "
+             "storage (or similar) that the client pays directly rather than through us.")
     maintenance_cost = fields.Monetary(string='Maintenance Cost', currency_field='currency_id', tracking=True)
+    maintenance_cost_billed = fields.Boolean(
+        string='Billed by Us', default=True, tracking=True,
+        help="Included in Gross Margin only if checked. Maintenance is normally billed by us "
+             "when applicable, so this defaults on.")
     external_services_cost = fields.Monetary(string='External Services Cost', currency_field='currency_id', tracking=True)
+    external_services_cost_billed = fields.Boolean(
+        string='Billed by Us', default=False, tracking=True,
+        help="Included in Gross Margin only if checked. Leave unchecked when the client pays "
+             "this third-party service directly.")
     infra_monthly_cost = fields.Monetary(string='Infra Monthly Cost', compute='_compute_infra_monthly_cost',
-                                         currency_field='currency_id', store=True, tracking=True)
+                                         currency_field='currency_id', store=True, tracking=True,
+                                         help="Sum of only the costs above marked 'Billed by Us' — "
+                                              "what actually flows through us, used for Gross Margin.")
     monthly_billing_client = fields.Monetary(string='Monthly Billing to Client',
                                              currency_field='currency_id', tracking=True)
     gross_margin = fields.Monetary(string='Gross Margin', compute='_compute_gross_margin',
@@ -180,6 +204,8 @@ class PartnerAsset(models.Model):
                                         string='Client Project')
     client_project_task_count = fields.Integer(compute='_compute_client_project',
                                                 string='Client Project Task Count')
+    partner_infrastructure_count = fields.Integer(compute='_compute_partner_infrastructure',
+                                                   string='Client Infrastructure Count')
 
     # Billing (one-off renewal quotes and ad-hoc invoices created from this asset)
     invoice_ids = fields.Many2many('account.move', compute='_compute_invoices', string='Invoices')
@@ -249,6 +275,12 @@ class PartnerAsset(models.Model):
     # ------------------------------------------------------------------
     # Onchange
     # ------------------------------------------------------------------
+    @api.onchange('partner_id', 'type')
+    def _onchange_partner_id_name(self):
+        if self.partner_id:
+            count = self._count_existing_assets(self.partner_id.id, self.type)
+            self.name = self._asset_name_for(self.partner_id, self.type, existing_count=count)
+
     @api.onchange('sale_order_id')
     def _onchange_sale_order_id(self):
         order = self.sale_order_id
@@ -256,12 +288,6 @@ class PartnerAsset(models.Model):
             return
         if order.partner_id:
             self.partner_id = order.partner_id
-        if not self.name:
-            line = order.order_line.filtered(lambda l: not l.display_type)[:1]
-            if line:
-                self.name = line.product_id.display_name or line.name.split('\n')[0]
-            else:
-                self.name = order.name
 
     # ------------------------------------------------------------------
     # Computes
@@ -276,13 +302,25 @@ class PartnerAsset(models.Model):
         for record in self:
             record.license_cost_total = record.license_cost * record.license_count
 
-    @api.depends('server_cost', 'license_cost_total', 'backup_cost',
-                'maintenance_cost', 'external_services_cost')
+    @api.depends('server_cost', 'server_cost_billed',
+                'license_cost_total', 'license_cost_billed',
+                'backup_cost', 'backup_cost_billed',
+                'maintenance_cost', 'maintenance_cost_billed',
+                'external_services_cost', 'external_services_cost_billed')
     def _compute_infra_monthly_cost(self):
         for record in self:
-            record.infra_monthly_cost = (record.server_cost + record.license_cost_total
-                                         + record.backup_cost
-                                         + record.maintenance_cost + record.external_services_cost)
+            record.infra_monthly_cost = (
+                (record.server_cost if record.server_cost_billed else 0)
+                + (record.license_cost_total if record.license_cost_billed else 0)
+                + (record.backup_cost if record.backup_cost_billed else 0)
+                + (record.maintenance_cost if record.maintenance_cost_billed else 0)
+                + (record.external_services_cost if record.external_services_cost_billed else 0)
+            )
+
+    @api.depends('partner_id.infrastructure_id')
+    def _compute_partner_infrastructure(self):
+        for record in self:
+            record.partner_infrastructure_count = len(record.partner_id.infrastructure_id)
 
     @api.depends('infra_monthly_cost', 'monthly_billing_client')
     def _compute_gross_margin(self):
@@ -357,6 +395,34 @@ class PartnerAsset(models.Model):
         ('ts_partner_app.stage_closed', 'closed'),
     )
 
+    def _asset_name_for(self, partner, type_value, existing_count=0):
+        base = partner.client_ref or partner.name or ''
+        if not base:
+            return base
+        type_label = dict(self._fields['type']._description_selection(self.env)).get(type_value)
+        name = f"{base} - {type_label}" if type_label else base
+        return f"{name} ({existing_count + 1})" if existing_count else name
+
+    def _count_existing_assets(self, partner_id, type_value, exclude_ids=()):
+        domain = [('partner_id', '=', partner_id), ('type', '=', type_value)]
+        if exclude_ids:
+            domain.append(('id', 'not in', list(exclude_ids)))
+        return self.env['partner.asset'].search_count(domain)
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        batch_counts = {}
+        for vals in vals_list:
+            partner = self.env['res.partner'].browse(vals.get('partner_id'))
+            if partner:
+                key = (partner.id, vals.get('type'))
+                count = batch_counts.get(key)
+                if count is None:
+                    count = self._count_existing_assets(*key)
+                vals['name'] = self._asset_name_for(partner, vals.get('type'), existing_count=count)
+                batch_counts[key] = count + 1
+        return super().create(vals_list)
+
     def write(self, vals):
         if ('end_date' in vals or 'expiry_date' in vals) and 'expiry_notified' not in vals:
             vals['expiry_notified'] = False
@@ -373,7 +439,24 @@ class PartnerAsset(models.Model):
             stage_id = self._stage_id_for_state(vals['state'])
             if stage_id:
                 vals['stage_id'] = stage_id
-        return super().write(vals)
+        result = super().write(vals)
+        # partner_id/type feed the auto-generated name; a single vals dict can't hold a
+        # different name per record, so recompute and (re)write it per record once the
+        # new partner_id/type values above are actually in place. All of self is excluded
+        # from the existing-count baseline (and counted sequentially as we go) since every
+        # record in this batch was just reassigned together.
+        if 'partner_id' in vals or 'type' in vals:
+            batch_counts = {}
+            for record in self.sorted('id'):
+                key = (record.partner_id.id, record.type)
+                count = batch_counts.get(key)
+                if count is None:
+                    count = self._count_existing_assets(*key, exclude_ids=self.ids)
+                new_name = record._asset_name_for(record.partner_id, record.type, existing_count=count)
+                batch_counts[key] = count + 1
+                if new_name and new_name != record.name:
+                    super(PartnerAsset, record).write({'name': new_name})
+        return result
 
     def _state_for_stage_id(self, stage_id):
         for xmlid, state in self._STAGE_STATE_XMLIDS:

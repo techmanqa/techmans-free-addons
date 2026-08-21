@@ -5,6 +5,9 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
+            <field name="parent_id" position="before">
+                <field name="client_ref" placeholder="Auto-generated"/>
+            </field>
             <div name="button_box" position="inside">
                 <button name="action_view_infrastructure"
                     type="object"
