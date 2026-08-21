@@ -1,0 +1,35 @@
+<odoo>
+    <!-- First record: Total Allowances in payroll section -->
+    <record id="view_hr_employee_form_inherit_salary_totals" model="ir.ui.view">
+        <field name="name">hr.employee.form.salary.totals</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <!-- Add after the wage field in the payroll section -->
+            <xpath expr="//page[@name='payroll_information']//div[@name='wage']" position="after">
+                <!-- Total Allowances -->
+                <label for="allowance_total"/>
+                <div class="o_row" name="allowance_total_row">
+                    <field name="allowance_total" class="oe_inline o_hr_narrow_field" nolabel="1" readonly="1"/>
+                    <span class="mb-3">/ month</span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Second record: Gross Salary after final_yearly_costs -->
+    <record id="view_hr_employee_inherit_gross_salary" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.gross.salary</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='final_yearly_costs']" position="after">
+                <label for="gross_salary" string="Gross Salary" class="fw-bold"/>
+                <div class="o_row" name="gross_salary_row">
+                    <field name="gross_salary" class="oe_inline o_hr_narrow_field fw-bold" nolabel="1" readonly="1"/>
+                    <span class="mb-3 fw-bold">/ month</span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

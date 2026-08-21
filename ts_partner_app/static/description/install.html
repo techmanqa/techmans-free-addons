@@ -1,0 +1,723 @@
+<title>Installing Odoo Clients 360</title>
+<style>
+  :root {
+    --bg: #f5f2f8;
+    --surface: #ffffff;
+    --surface-raised: #fbf9fc;
+    --text: #211c29;
+    --text-muted: #6d6478;
+    --accent: #714b67;
+    --accent-ink: #4a2f43;
+    --accent-tint: #ece3e9;
+    --accent-contrast: #ffffff;
+    --border: #e2dbe8;
+    --code-bg: #1d1a24;
+    --code-text: #eae4f2;
+    --code-muted: #948aa3;
+    --success: #2f7d5c;
+    --success-tint: #e3f1ea;
+    --warning: #a1670a;
+    --warning-tint: #f6ecdc;
+    --danger: #b23a52;
+    --danger-tint: #f7e5e9;
+    --shadow: 0 1px 2px rgba(33, 28, 41, 0.04), 0 8px 24px rgba(33, 28, 41, 0.06);
+    --serif: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052, Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15121b;
+      --surface: #1c1824;
+      --surface-raised: #221d2b;
+      --text: #efe9f5;
+      --text-muted: #a89bb8;
+      --accent: #caa0c1;
+      --accent-ink: #f7ecf4;
+      --accent-tint: #362a34;
+      --accent-contrast: #241a22;
+      --border: #332c40;
+      --code-bg: #0f0d15;
+      --code-text: #eae4f2;
+      --code-muted: #9186a0;
+      --success: #65c495;
+      --success-tint: #1c332a;
+      --warning: #dba653;
+      --warning-tint: #3a2f1c;
+      --danger: #e58ba0;
+      --danger-tint: #3a2028;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #15121b;
+    --surface: #1c1824;
+    --surface-raised: #221d2b;
+    --text: #efe9f5;
+    --text-muted: #a89bb8;
+    --accent: #caa0c1;
+    --accent-ink: #f7ecf4;
+    --accent-tint: #362a34;
+    --accent-contrast: #241a22;
+    --border: #332c40;
+    --code-bg: #0f0d15;
+    --code-text: #eae4f2;
+    --code-muted: #9186a0;
+    --success: #65c495;
+    --success-tint: #1c332a;
+    --warning: #dba653;
+    --warning-tint: #3a2f1c;
+    --danger: #e58ba0;
+    --danger-tint: #3a2028;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); }
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  code, kbd {
+    font-family: var(--mono);
+    font-size: 0.88em;
+  }
+
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 28px 96px;
+    display: grid;
+    grid-template-columns: 240px minmax(0, 700px);
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* ---------- Header ---------- */
+
+  .masthead {
+    grid-column: 1 / -1;
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    background: var(--accent-tint);
+    border-radius: 100px;
+    padding: 5px 12px 5px 10px;
+    margin-bottom: 22px;
+  }
+  .eyebrow .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    flex: none;
+  }
+
+  h1.title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.1rem, 4vw, 2.9rem);
+    line-height: 1.12;
+    margin: 0 0 16px;
+    text-wrap: balance;
+    max-width: 20ch;
+  }
+
+  .dek {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 46ch;
+    margin: 0 0 28px;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    font-size: 0.86rem;
+    color: var(--text-muted);
+  }
+  .meta-row strong { color: var(--text); font-weight: 600; }
+
+  /* ---------- TOC ---------- */
+
+  nav.toc {
+    position: sticky;
+    top: 32px;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  nav.toc .toc-heading {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  nav.toc a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    padding: 7px 10px;
+    border-radius: 7px;
+    border-left: 2px solid transparent;
+  }
+  nav.toc a:hover { color: var(--text); background: var(--surface-raised); }
+  nav.toc a.active {
+    color: var(--accent-ink);
+    border-left-color: var(--accent);
+    background: var(--accent-tint);
+    font-weight: 600;
+  }
+
+  /* ---------- Content ---------- */
+
+  main { min-width: 0; }
+
+  section.step {
+    padding: 52px 0;
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: 24px;
+  }
+  section.step:last-of-type { border-bottom: none; }
+
+  .step-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  .step-num {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    color: var(--accent);
+    flex: none;
+    font-variant-numeric: tabular-nums;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.55rem;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-family: var(--sans);
+    font-weight: 650;
+    font-size: 1.02rem;
+    margin: 28px 0 10px;
+  }
+
+  p { margin: 0 0 16px; max-width: 66ch; }
+  ul, ol { margin: 0 0 16px; padding-left: 1.3em; max-width: 62ch; }
+  li { margin-bottom: 6px; }
+
+  .lede {
+    color: var(--text-muted);
+    font-size: 1.02rem;
+    max-width: 60ch;
+  }
+
+  /* ---------- Code blocks ---------- */
+
+  .code-block {
+    background: var(--code-bg);
+    border-radius: 10px;
+    margin: 16px 0 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .code-block .code-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--code-muted);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .code-block pre {
+    margin: 0;
+    padding: 16px 18px;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: 0.86rem;
+    line-height: 1.65;
+    color: var(--code-text);
+  }
+  .code-block .comment { color: var(--code-muted); }
+
+  code.inline {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 0.1em 0.42em;
+  }
+
+  /* ---------- Callouts ---------- */
+
+  .callout {
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 18px 0 24px;
+    max-width: 62ch;
+    display: flex;
+    gap: 12px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout .icon { flex: none; font-size: 1.05rem; line-height: 1.5; }
+  .callout.note { background: var(--surface-raised); border: 1px solid var(--border); }
+  .callout.warning { background: var(--warning-tint); color: var(--text); }
+  .callout.warning .icon { color: var(--warning); }
+  .callout.success { background: var(--success-tint); color: var(--text); }
+  .callout.success .icon { color: var(--success); }
+  .callout.danger { background: var(--danger-tint); color: var(--text); }
+  .callout.danger .icon { color: var(--danger); }
+
+  /* ---------- Environment tabs ---------- */
+
+  .env-tabs {
+    display: flex;
+    gap: 6px;
+    margin: 22px 0 4px;
+    flex-wrap: wrap;
+  }
+  .env-tab {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+  .env-tab:hover { color: var(--text); }
+  .env-tab[aria-selected="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-contrast);
+    font-weight: 600;
+  }
+
+  .env-panel { display: none; padding-top: 12px; }
+  .env-panel.active { display: block; }
+
+  /* ---------- Checklist / table ---------- */
+
+  table.reqs {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 24px;
+    font-size: 0.92rem;
+  }
+  table.reqs th {
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  table.reqs td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  table.reqs tr:last-child td { border-bottom: none; }
+
+  .pill {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 2px 9px;
+    border-radius: 100px;
+    background: var(--accent-tint);
+    color: var(--accent-ink);
+  }
+
+  /* ---------- Troubleshoot ---------- */
+
+  details.issue {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background: var(--surface);
+    max-width: 66ch;
+  }
+  details.issue summary {
+    cursor: pointer;
+    padding: 14px 16px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  details.issue summary::-webkit-details-marker { display: none; }
+  details.issue summary::before {
+    content: "+";
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 1.1rem;
+    width: 1em;
+  }
+  details.issue[open] summary::before { content: "−"; }
+  details.issue .issue-body {
+    padding: 0 16px 16px 42px;
+    color: var(--text-muted);
+  }
+  details.issue .issue-body p { margin: 0 0 10px; }
+
+  footer.end {
+    grid-column: 1 / -1;
+    padding: 40px 0 0;
+    color: var(--text-muted);
+    font-size: 0.86rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 880px) {
+    .page { grid-template-columns: 1fr; gap: 32px; }
+    nav.toc {
+      position: static;
+      flex-direction: row;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 14px;
+    }
+    nav.toc a { white-space: nowrap; border-left: none; border-bottom: 2px solid transparent; }
+    nav.toc a.active { border-left: none; border-bottom-color: var(--accent); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { scroll-behavior: auto !important; }
+  }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <p style="margin: 0 0 18px; font-size: 0.86rem;"><a href="index.html">&larr; Odoo Clients 360</a></p>
+    <span class="eyebrow"><span class="dot"></span>Odoo 19 · Self-hosted</span>
+    <h1 class="title">Installing Odoo Clients 360</h1>
+    <p class="dek">The module installs like any custom addon, with one extra step: it needs the
+      <code class="inline">cryptography</code> Python package to encrypt stored credentials. This guide
+      covers that step for Docker, bare-metal, and Odoo.sh, then walks through the rest of the install.</p>
+    <div class="meta-row">
+      <span><strong>Edition</strong> Community or Enterprise</span>
+      <span><strong>Version</strong> Odoo 19.0</span>
+      <span><strong>License</strong> LGPL-3, free</span>
+      <span><strong>Time</strong> ~10 minutes</span>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Sections">
+    <span class="toc-heading">On this page</span>
+    <a href="#requirements">Requirements</a>
+    <a href="#step-1">1. Place the module</a>
+    <a href="#step-2">2. Install cryptography</a>
+    <a href="#step-3">3. Update Apps &amp; install</a>
+    <a href="#step-4">4. Verify &amp; configure</a>
+    <a href="#troubleshooting">Troubleshooting</a>
+  </nav>
+
+  <main>
+
+    <section class="step" id="requirements">
+      <div class="step-head"><h2>Requirements</h2></div>
+      <p class="lede">Anything that can run Odoo 19 can run this module. Confirm these before you start.</p>
+      <table class="reqs">
+        <tr><th>Item</th><th>Needed for</th></tr>
+        <tr><td>Odoo 19.0, Community or Enterprise</td><td>The module depends only on <code class="inline">base</code>, <code class="inline">mail</code>, <code class="inline">sale</code>, <code class="inline">portal</code>, <code class="inline">project</code>, <code class="inline">utm</code> &mdash; all Community.</td></tr>
+        <tr><td>Shell / SSH access to the Odoo server, or Docker CLI</td><td>Installing the <code class="inline">cryptography</code> pip package into the same Python environment Odoo runs in.</td></tr>
+        <tr><td>Odoo admin login</td><td>Updating the Apps list and installing the module from the UI.</td></tr>
+      </table>
+      <div class="callout note">
+        <span class="icon">&#9432;</span>
+        <p>The pip package is what lets the module encrypt stored logins/passwords at rest (Fernet, keyed off your database's own secret) instead of keeping them in plain text. Skipping it doesn't crash the install &mdash; it just falls back to storing values unencrypted and logs a warning. Do the pip step first.</p>
+      </div>
+    </section>
+
+    <section class="step" id="step-1">
+      <div class="step-head"><span class="step-num">1</span><h2>Place the module</h2></div>
+      <p>Copy the <code class="inline">ts_partner_app</code> folder into a directory that's on your Odoo
+        instance's <code class="inline">addons_path</code> &mdash; typically a <code class="inline">custom-addons</code>
+        or <code class="inline">extra-addons</code> folder alongside your other third-party modules.</p>
+      <div class="code-block">
+        <div class="code-label">addons_path &middot; odoo.conf</div>
+        <pre>addons_path = /usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons</pre>
+      </div>
+      <p>If <code class="inline">ts_partner_app</code> isn't already inside one of those listed paths, move
+        it into one now, or add its parent directory to <code class="inline">addons_path</code> and restart Odoo.</p>
+    </section>
+
+    <section class="step" id="step-2">
+      <div class="step-head"><span class="step-num">2</span><h2>Install <code class="inline">cryptography</code></h2></div>
+      <p class="lede">Pick the tab that matches how Odoo is running. The package has to land in the exact
+        Python interpreter Odoo executes with &mdash; not just any <code class="inline">pip</code> on the machine.</p>
+
+      <div class="env-tabs" role="tablist" aria-label="Deployment type">
+        <button class="env-tab" role="tab" aria-selected="true" data-target="env-docker">Docker Compose</button>
+        <button class="env-tab" role="tab" aria-selected="false" data-target="env-baremetal">Bare metal / systemd</button>
+        <button class="env-tab" role="tab" aria-selected="false" data-target="env-sh">Odoo.sh</button>
+      </div>
+
+      <div class="env-panel active" id="env-docker">
+        <h3>Quick check (survives until the container is recreated)</h3>
+        <p>Find your Odoo container name, then install directly inside it:</p>
+        <div class="code-block">
+          <div class="code-label">shell</div>
+          <pre>docker compose ps
+docker exec -it &lt;odoo-container-name&gt; pip install cryptography
+docker compose restart odoo</pre>
+        </div>
+        <div class="callout warning">
+          <span class="icon">&#9888;</span>
+          <p>This installs into the container's writable layer. A plain <code class="inline">docker compose up</code>
+            keeps it, but <code class="inline">docker compose pull</code> or recreating the container from the
+            image wipes it out. For anything past a quick test, bake it into the image instead &mdash; see below.</p>
+        </div>
+        <h3>Persistent (recommended): bake it into the image</h3>
+        <p>Create a one-line <code class="inline">Dockerfile</code> next to your <code class="inline">docker-compose.yml</code>:</p>
+        <div class="code-block">
+          <div class="code-label">Dockerfile</div>
+          <pre>FROM odoo:19.0
+USER root
+RUN pip install --no-cache-dir cryptography
+USER odoo</pre>
+        </div>
+        <p>Then point the <code class="inline">odoo</code> service at it instead of the public image:</p>
+        <div class="code-block">
+          <div class="code-label">docker-compose.yml</div>
+          <pre>  odoo:
+    <span class="comment"># image: odoo:19.0</span>
+    build: .
+    depends_on:
+      - db
+    <span class="comment"># ...rest of the service stays the same</span></pre>
+        </div>
+        <div class="code-block">
+          <div class="code-label">shell</div>
+          <pre>docker compose build odoo
+docker compose up -d</pre>
+        </div>
+      </div>
+
+      <div class="env-panel" id="env-baremetal">
+        <p>Activate the same virtual environment (or Python interpreter) your <code class="inline">odoo</code>
+          service runs with, then install into it:</p>
+        <div class="code-block">
+          <div class="code-label">shell</div>
+          <pre><span class="comment"># if Odoo runs from a virtualenv:</span>
+sudo -u odoo -H sh -c '. /opt/odoo/venv/bin/activate &amp;&amp; pip install cryptography'
+
+<span class="comment"># if Odoo uses the system Python (Debian/Ubuntu package install):</span>
+sudo pip3 install cryptography
+<span class="comment"># or, on newer Debian/Ubuntu that block system-wide pip installs:</span>
+sudo apt install python3-cryptography</pre>
+        </div>
+        <p>Restart the service so the new module is loaded into the running process:</p>
+        <div class="code-block">
+          <div class="code-label">shell</div>
+          <pre>sudo systemctl restart odoo</pre>
+        </div>
+      </div>
+
+      <div class="env-panel" id="env-sh">
+        <p>Odoo.sh installs Python packages listed in a <code class="inline">requirements.txt</code> file at
+          the root of your custom addons repository. Add the package there:</p>
+        <div class="code-block">
+          <div class="code-label">requirements.txt</div>
+          <pre>cryptography</pre>
+        </div>
+        <p>Commit and push. Odoo.sh rebuilds the build automatically and installs the package before your
+          modules load &mdash; no shell access needed.</p>
+        <div class="callout note">
+          <span class="icon">&#9432;</span>
+          <p>If a <code class="inline">requirements.txt</code> already exists in that repo, just add
+            <code class="inline">cryptography</code> as a new line rather than replacing the file.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="step" id="step-3">
+      <div class="step-head"><span class="step-num">3</span><h2>Update Apps &amp; install</h2></div>
+      <ol>
+        <li>Log in as an administrator and open <strong>Apps</strong>.</li>
+        <li>Click <strong>Update Apps List</strong> (top-left menu, or <code class="inline">⋮</code> on
+          smaller screens) and confirm.</li>
+        <li>Remove the default <span class="pill">Apps</span> filter from the search bar, then search for
+          <strong>Odoo Clients 360</strong>.</li>
+        <li>Click <strong>Install</strong>.</li>
+      </ol>
+      <div class="callout note">
+        <span class="icon">&#9432;</span>
+        <p>The module marks itself as an application (it gets its own icon on the Apps home screen), so it
+          won't show up unless that <span class="pill">Apps</span> filter is cleared first.</p>
+      </div>
+    </section>
+
+    <section class="step" id="step-4">
+      <div class="step-head"><span class="step-num">4</span><h2>Verify &amp; configure</h2></div>
+      <p>Once installation finishes, confirm the crypto dependency was actually picked up. Tail the Odoo log
+        during install/upgrade and make sure this line is <em>absent</em>:</p>
+      <div class="code-block">
+        <div class="code-label">odoo log &middot; should NOT appear</div>
+        <pre>WARNING&nbsp;&nbsp;odoo.addons.ts_partner_app.models.partner_asset: The 'cryptography' python
+package is required by ts_partner_app.</pre>
+      </div>
+      <p>If you don't see it, the package is loaded correctly and stored logins/passwords will be encrypted
+        at rest. If you do see it, go back to <a href="#step-2">Step 2</a> &mdash; the package likely landed
+        in a different Python environment than the one Odoo is actually running.</p>
+      <h3>First things to try</h3>
+      <ul>
+        <li>Open <strong>Odoo Clients 360 → Configuration → Import Demo</strong> and click
+          <strong>Import Demo Data</strong> to see the module populated with sample clients, assets, and
+          infrastructure profiles.</li>
+        <li>Check <strong>Settings → Users → Groups</strong> &mdash; the installing admin is auto-assigned to
+          <em>Odoo Clients 360 / Manager</em>, which can view stored credentials and manage stages.</li>
+        <li>When you're done exploring, use <strong>Remove Demo Data</strong> in the same wizard for a clean slate.</li>
+      </ul>
+      <div class="callout success">
+        <span class="icon">&#10003;</span>
+        <p>That's it &mdash; the module is installed and ready. Everything from here (stages, tags, asset
+          types, service products) is configured from <strong>Odoo Clients 360 → Configuration</strong>.</p>
+      </div>
+    </section>
+
+    <section class="step" id="troubleshooting">
+      <div class="step-head"><h2>Troubleshooting</h2></div>
+
+      <details class="issue">
+        <summary>ModuleNotFoundError: No module named 'cryptography'</summary>
+        <div class="issue-body">
+          <p>The package was installed into a different Python than the one Odoo is running. In Docker,
+            double-check you ran <code class="inline">pip install</code> <em>inside</em> the Odoo container
+            (<code class="inline">docker exec</code>), not on the host machine. On bare metal, confirm which
+            interpreter the <code class="inline">odoo</code> systemd unit points at
+            (<code class="inline">cat /etc/systemd/system/odoo.service</code> or your init script) and
+            install into that exact one.</p>
+        </div>
+      </details>
+
+      <details class="issue">
+        <summary>Permission denied while installing inside the container</summary>
+        <div class="issue-body">
+          <p>The official <code class="inline">odoo</code> image drops privileges to the <code class="inline">odoo</code>
+            user by default. Run the install as root explicitly:</p>
+          <p><code class="inline">docker exec -u root -it &lt;container&gt; pip install cryptography</code></p>
+        </div>
+      </details>
+
+      <details class="issue">
+        <summary>Package installed, but the warning still shows up</summary>
+        <div class="issue-body">
+          <p>Odoo caches its Python imports for the lifetime of the process. A <code class="inline">pip
+            install</code> while Odoo is already running won't be picked up until it restarts &mdash;
+            restart the service or container after installing, then retry the module install/upgrade.</p>
+        </div>
+      </details>
+
+      <details class="issue">
+        <summary>"Odoo Clients 360" doesn't appear after Update Apps List</summary>
+        <div class="issue-body">
+          <p>Usually one of two things: the <span class="pill">Apps</span> filter is still active in the
+            search bar (remove it), or the folder isn't actually inside a path listed in
+            <code class="inline">addons_path</code>. Confirm with:</p>
+          <p><code class="inline">docker exec &lt;container&gt; ls /mnt/extra-addons</code> (adjust the path to
+            whatever you configured) &mdash; you should see <code class="inline">ts_partner_app</code> listed.</p>
+        </div>
+      </details>
+
+      <details class="issue">
+        <summary>Existing installs: I upgraded and now credentials look garbled</summary>
+        <div class="issue-body">
+          <p>This should only happen if <code class="inline">cryptography</code> was <em>missing</em> during
+            an upgrade that expected to migrate plaintext credentials into encrypted storage. Install the
+            package, then trigger the module upgrade again from <strong>Apps</strong> &mdash; the migration
+            re-runs safely and only touches columns it still finds in plaintext.</p>
+        </div>
+      </details>
+    </section>
+
+  </main>
+
+  <footer class="end">
+    <span>Odoo Clients 360 &middot; Techman Solutions &middot; LGPL-3, free &amp; open source</span>
+    <span>Odoo 19.0 &middot; Community &amp; Enterprise</span>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var tabs = document.querySelectorAll(".env-tab");
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        tabs.forEach(function (t) { t.setAttribute("aria-selected", "false"); });
+        document.querySelectorAll(".env-panel").forEach(function (p) { p.classList.remove("active"); });
+        tab.setAttribute("aria-selected", "true");
+        var target = document.getElementById(tab.dataset.target);
+        if (target) target.classList.add("active");
+      });
+    });
+
+    var links = document.querySelectorAll("nav.toc a");
+    var sections = Array.prototype.map.call(links, function (a) {
+      return document.querySelector(a.getAttribute("href"));
+    });
+
+    function onScroll() {
+      var y = window.scrollY + 120;
+      var current = 0;
+      sections.forEach(function (sec, i) {
+        if (sec && sec.offsetTop <= y) current = i;
+      });
+      links.forEach(function (a, i) {
+        a.classList.toggle("active", i === current);
+      });
+    }
+    document.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  })();
+</script>

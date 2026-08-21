@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_task_search_form_inherit_asset" model="ir.ui.view">
+        <field name="name">project.task.search.inherit.asset</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="asset_id" string="Client Asset"/>
+            </field>
+            <filter name="customer" position="after">
+                <filter string="Client Asset" name="group_asset" context="{'group_by': 'asset_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="partner_asset_task_action" model="ir.actions.act_window">
+        <field name="name">Tasks</field>
+        <field name="res_model">project.task</field>
+        <field name="view_mode">list,kanban,form,calendar</field>
+        <field name="domain">[('asset_id', '!=', False)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No client asset tasks yet
+            </p>
+            <p>
+                Tasks linked to a Client Asset show up here — e.g. the "Tasks" smart button
+                on an asset, or the renewal follow-up created automatically for overdue assets.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="partner_asset_menu_tasks"
+              name="Tasks"
+              parent="partner_asset_menu_root"
+              action="partner_asset_task_action"
+              groups="ts_partner_app.group_partner_asset_user"
+              sequence="12"/>
+
+    <record id="partner_asset_project_action" model="ir.actions.act_window">
+        <field name="name">Client Projects</field>
+        <field name="res_model">project.project</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain" eval="[('tag_ids', 'in', ref('project_tag_client_app'))]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No dedicated client projects yet
+            </p>
+            <p>
+                Created via the "New Client Project" button on an asset — for a real
+                multi-task engagement (onboarding, a migration) as opposed to a single
+                follow-up task.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="partner_asset_menu_projects"
+              name="Projects"
+              parent="partner_asset_menu_root"
+              action="partner_asset_project_action"
+              groups="ts_partner_app.group_partner_asset_user"
+              sequence="13"/>
+</odoo>

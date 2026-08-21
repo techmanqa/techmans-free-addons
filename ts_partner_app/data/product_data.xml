@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="product_asset_renewal" model="product.product">
+            <field name="name">Asset Renewal Service</field>
+            <field name="type">service</field>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="list_price">0.0</field>
+            <field name="default_code">ASSET-RENEWAL</field>
+            <field name="description_sale">Renewal of a client asset managed via Odoo Clients 360.</field>
+        </record>
+
+        <record id="product_client_services" model="product.product">
+            <field name="name">Client Services</field>
+            <field name="type">service</field>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="list_price">0.0</field>
+            <field name="default_code">CLIENT-SERVICES</field>
+            <field name="description_sale">One-off client services — project work or maintenance, billed via Odoo Clients 360.</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_template_wizard_view_form" model="ir.ui.view">
+        <field name="name">partner.project.template.wizard.form</field>
+        <field name="model">partner.project.template.wizard</field>
+        <field name="arch" type="xml">
+            <form string="New Client Project">
+                <field name="asset_id" invisible="1"/>
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="partner_id" readonly="1"/>
+                        <field name="start_date"/>
+                    </group>
+                    <group>
+                        <field name="existing_project_id" readonly="1"
+                               string="Adding to existing project" invisible="not existing_project_id"/>
+                    </group>
+                </group>
+
+                <div invisible="state != 'tasks'">
+                    <p class="text-muted">
+                        Step 1 of 2 — tick the implementation tasks that apply to this client, then
+                        click <strong>Next: Modules</strong> below (or <strong>Modules</strong> above)
+                        to continue. Hours are pre-filled from the template catalog
+                        (Configuration &gt; Project Task Templates) but can be adjusted per line.
+                    </p>
+                    <separator string="Discovery &amp; Planning / Environment &amp; Foundation"/>
+                    <field name="line_discovery_foundation_ids" nolabel="1">
+                        <list editable="bottom" create="false" delete="false">
+                            <field name="phase" column_invisible="1"/>
+                            <field name="template_task_id" column_invisible="1"/>
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="selected" widget="boolean_toggle"/>
+                            <field name="name" readonly="1"/>
+                            <field name="default_hours" readonly="1"/>
+                            <field name="planned_hours"/>
+                        </list>
+                    </field>
+                    <separator string="Data Migration"/>
+                    <field name="line_migration_ids" nolabel="1">
+                        <list editable="bottom" create="false" delete="false">
+                            <field name="phase" column_invisible="1"/>
+                            <field name="template_task_id" column_invisible="1"/>
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="selected" widget="boolean_toggle"/>
+                            <field name="name" readonly="1"/>
+                            <field name="default_hours" readonly="1"/>
+                            <field name="planned_hours"/>
+                        </list>
+                    </field>
+                    <separator string="Integrations &amp; Customization"/>
+                    <field name="line_integration_ids" nolabel="1">
+                        <list editable="bottom" create="false" delete="false">
+                            <field name="phase" column_invisible="1"/>
+                            <field name="template_task_id" column_invisible="1"/>
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="selected" widget="boolean_toggle"/>
+                            <field name="name" readonly="1"/>
+                            <field name="note" readonly="1" optional="show"/>
+                            <field name="default_hours" readonly="1"/>
+                            <field name="planned_hours"/>
+                        </list>
+                    </field>
+                    <separator string="Testing &amp; Training"/>
+                    <field name="line_testing_training_ids" nolabel="1">
+                        <list editable="bottom" create="false" delete="false">
+                            <field name="phase" column_invisible="1"/>
+                            <field name="template_task_id" column_invisible="1"/>
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="selected" widget="boolean_toggle"/>
+                            <field name="name" readonly="1"/>
+                            <field name="default_hours" readonly="1"/>
+                            <field name="planned_hours"/>
+                        </list>
+                    </field>
+                    <separator string="Project Management"/>
+                    <button name="action_recalc_pm" type="object"
+                            string="Recalculate 'Status meetings' as 12.5% of selected hours"
+                            class="btn-secondary btn-sm mb-2"/>
+                    <field name="line_pm_ids" nolabel="1">
+                        <list editable="bottom" create="false" delete="false">
+                            <field name="phase" column_invisible="1"/>
+                            <field name="template_task_id" column_invisible="1"/>
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="selected" widget="boolean_toggle"/>
+                            <field name="name" readonly="1"/>
+                            <field name="note" readonly="1" optional="show"/>
+                            <field name="default_hours" readonly="1"/>
+                            <field name="planned_hours"/>
+                        </list>
+                    </field>
+                </div>
+
+                <div invisible="state != 'modules'">
+                    <p class="text-muted">
+                        Step 2 of 2 — tick the native Odoo apps this client will use.
+                    </p>
+                    <field name="line_modules_ids" nolabel="1">
+                        <list editable="bottom" create="false" delete="false">
+                            <field name="phase" column_invisible="1"/>
+                            <field name="template_task_id" column_invisible="1"/>
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="selected" widget="boolean_toggle"/>
+                            <field name="name" readonly="1"/>
+                            <field name="note" readonly="1" optional="show"/>
+                            <field name="default_hours" readonly="1"/>
+                            <field name="planned_hours"/>
+                        </list>
+                    </field>
+                </div>
+
+                <group>
+                    <group>
+                        <field name="selected_count" string="Selected Tasks"/>
+                        <field name="total_hours" string="Total Hours"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_goto_modules" type="object"
+                            string="Next: Modules &#8594;" class="btn-primary"
+                            invisible="state != 'tasks'"/>
+                    <button name="action_create_project" type="object"
+                            string="Create Project" class="btn-primary"
+                            invisible="state != 'modules'"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="project_template_wizard_action" model="ir.actions.act_window">
+        <field name="name">New Client Project</field>
+        <field name="res_model">partner.project.template.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

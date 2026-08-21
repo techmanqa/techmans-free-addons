@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_client_hub" model="ir.module.category">
+        <field name="name">Odoo Clients 360</field>
+        <field name="description">Access levels for the Odoo Clients 360 application.</field>
+        <field name="sequence">25</field>
+    </record>
+
+    <record id="privilege_client_hub" model="res.groups.privilege">
+        <field name="name">Odoo Clients 360</field>
+        <field name="category_id" ref="module_category_client_hub"/>
+    </record>
+
+    <record id="group_partner_asset_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="privilege_id" ref="privilege_client_hub"/>
+        <field name="comment">Can view, create and edit client assets. Cannot delete assets, manage stages, or view stored credentials.</field>
+    </record>
+
+    <record id="group_partner_asset_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="privilege_id" ref="privilege_client_hub"/>
+        <field name="implied_ids" eval="[(4, ref('group_partner_asset_user'))]"/>
+        <field name="comment">Full access: delete assets, configure stages, and view/edit stored credentials (logins and passwords).</field>
+        <field name="user_ids" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+</odoo>

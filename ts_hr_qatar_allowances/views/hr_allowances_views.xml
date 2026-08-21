@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu under Payroll → Configuration -->
+    <menuitem id="menu_hr_allowance_root"
+              name="Allowances Settings"
+              parent="hr.menu_human_resources_configuration"
+              sequence="65"
+              groups="hr.group_hr_manager"/>
+
+    <!-- Manage Allowances -->
+    <record id="action_hr_allowance" model="ir.actions.act_window">
+    <field name="name">Manage Allowances</field>
+    <field name="res_model">hr.allowance</field>
+    <field name="view_mode">list,form</field>
+    <field name="context">{'search_default_filter_by_type': 1}</field>
+</record>
+
+    <menuitem id="menu_hr_allowance"
+              name="Manage Allowances"
+              parent="menu_hr_allowance_root"
+              action="action_hr_allowance"
+              sequence="1"
+              groups="hr.group_hr_manager"/>
+
+    <!-- Allowance Types -->
+    <record id="action_hr_allowance_type" model="ir.actions.act_window">
+        <field name="name">Allowance Types</field>
+        <field name="res_model">hr.allowance.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_hr_allowance_type"
+              name="Allowance Types"
+              parent="menu_hr_allowance_root"
+              action="action_hr_allowance_type"
+              sequence="2"
+              groups="hr.group_hr_manager"/>
+
+    <!-- List View -->
+    <record id="view_hr_allowance_list" model="ir.ui.view">
+        <field name="name">hr.allowance.list</field>
+        <field name="model">hr.allowance</field>
+        <field name="arch" type="xml">
+            <list string="Allowances">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="allowance_type_id" options="{'no_create_edit': False}"/>
+                <field name="code"/>
+                <field name="amount"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_hr_allowance_form" model="ir.ui.view">
+        <field name="name">hr.allowance.form</field>
+        <field name="model">hr.allowance</field>
+        <field name="arch" type="xml">
+            <form string="Allowance">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="allowance_type_id" options="{'no_create_edit': False}"/>
+                        <field name="code"/>
+                        <field name="amount"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_hr_allowance_search" model="ir.ui.view">
+    <field name="name">hr.allowance.search</field>
+    <field name="model">hr.allowance</field>
+    <field name="arch" type="xml">
+        <search string="Search Allowances">
+            <field name="name"/>
+            <field name="code"/>
+            <field name="allowance_type_id"/>
+
+            <!-- Default filter shown on load -->
+            <filter name="filter_by_type" string="Type" context="{'group_by': 'allowance_type_id'}" help="Group by Type"/>
+        </search>
+    </field>
+</record>
+</odoo>

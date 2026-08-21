@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TS HR Qatar Allowances</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #8A1258 0%, #6B0E44 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .content {
+            padding: 0 40px 40px 40px;
+        }
+
+        section {
+            margin: 50px 0;
+        }
+
+        .section-header {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            margin: 0 -40px 30px -40px;
+            border-left: 5px solid #8A1258;
+        }
+
+        .section-header h2 {
+            font-size: 1.8em;
+            color: #2c3e50;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .intro-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            background: #ffffff;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            box-shadow: 0 5px 20px rgba(138, 18, 88, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-item h3 {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .allowance-section {
+            background: #ffffff;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid #8A1258;
+        }
+
+        .allowance-section h3 {
+            color: #8A1258;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .allowance-section > p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .allowance-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .allowance-list li {
+            list-style: none;
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #555;
+            position: relative;
+            padding-left: 28px;
+        }
+
+        .allowance-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 10px;
+            color: #8A1258;
+            font-weight: bold;
+        }
+
+        .tech-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .tech-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 3px solid #8A1258;
+        }
+
+        .tech-card h4 {
+            color: #2c3e50;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .tech-card ul {
+            list-style: none;
+        }
+
+        .tech-card li {
+            padding: 6px 0;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .tech-card li code {
+            background: #ffffff;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            color: #8A1258;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #8A1258;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .steps {
+            counter-reset: step-counter;
+            list-style: none;
+        }
+
+        .steps li {
+            counter-increment: step-counter;
+            position: relative;
+            padding: 15px 15px 15px 60px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        .steps li:before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #8A1258;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .use-case {
+            background: #f8f9fa;
+            padding: 18px;
+            border-radius: 6px;
+            border-left: 3px solid #8A1258;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 40px;
+            text-align: center;
+            margin-top: 60px;
+            border-top: 3px solid #8A1258;
+        }
+
+        .footer p {
+            color: #666;
+            margin: 8px 0;
+        }
+
+        .footer a {
+            color: #8A1258;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer strong {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>TS HR Qatar Allowances</h1>
+        <p>Comprehensive Employee Allowance Management for Qatar & GCC</p>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <section>
+                <div class="section-header">
+                    <h2>Overview</h2>
+                </div>
+                <p class="intro-text">
+                    The <strong>Wage Allowances - Qatar</strong> module is a comprehensive solution designed specifically for organizations operating in Qatar and GCC countries. This powerful module enables HR teams to efficiently define, track, and manage various types of employee allowances with seamless integration into Odoo's HR and Payroll systems.
+                </p>
+                <p class="intro-text">
+                    Built with Qatar's employment regulations and common GCC practices in mind, this module supports complex allowance structures including housing, transportation, family allowances, and performance-based compensation, making it the perfect solution for companies managing diverse compensation packages.
+                </p>
+            </section>
+
+            <section>
+                <div class="section-header">
+                    <h2>Key Features</h2>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <span class="feature-icon">🏢</span>
+                        <h3>Multiple Allowance Types</h3>
+                        <p>Support for 8 major allowance categories covering all aspects of employee compensation across different industries and roles.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">💰</span>
+                        <h3>Flexible Configuration</h3>
+                        <p>Define allowances with custom codes, amounts, and descriptions tailored specifically to your organization's needs.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">👥</span>
+                        <h3>Employee-Specific</h3>
+                        <p>Assign different allowances to individual employees based on their role, location, contract type, or seniority.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📊</span>
+                        <h3>Contract Integration</h3>
+                        <p>Seamlessly integrate allowances with employee contracts and salary structures for complete compensation management.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">💼</span>
+                        <h3>Payroll Ready</h3>
+                        <p>Full integration with Odoo's payroll system ensures automatic and accurate salary calculations every time.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🔍</span>
+                        <h3>Comprehensive Reporting</h3>
+                        <p>Track and report on all allowances across your organization with detailed views and analytics.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-header">
+                    <h2>Allowance Categories</h2>
+                </div>
+
+                <div class="allowance-section">
+                    <h3>I. Core Salary Components (100)</h3>
+                    <p>Fixed, contractual parts of pay that form the foundation for all payroll and legal calculations.</p>
+                    <ul class="allowance-list">
+                        <li>Fixed Allowance</li>
+                    </ul>
+                </div>
+
+                <div class="allowance-section">
+                    <h3>II. Living and Accommodation (200)</h3>
+                    <p>Allowances covering employee housing, utilities, and living conditions.</p>
+                    <ul class="allowance-list">
+                        <li>Housing Allowance</li>
+                        <li>Utilities Allowance</li>
+                        <li>Furniture Allowance</li>
+                        <li>Maintenance Allowance</li>
+                    </ul>
+                </div>
+
+                <div class="allowance-section">
+                    <h3>III. Transportation and Mobility (300)</h3>
+                    <p>Allowances for commuting, travel, or maintaining personal or company vehicles.</p>
+                    <ul class="allowance-list">
+                        <li>Transportation Allowance</li>
+                        <li>Fuel Allowance</li>
+                        <li>Vehicle / Car Allowance</li>
+                        <li>Travel / Ticket Allowance</li>
+                    </ul>
+                </div>
+
+                <div class="allowance-section">
+                    <h3>IV. Daily Life and Personal Expenses (400)</h3>
+                    <p>Covering day-to-day personal needs such as food, communication, or clothing.</p>
+                    <ul class="allowance-list">
+                        <li>Food / Meal Allowance</li>
+                        <li>Communication Allowance</li>
+                        <li>Clothing / Uniform Allowance</li>
+                        <li>Personal Allowance</li>
+                    </ul>
+                </div>
+
+                <div class="allowance-section">
+                    <h3>V. Work and Role-Based (500)</h3>
+                    <p>Linked to the employee's specific duties, work environment, or skill level.</p>
+                    <ul class="allowance-list">
+                        <li>Technical / Skill Allowance</li>
+                        <li>Project / Site Allowance</li>
+                        <li>Risk / Hazard Allowance</li>
+                        <li>On-Call Allowance</li>
+                        <li>Shift Allowance</li>
+                    </ul>
+                </div>
+
+                <div class="allowance-section">
+                    <h3>VI. Family and Dependents (600)</h3>
+                    <p>Support for employees with dependents, covering family, education, and medical needs.</p>
+                    <ul class="allowance-list">
+                        <li>Family Allowance</li>
+                        <li>Child Education Allowance</li>
+                        <li>Dependent Visa Allowance</li>
+                        <li>Medical / Insurance Allowance</li>
+                    </ul>
+                </div>
+
+                <div class="allowance-section">
+                    <h3>VII. Special, Occasion-Based and Performance (700)</h3>
+                    <p>Occasional or bonus-based allowances tied to performance, holidays, or relocation.</p>
+                    <ul class="allowance-list">
+                        <li>Eid / Ramadan Allowance</li>
+                        <li>Performance Bonus</li>
+                        <li>Joining / Relocation Allowance</li>
+                        <li>End-of-Service Benefit (EOSB)</li>
+                    </ul>
+                </div>
+
+                <div class="allowance-section">
+                    <h3>VIII. Optional / Sector-Specific (800)</h3>
+                    <p>Additional or industry-specific allowances offered depending on company policy or work type.</p>
+                    <ul class="allowance-list">
+                        <li>Tool / Equipment Allowance</li>
+                        <li>Internet Allowance (WFH)</li>
+                        <li>Cost of Living Allowance (COLA)</li>
+                        <li>Training Allowance</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-header">
+                    <h2>Installation & Configuration</h2>
+                </div>
+                <ol class="steps">
+                    <li>Install the module from the Odoo Apps menu</li>
+                    <li>Pre-configured allowance types and common allowances are automatically loaded</li>
+                    <li>Navigate to HR → Configuration → Allowances to customize definitions</li>
+                    <li>Assign allowances to employees through their contract or employee form</li>
+                    <li>Allowances automatically appear in payslip calculations</li>
+                </ol>
+            </section>
+
+            <section>
+                <div class="section-header">
+                    <h2>Use Cases</h2>
+                </div>
+                <div class="use-cases">
+                    <div class="use-case">Managing complex compensation structures in Qatar and GCC countries</div>
+                    <div class="use-case">Tracking housing and living allowances for expatriate employees</div>
+                    <div class="use-case">Handling family and dependent support allowances</div>
+                    <div class="use-case">Managing performance-based and special occasion allowances</div>
+                    <div class="use-case">Automating allowance calculations in monthly payroll</div>
+                    <div class="use-case">Ensuring compliance with Qatar labor law requirements</div>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-header">
+                    <h2>Technical Information</h2>
+                </div>
+
+                <div class="badges">
+                    <span class="badge">Version 19.0.1.0.2</span>
+                    <span class="badge">Category: Human Resources</span>
+                    <span class="badge">License: LGPL-3</span>
+                    <span class="badge">Odoo 19</span>
+                </div>
+
+                <div class="tech-specs">
+                    <div class="tech-card">
+                        <h4>Dependencies</h4>
+                        <ul>
+                            <li><code>hr</code> - Human Resources</li>
+                            <li><code>hr_payroll</code> - Payroll Management</li>
+                            <li><code>hr_contract_salary</code> - Contract Salary</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h4>Main Models</h4>
+                        <ul>
+                            <li><code>hr.allowance.type</code></li>
+                            <li><code>hr.allowance</code></li>
+                            <li><code>hr.employee.allowance</code></li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h4>Extended Models</h4>
+                        <ul>
+                            <li><code>hr.employee</code></li>
+                            <li><code>hr.contract</code></li>
+                            <li><code>hr.payslip</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>Developed by Techman Solutions & Mirsad Selimovic</strong></p>
+        <p><a href="https://www.techman.qa">www.techman.qa</a> | <a href="mailto:odoo@techman.qa">odoo@techman.qa</a></p>
+        <p style="margin-top: 15px; font-size: 0.9em;">Professional Odoo Solutions & Customizations</p>
+    </div>
+</body>
+</html>

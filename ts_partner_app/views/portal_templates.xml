@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_home_assets" name="Portal My Home : Client Assets"
+              inherit_id="portal.portal_my_home" priority="30">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/ts_partner_app/static/description/icon.png'"/>
+                <t t-set="title">Your Assets</t>
+                <t t-set="url" t-value="'/my/assets'"/>
+                <t t-set="text">Domains, hosting and services we manage for you</t>
+                <t t-set="placeholder_count" t-value="'asset_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_breadcrumbs_assets" name="Portal breadcrumbs : Client Assets"
+              inherit_id="portal.portal_breadcrumbs" priority="30">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'assets'" class="breadcrumb-item">
+                <t t-if="asset">
+                    <a href="/my/assets">Your Assets</a>
+                </t>
+                <t t-else="">Your Assets</t>
+            </li>
+            <li t-if="page_name == 'assets' and asset" class="breadcrumb-item active">
+                <t t-out="asset.name"/>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_assets" name="Your Assets">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Your Assets</t>
+            </t>
+            <t t-if="not assets">
+                <p class="alert alert-info">There are currently no assets registered for your account.</p>
+            </t>
+            <t t-if="assets" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="assets" t-as="asset">
+                        <td>
+                            <a t-attf-href="/my/assets/#{asset.id}"><t t-out="asset.name"/></a>
+                        </td>
+                        <td><t t-out="dict(asset._fields['type']._description_selection(asset.env)).get(asset.type, asset.type)"/></td>
+                        <td><span t-field="asset.start_date"/></td>
+                        <td><span t-field="asset.end_date"/></td>
+                        <td>
+                            <span t-if="asset.state == 'new'" class="badge text-bg-info">New</span>
+                            <span t-elif="asset.state == 'running'" class="badge text-bg-success">Running</span>
+                            <span t-elif="asset.state == 'to_renew'" class="badge text-bg-warning">To Renew</span>
+                            <span t-else="" class="badge text-bg-secondary">Closed</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_asset_detail" name="Asset Details">
+        <t t-call="portal.portal_layout">
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <t t-out="asset.name"/>
+                        <span t-if="asset.state == 'new'" class="badge text-bg-info float-end">New</span>
+                        <span t-elif="asset.state == 'running'" class="badge text-bg-success float-end">Running</span>
+                        <span t-elif="asset.state == 'to_renew'" class="badge text-bg-warning float-end">To Renew</span>
+                        <span t-else="" class="badge text-bg-secondary float-end">Closed</span>
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div t-if="renewal_requested" class="alert alert-success">
+                        Thank you! Your renewal request has been sent to our team.
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <p><strong>Type:</strong> <t t-out="dict(asset._fields['type']._description_selection(asset.env)).get(asset.type, asset.type)"/></p>
+                            <p t-if="asset.url"><strong>URL:</strong> <t t-out="asset.url"/></p>
+                            <p t-if="asset.subscription_number"><strong>Subscription:</strong> <t t-out="asset.subscription_number"/></p>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <p t-if="asset.start_date"><strong>Start date:</strong> <span t-field="asset.start_date"/></p>
+                            <p t-if="asset.end_date"><strong>End date:</strong> <span t-field="asset.end_date"/></p>
+                            <p t-if="asset.current_version"><strong>Odoo version:</strong> <t t-out="asset.current_version"/></p>
+                        </div>
+                    </div>
+                    <hr/>
+                    <form t-attf-action="/my/assets/#{asset.id}/request_renewal" method="post">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div class="mb-2">
+                            <label class="form-label" for="message">Request a renewal or leave us a note:</label>
+                            <textarea class="form-control" name="message" id="message" rows="2"
+                                      placeholder="e.g. Please renew this domain for another year."/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Request Renewal</button>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

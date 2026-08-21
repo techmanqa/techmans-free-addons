@@ -1,0 +1,60 @@
+<title>Product Markup Calculation</title>
+<style>
+  .pmc-page {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    color: #1c1520;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 16px;
+  }
+  .pmc-hero {
+    background: #714b67;
+    color: #fff;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  .pmc-hero h1 { margin: 0 0 8px; font-size: 26px; }
+  .pmc-hero p { margin: 0; color: #ece3e9; font-size: 15px; }
+  .pmc-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .pmc-card {
+    border: 1px solid rgba(21, 15, 25, 0.1);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .pmc-card h3 { margin: 0 0 6px; font-size: 15px; color: #4a2f43; }
+  .pmc-card p { margin: 0; font-size: 13px; color: #6d6478; line-height: 1.4; }
+  .pmc-footer { font-size: 12px; color: #6d6478; text-align: center; }
+  .pmc-footer a { color: #714b67; }
+</style>
+
+<div class="pmc-page">
+  <div class="pmc-hero">
+    <h1>Product Markup Calculation</h1>
+    <p>Set a markup % on cost and let Odoo compute the sales price for you.</p>
+  </div>
+
+  <div class="pmc-features">
+    <div class="pmc-card">
+      <h3>Markup %</h3>
+      <p>Enter a per-company markup percentage directly on the product form.</p>
+    </div>
+    <div class="pmc-card">
+      <h3>Total Markup</h3>
+      <p>Automatically computed from Cost × (1 + Markup %).</p>
+    </div>
+    <div class="pmc-card">
+      <h3>Auto Sales Price</h3>
+      <p>Sales Price updates live to match the calculated markup.</p>
+    </div>
+  </div>
+
+  <div class="pmc-footer">
+    Techman Solutions W.L.L. &middot; <a href="mailto:odoo@techman.qa">odoo@techman.qa</a> &middot; <a href="https://www.techman.qa">techman.qa</a>
+  </div>
+</div>

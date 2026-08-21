@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="tag_implementation" model="partner.asset.tag">
+            <field name="name">Implementation</field>
+            <field name="color">1</field>
+        </record>
+
+        <record id="tag_migration" model="partner.asset.tag">
+            <field name="name">Migration</field>
+            <field name="color">2</field>
+        </record>
+
+        <record id="tag_upgrade" model="partner.asset.tag">
+            <field name="name">Upgrade</field>
+            <field name="color">3</field>
+        </record>
+
+        <record id="tag_customization" model="partner.asset.tag">
+            <field name="name">Customization</field>
+            <field name="color">4</field>
+        </record>
+
+        <record id="tag_support" model="partner.asset.tag">
+            <field name="name">Support &amp; Maintenance</field>
+            <field name="color">5</field>
+        </record>
+
+        <record id="tag_integration" model="partner.asset.tag">
+            <field name="name">Integration</field>
+            <field name="color">6</field>
+        </record>
+
+        <record id="tag_training" model="partner.asset.tag">
+            <field name="name">Training</field>
+            <field name="color">7</field>
+        </record>
+
+        <record id="tag_go_live" model="partner.asset.tag">
+            <field name="name">Go-Live</field>
+            <field name="color">8</field>
+        </record>
+
+        <record id="tag_on_premise" model="partner.asset.tag">
+            <field name="name">On-Premise</field>
+            <field name="color">9</field>
+        </record>
+
+        <record id="tag_saas" model="partner.asset.tag">
+            <field name="name">SaaS / Odoo Online</field>
+            <field name="color">10</field>
+        </record>
+
+        <record id="tag_multi_company" model="partner.asset.tag">
+            <field name="name">Multi-Company</field>
+            <field name="color">11</field>
+        </record>
+
+        <record id="tag_data_import" model="partner.asset.tag">
+            <field name="name">Data Import</field>
+            <field name="color">0</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_view_form_inherit_asset" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.asset</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_view_infrastructure"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-server">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text" invisible="not infrastructure_id">Infrastructure</span>
+                        <span class="o_stat_text" invisible="infrastructure_id">Add Infrastructure</span>
+                    </div>
+                    <field name="infrastructure_id" invisible="1"/>
+                </button>
+                <button name="action_view_partner_assets"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-cubes"
+                    invisible="asset_count == 0">
+                    <field name="asset_count" widget="statinfo" string="Odoo Assets"/>
+                </button>
+                <button name="action_view_expiring_soon_assets"
+                    type="object"
+                    class="oe_stat_button text-danger"
+                    icon="fa-hourglass-half"
+                    invisible="expiring_soon_count == 0">
+                    <field name="expiring_soon_count" widget="statinfo" string="Expiring Soon"/>
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>
