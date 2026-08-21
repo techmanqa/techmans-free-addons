@@ -1,6 +1,6 @@
 {
     'name': 'Odoo Clients 360',
-    'version': '19.0.2',
+    'version': '19.0.5',
     'category': 'Sales',
     'summary': 'All-in-One Client Asset, Service & Financial Hub for Odoo Partners',
     'description': """
@@ -26,6 +26,7 @@
         'security/security_rules.xml',
         'data/ir_cron_data.xml',
         'data/ir_cron_health_digest.xml',
+        'data/ir_sequence_data.xml',
         'data/mail_template_data.xml',
         'data/product_data.xml',
         'data/partner_asset_stage_data.xml',

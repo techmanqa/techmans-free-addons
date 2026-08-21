@@ -1,14 +1,40 @@
-from odoo import models, fields
+import re
+
+from odoo import api, models, fields
 from datetime import timedelta
+
+CLIENT_REF_SEQUENCE_CODE = 'ts_partner_app.client_reference'
 
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
+    client_ref = fields.Char(
+        string='Client Reference', readonly=True, copy=False, index=True,
+        help="Auto-generated from the client's name and a running number. "
+             "Its numbering (next number, padding, ...) is configured in "
+             "Settings > Technical > Sequences & Identifiers > Sequences.")
     asset_count = fields.Integer(compute='_compute_asset_counts', string='Odoo Assets Count')
     expiring_soon_count = fields.Integer(compute='_compute_asset_counts', string='Expiring Soon Count')
     infrastructure_id = fields.One2many('partner.infrastructure', 'partner_id',
                                         string='Infrastructure Profile')
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        partners = super().create(vals_list)
+        for partner in partners:
+            # Only top-level partners are "clients" — sub-contacts and
+            # addresses (delivery/invoice/employee) created under a company
+            # don't get their own reference.
+            if not partner.parent_id:
+                partner.client_ref = partner._generate_client_ref()
+        return partners
+
+    def _generate_client_ref(self):
+        self.ensure_one()
+        prefix = re.sub(r'[^A-Z0-9]', '', (self.name or '').upper())[:4] or 'CLI'
+        number = self.env['ir.sequence'].sudo().next_by_code(CLIENT_REF_SEQUENCE_CODE) or '0'
+        return f"{prefix}-{number}"
 
     def _compute_asset_counts(self):
         today = fields.Date.context_today(self)
