@@ -1,0 +1,554 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ts_sales_dashboard
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-24 22:09+0000\n"
+"PO-Revision-Date: 2026-08-24 22:09+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ts_sales_dashboard
+#. odoo-python
+#: code:addons/ts_sales_dashboard/models/sales_dashboard.py:0
+msgid "0-7 Days"
+msgstr "0-7 dana"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "1Y"
+msgstr "1g"
+
+#. module: ts_sales_dashboard
+#. odoo-python
+#: code:addons/ts_sales_dashboard/models/sales_dashboard.py:0
+msgid "31-90 Days"
+msgstr "31-90 dana"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "3Y"
+msgstr "3g"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "6M"
+msgstr "6mj"
+
+#. module: ts_sales_dashboard
+#. odoo-python
+#: code:addons/ts_sales_dashboard/models/sales_dashboard.py:0
+msgid "8-30 Days"
+msgstr "8-30 dana"
+
+#. module: ts_sales_dashboard
+#. odoo-python
+#: code:addons/ts_sales_dashboard/models/sales_dashboard.py:0
+msgid "90+ Days"
+msgstr "90+ dana"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Actual"
+msgstr "Stvarno"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Actual confirmed revenue compared with configured sales team target"
+msgstr "Stvarni potvrđeni prihod u poređenju sa postavljenim ciljem prodajnog tima"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+msgid "All Time"
+msgstr "Sve vrijeme"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Already Invoiced"
+msgstr "Već fakturisano"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Apply"
+msgstr "Primijeni"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Average Order Value"
+msgstr "Prosječna vrijednost narudžbe"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Best Client"
+msgstr "Najbolji klijent"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Cancelled Orders"
+msgstr "Otkazane narudžbe"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Compared to previous period:"
+msgstr "U poređenju sa prethodnim periodom:"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Confirmed"
+msgstr "Potvrđeno"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Confirmed Revenue"
+msgstr "Potvrđeni prihod"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Confirmed Sales Orders"
+msgstr "Potvrđene prodajne narudžbe"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid ""
+"Confirmed order revenue vs. option (unconfirmed quotation) revenue by month"
+msgstr ""
+"Prihod od potvrđenih narudžbi naspram opcionog (nepotvrđenog) prihoda po "
+"mjesecima"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Conversion Rate"
+msgstr "Stopa konverzije"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+msgid "Custom Range"
+msgstr "Prilagođeni period"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Customer Requisition Insights"
+msgstr "Uvid u zahtjeve kupaca"
+
+#. module: ts_sales_dashboard
+#: model:ir.ui.menu,name:ts_sales_dashboard.menu_ts_sales_dashboard
+msgid "Dashboard"
+msgstr "Kontrolna tabla"
+
+#. module: ts_sales_dashboard
+#: model:ir.model.fields,field_description:ts_sales_dashboard.field_ts_sales_dashboard__display_name
+msgid "Display Name"
+msgstr "Prikazani naziv"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Draft and sent quotations grouped by time since creation"
+msgstr "Ponude u nacrtu i poslane ponude grupisane prema vremenu od kreiranja"
+
+#. module: ts_sales_dashboard
+#: model:ir.model,name:ts_sales_dashboard.model_ts_sales_dashboard
+msgid "Executive Sales Dashboard Service"
+msgstr "Servis izvršne kontrolne table prodaje"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "From"
+msgstr "Od"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Geographical Sales Analysis"
+msgstr "Geografska analiza prodaje"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Horizontal comparison of top customers"
+msgstr "Horizontalno poređenje najboljih kupaca"
+
+#. module: ts_sales_dashboard
+#: model:ir.model.fields,field_description:ts_sales_dashboard.field_ts_sales_dashboard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+msgid "Invoicing Status"
+msgstr "Status fakturisanja"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+msgid "Last 12 Months"
+msgstr "Posljednjih 12 mjeseci"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+msgid "Last 6 Months"
+msgstr "Posljednjih 6 mjeseci"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+msgid "Last Year"
+msgstr "Prošla godina"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Loading sales dashboard..."
+msgstr "Učitavanje kontrolne table prodaje..."
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Lost Pipeline (Cancelled Quotations)"
+msgstr "Izgubljeni poslovi (otkazane ponude)"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Monthly Sales Revenue Trends"
+msgstr "Mjesečni trendovi prihoda od prodaje"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "New Customers"
+msgstr "Novi kupci"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "New and repeat customer split"
+msgstr "Podjela na nove i ponovljene kupce"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "No cancelled quotations in this period."
+msgstr "Nema otkazanih ponuda u ovom periodu."
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "No country data yet."
+msgstr "Još nema podataka o državama."
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "No customer revenue yet."
+msgstr "Još nema prihoda od kupaca."
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "No open quotations."
+msgstr "Nema otvorenih ponuda."
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "No product category revenue yet."
+msgstr "Još nema prihoda po kategorijama proizvoda."
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "No product revenue yet."
+msgstr "Još nema prihoda od proizvoda."
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "No sales team data yet."
+msgstr "Još nema podataka o prodajnom timu."
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "No salesperson revenue yet."
+msgstr "Još nema prihoda po prodavačima."
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "No volume data yet."
+msgstr "Još nema podataka o količini."
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Open Quotation Aging"
+msgstr "Starost otvorenih ponuda"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Option (unconfirmed)"
+msgstr "Opcija (nepotvrđeno)"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Products ranked by confirmed sales revenue"
+msgstr "Proizvodi rangirani prema potvrđenom prihodu od prodaje"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Products ranked by ordered quantity"
+msgstr "Proizvodi rangirani prema naručenoj količini"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+msgid "Quotation Conversion Rate"
+msgstr "Stopa konverzije ponuda"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Quotations Created"
+msgstr "Kreirane ponude"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Red Client (Most Cancelled)"
+msgstr "Crveni klijent (najviše otkazivanja)"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Refresh"
+msgstr "Osvježi"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Repeat Customers"
+msgstr "Ponovljeni kupci"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Revenue Target Achievement by Sales Teams"
+msgstr "Ostvarenje ciljanog prihoda po prodajnim timovima"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Revenue by customer country"
+msgstr "Prihod prema državi kupca"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Revenue distribution by product category"
+msgstr "Raspodjela prihoda po kategoriji proizvoda"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Revenue split by salesperson"
+msgstr "Podjela prihoda po prodavaču"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid ""
+"Revenue, orders, customers, product movement, geography, and team "
+"performance in one view."
+msgstr ""
+"Prihod, narudžbe, kupci, kretanje proizvoda, geografija i učinak tima na "
+"jednom mjestu."
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Sale Orders from New Customers"
+msgstr "Prodajne narudžbe od novih kupaca"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Sale Orders from Repeat Customers"
+msgstr "Prodajne narudžbe od ponovljenih kupaca"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/control_panel_dashboard_button.xml:0
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+#: model:ir.actions.client,name:ts_sales_dashboard.action_ts_sales_dashboard
+msgid "Sales Dashboard"
+msgstr "Kontrolna tabla prodaje"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Sales Overview"
+msgstr "Pregled prodaje"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Sales Revenue From Top 5 Customers"
+msgstr "Prihod od prodaje od top 5 kupaca"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Sales Revenue by Product Category"
+msgstr "Prihod od prodaje po kategoriji proizvoda"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Sales by Salesperson"
+msgstr "Prodaja po prodavaču"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Share of confirmed orders from one-time customers"
+msgstr "Udio potvrđenih narudžbi od kupaca koji kupuju jednom"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Share of confirmed orders from repeat customers"
+msgstr "Udio potvrđenih narudžbi od ponovljenih kupaca"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Show / Hide Cards"
+msgstr "Prikaži / sakrij kartice"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Show/hide cards"
+msgstr "Prikaži/sakrij kartice"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Target"
+msgstr "Cilj"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+msgid "This Quarter"
+msgstr "Ovaj kvartal"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+msgid "This Year"
+msgstr "Ova godina"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "To"
+msgstr "Do"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "To Invoice"
+msgstr "Za fakturisanje"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Top 5 Best-Selling Products by Volume"
+msgstr "Top 5 najprodavanijih proizvoda po količini"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Top 5 Highest Revenue-Generating Products"
+msgstr "Top 5 proizvoda s najvećim prihodom"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Total"
+msgstr "Ukupno"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Total Revenue"
+msgstr "Ukupan prihod"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/js/sales_dashboard_action.js:0
+msgid "Total Revenue & Orders"
+msgstr "Ukupan prihod i narudžbe"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Total Sale Orders"
+msgstr "Ukupno prodajnih narudžbi"
+
+#. module: ts_sales_dashboard
+#. odoo-javascript
+#: code:addons/ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml:0
+msgid "Value of cancelled quotations by month"
+msgstr "Vrijednost otkazanih ponuda po mjesecima"

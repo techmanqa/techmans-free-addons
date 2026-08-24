@@ -8,8 +8,8 @@ from dateutil.relativedelta import relativedelta
 from odoo import _, api, fields, models
 
 
-class PrSalesDashboard(models.AbstractModel):
-    _name = "pr.sales.dashboard"
+class TsSalesDashboard(models.AbstractModel):
+    _name = "ts.sales.dashboard"
     _description = "Executive Sales Dashboard Service"
 
     @api.model

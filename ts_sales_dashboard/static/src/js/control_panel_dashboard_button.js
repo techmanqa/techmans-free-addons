@@ -7,14 +7,14 @@ import { useService } from "@web/core/utils/hooks";
 patch(ControlPanel.prototype, {
     setup() {
         super.setup();
-        this.prSalesDashboardAction = useService("action");
+        this.tsSalesDashboardAction = useService("action");
     },
 
-    get prShowSalesDashboardButton() {
+    get tsShowSalesDashboardButton() {
         return this.env.searchModel?.resModel === "sale.order";
     },
 
-    onClickPrSalesDashboard() {
-        this.prSalesDashboardAction.doAction("pr_sales_dashboard.action_pr_sales_dashboard");
+    onClickTsSalesDashboard() {
+        this.tsSalesDashboardAction.doAction("ts_sales_dashboard.action_ts_sales_dashboard");
     },
 });

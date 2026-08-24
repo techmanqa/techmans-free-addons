@@ -1,4 +1,4 @@
-.o_pr_sales_dashboard {
+.o_ts_sales_dashboard {
     --pr-blue: #06264B;
     --pr-blue-light: #0a3d6e;
     --pr-gold: #e9a23e;
@@ -1056,7 +1056,7 @@
 }
 
 @media (max-width: 900px) {
-    .o_pr_sales_dashboard {
+    .o_ts_sales_dashboard {
         padding: 12px;
     }
 
