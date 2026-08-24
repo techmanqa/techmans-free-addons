@@ -1,0 +1,25 @@
+# Changelog - Advanced Sales Dashboard (pr_sales_dashboard)
+
+## [19.0.1.0.0] - 2026-08-25
+### Added
+- Initial release. Executive sales dashboard with revenue, orders, customers,
+  products, geography, and team KPIs, built on top of `sale`.
+- Average Order Value KPI, alongside the existing top-line metrics.
+- Global date-range filter (All Time / This Year / Last Year / This Quarter /
+  Last N Months / Custom Range) that scopes every card's query and
+  drill-through domain, independent of the Monthly Trends chart's own
+  lookback toggle.
+- Period-over-period comparison deltas (▲/▼ %) on the top KPIs, comparing
+  against the immediately preceding period of equal length.
+- Invoicing Status (to-invoice vs. already-invoiced), Lost Pipeline
+  (cancelled-quotation revenue trend), and Open Quotation Aging
+  (0-7/8-30/31-90/90+ day buckets) cards.
+- Full Arabic (ar_001) and Bosnian (bs_BA) translations, covering all
+  86 translatable strings including JS-only labels (date-range options,
+  card show/hide list) and backend-generated labels (aging buckets).
+
+### Changed
+- Removed duplicate/redundant cards (Customer Retention Rate,
+  cumulative-revenue chart) that overlapped with existing metrics.
+- Manifest credits Inovado D.o.o., Mirsad Selimovic, and Techman Solutions
+  alongside the original author, linking inovado.ba and techman.qa.
