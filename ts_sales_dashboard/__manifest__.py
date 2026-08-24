@@ -13,11 +13,11 @@
     ],
     "assets": {
         "web.assets_backend": [
-            "pr_sales_dashboard/static/src/js/sales_dashboard_action.js",
-            "pr_sales_dashboard/static/src/js/control_panel_dashboard_button.js",
-            "pr_sales_dashboard/static/src/xml/sales_dashboard_templates.xml",
-            "pr_sales_dashboard/static/src/xml/control_panel_dashboard_button.xml",
-            "pr_sales_dashboard/static/src/css/sales_dashboard.css",
+            "ts_sales_dashboard/static/src/js/sales_dashboard_action.js",
+            "ts_sales_dashboard/static/src/js/control_panel_dashboard_button.js",
+            "ts_sales_dashboard/static/src/xml/sales_dashboard_templates.xml",
+            "ts_sales_dashboard/static/src/xml/control_panel_dashboard_button.xml",
+            "ts_sales_dashboard/static/src/css/sales_dashboard.css",
         ],
     },
     "images": [

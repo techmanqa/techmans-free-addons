@@ -1,4 +1,23 @@
-# Changelog - Advanced Sales Dashboard (pr_sales_dashboard)
+# Changelog - Advanced Sales Dashboard (ts_sales_dashboard)
+
+## [19.0.2.0.0] - 2026-08-25
+### Changed
+- **Breaking:** renamed the module's technical name from `pr_sales_dashboard`
+  to `ts_sales_dashboard` (folder, manifest, model `_name`
+  `pr.sales.dashboard` → `ts.sales.dashboard`, action/menu/template XML IDs,
+  JS action name, CSS classes, and both translation files). Deployments on
+  the old technical name must uninstall `pr_sales_dashboard` and install
+  `ts_sales_dashboard`; there is no in-place upgrade path since Odoo treats
+  this as a different module.
+- Manifest summary now notes the dashboard works on both Odoo Community and
+  Enterprise (it only depends on `sale`).
+
+### Added
+- Listing page (`static/description/index.html`) gained a "See It In Action"
+  screenshot gallery (dashboard overview, date-range filter, period
+  comparison, lost pipeline & quotation aging) plus Dashboard Coverage and
+  Key Features entries for Invoicing Status, Lost Pipeline, Open Quotation
+  Aging, and period-over-period comparison deltas.
 
 ## [19.0.1.0.0] - 2026-08-25
 ### Added

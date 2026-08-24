@@ -44,7 +44,7 @@ export class SalesDashboardAction extends Component {
         this.action = useService("action");
         this.cardDefinitions = CARD_DEFINITIONS;
         this.dateRangeOptions = DATE_RANGE_OPTIONS;
-        this.storageKey = `pr_sales_dashboard_hidden_cards_${user.userId || "anon"}`;
+        this.storageKey = `ts_sales_dashboard_hidden_cards_${user.userId || "anon"}`;
         this.settingsRef = useRef("settingsRoot");
         this.dateFilterRef = useRef("dateFilterRoot");
         this.state = useState({
@@ -128,7 +128,7 @@ export class SalesDashboardAction extends Component {
         this.state.loading = true;
         const { date_from, date_to } = this.computeDateRange(this.state.dateRangeKey);
         this.state.data = await this.orm.call(
-            "pr.sales.dashboard",
+            "ts.sales.dashboard",
             "get_dashboard_data",
             [this.state.months, date_from, date_to]
         );
@@ -339,6 +339,6 @@ export class SalesDashboardAction extends Component {
     }
 }
 
-SalesDashboardAction.template = "pr_sales_dashboard.SalesDashboardAction";
+SalesDashboardAction.template = "ts_sales_dashboard.SalesDashboardAction";
 
-registry.category("actions").add("pr_sales_dashboard.sales_dashboard", SalesDashboardAction);
+registry.category("actions").add("ts_sales_dashboard.sales_dashboard", SalesDashboardAction);

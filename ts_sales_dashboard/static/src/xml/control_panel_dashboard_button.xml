@@ -3,11 +3,11 @@
 
     <t t-inherit="web.ControlPanel" t-inherit-mode="extension">
         <xpath expr="//nav[hasclass('o_cp_switch_buttons')]" position="inside">
-            <button t-if="prShowSalesDashboardButton"
-                    class="btn btn-secondary o_switch_view o_pr_sales_dashboard_button"
+            <button t-if="tsShowSalesDashboardButton"
+                    class="btn btn-secondary o_switch_view o_ts_sales_dashboard_button"
                     data-tooltip="Sales Dashboard"
                     aria-label="Sales Dashboard"
-                    t-on-click="onClickPrSalesDashboard">
+                    t-on-click="onClickTsSalesDashboard">
                 <i class="fa fa-tachometer"/>
             </button>
         </xpath>

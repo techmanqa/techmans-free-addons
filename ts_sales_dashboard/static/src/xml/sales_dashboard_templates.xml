@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-    <t t-name="pr_sales_dashboard.SalesDashboardAction" owl="1">
-        <div class="o_pr_sales_dashboard">
+    <t t-name="ts_sales_dashboard.SalesDashboardAction" owl="1">
+        <div class="o_ts_sales_dashboard">
             <t t-if="state.loading">
                 <div class="pr-sales-loading">
                     <i class="fa fa-spinner fa-spin"/>
