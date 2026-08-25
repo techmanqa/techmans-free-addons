@@ -12,7 +12,7 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         res = super().action_confirm()
-        assets = self.env['partner.asset'].search([
+        assets = self.env['partner.asset'].sudo().search([
             ('sale_order_id', 'in', self.ids),
             ('state', '=', 'to_renew'),
         ])
