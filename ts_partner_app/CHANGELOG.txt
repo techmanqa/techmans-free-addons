@@ -1,5 +1,27 @@
 # Changelog - Odoo Clients 360 (ts_partner_app)
 
+## [19.0.7] - 2026-08-25
+### Fixed
+- Confirming a quotation raised an Access Error ("You are not allowed to access
+  'Client-Related Asset' (partner.asset) records") for any salesperson who isn't in
+  the Odoo Clients 360 User/Manager group. `sale.order.action_confirm()` searches and
+  updates linked `partner.asset` renewal records as a side effect of confirmation, but
+  was running that lookup with the confirming user's own rights instead of `sudo()`,
+  so it blocked confirmation entirely for users outside the Client Hub groups — a
+  regression from before this module was installed. The renewal-bookkeeping step now
+  runs under `sudo()`, since it's an automatic side effect of a permitted action
+  (confirming their own order) rather than the user browsing or editing assets
+  directly; no per-user group assignment is needed.
+
+## [19.0.6] - 2026-08-21
+### Added
+- Added a 5th "Installation Guide" tab to `static/description/index.html`, condensing
+  `install.html`'s content (requirements table, 4-step install incl. per-environment
+  Docker/bare-metal/Odoo.sh instructions for the `cryptography` package, verification,
+  and a 5-item troubleshooting accordion) into the same inline-styles-only, Bootstrap-tab
+  convention as the rest of the listing page, so it's visible without leaving the Apps
+  Store listing. `install.html` itself is unchanged and still linked separately.
+
 ## [19.0.5] - 2026-08-21
 ### Changed
 - Redesigned `static/description/index.html` (the Odoo Apps Store listing page) after

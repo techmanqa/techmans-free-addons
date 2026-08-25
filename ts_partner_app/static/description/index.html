@@ -84,7 +84,7 @@
         </a>
     </div>
     <div class="d-flex flex-wrap justify-content-center" style="gap: 22px; margin-top: 26px; font-size: 14px; color: #6D6478; font-weight: 600;">
-        <span><strong style="color:#1C1520;">19.0.5</strong> current version</span>
+        <span><strong style="color:#1C1520;">19.0.6</strong> current version</span>
         <span><strong style="color:#1C1520;">Community &amp; Enterprise</strong> compatible</span>
         <span><strong style="color:#1C1520;">base, mail, sale, portal, project, utm</strong> dependencies only</span>
     </div>
@@ -355,6 +355,11 @@
                     &#127991;&#65039; Tags &amp; Specification
                 </a>
             </li>
+            <li class="nav-item" style="margin-bottom: -2px;">
+                <a class="nav-link" id="ts-install-tab" data-bs-toggle="tab" href="#ts_view_tab5" role="tab" style="color: #475569; font-weight: 700; padding: 12px 24px; border-radius: 8px 8px 0 0; background: #E5DEE3; border: 1px solid #D9C9D5; text-decoration: none; display: block;">
+                    &#128736; Installation Guide
+                </a>
+            </li>
         </ul>
     </div>
 
@@ -556,7 +561,7 @@
                 </h2>
                 <table class="table border" style="width: 100%; margin-top: 8px; font-size: 15px; border-collapse: collapse;">
                     <tbody>
-                        <tr><td style="padding: 12px; border: 1px solid #E5DEE3; color: #6D6478;">Version</td><td style="padding: 12px; border: 1px solid #E5DEE3; font-weight: 700; text-align: right;">19.0.5</td></tr>
+                        <tr><td style="padding: 12px; border: 1px solid #E5DEE3; color: #6D6478;">Version</td><td style="padding: 12px; border: 1px solid #E5DEE3; font-weight: 700; text-align: right;">19.0.6</td></tr>
                         <tr><td style="padding: 12px; border: 1px solid #E5DEE3; color: #6D6478;">Odoo</td><td style="padding: 12px; border: 1px solid #E5DEE3; font-weight: 700; text-align: right;">19.0</td></tr>
                         <tr><td style="padding: 12px; border: 1px solid #E5DEE3; color: #6D6478;">Edition</td><td style="padding: 12px; border: 1px solid #E5DEE3; font-weight: 700; text-align: right;">Community &amp; Enterprise</td></tr>
                         <tr><td style="padding: 12px; border: 1px solid #E5DEE3; color: #6D6478;">License</td><td style="padding: 12px; border: 1px solid #E5DEE3; font-weight: 700; text-align: right;">LGPL-3</td></tr>
@@ -568,6 +573,191 @@
                         <tr><td style="padding: 12px; border: 1px solid #E5DEE3; color: #6D6478;">Publisher</td><td style="padding: 12px; border: 1px solid #E5DEE3; font-weight: 700; text-align: right;">Techman Solutions</td></tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+
+        <!-- TAB 5: INSTALLATION GUIDE -->
+        <div class="tab-pane fade" id="ts_view_tab5" role="tabpanel">
+            <div class="container px-4 text-left" style="text-align: left;">
+                <h2 style="font-size: 24px; font-weight: 800; color: #1C1520; margin-bottom: 12px; text-align: center;">
+                    Installing Odoo Clients 360
+                </h2>
+                <p style="font-size: 15px; color: #6D6478; text-align: center; max-width: 700px; margin: 0 auto 20px; line-height: 1.7;">
+                    Installs like any custom addon, with one extra step: it needs the <code>cryptography</code>
+                    Python package to encrypt stored credentials. ~10 minutes, Community or Enterprise, Odoo 19.0.
+                </p>
+
+                <div class="p-4 shadow-sm border mb-4" style="background: #FFFFFF; border-radius: 12px;">
+                    <h3 style="font-size: 19px; font-weight: 700; color: #1C1520; margin-bottom: 12px;">Requirements</h3>
+                    <table class="table border" style="width: 100%; font-size: 14px; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: #F1EDF0; text-align: left;">
+                                <th style="padding: 10px 12px; border: 1px solid #E5DEE3;">Item</th>
+                                <th style="padding: 10px 12px; border: 1px solid #E5DEE3;">Needed for</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="padding: 10px 12px; border: 1px solid #E5DEE3;">Odoo 19.0, Community or Enterprise</td><td style="padding: 10px 12px; border: 1px solid #E5DEE3; color: #6D6478;">Depends only on <code>base</code>, <code>mail</code>, <code>sale</code>, <code>portal</code>, <code>project</code>, <code>utm</code> &mdash; all Community.</td></tr>
+                            <tr><td style="padding: 10px 12px; border: 1px solid #E5DEE3;">Shell/SSH access, or Docker CLI</td><td style="padding: 10px 12px; border: 1px solid #E5DEE3; color: #6D6478;">Installing the <code>cryptography</code> pip package into Odoo's own Python environment.</td></tr>
+                            <tr><td style="padding: 10px 12px; border: 1px solid #E5DEE3;">Odoo admin login</td><td style="padding: 10px 12px; border: 1px solid #E5DEE3; color: #6D6478;">Updating the Apps list and installing the module from the UI.</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex p-3 mt-3" style="background: #F1EDF0; border-radius: 10px; gap: 10px;">
+                        <span>&#8505;&#65039;</span>
+                        <p style="margin: 0; font-size: 14px; color: #475569;">Skipping the <code>cryptography</code> package doesn't crash the install &mdash; it just falls back to storing credentials unencrypted and logs a warning. Do the pip step first.</p>
+                    </div>
+                </div>
+
+                <div class="p-4 shadow-sm border mb-4" style="background: #FFFFFF; border-radius: 12px;">
+                    <h3 style="font-size: 19px; font-weight: 700; color: #1C1520; margin-bottom: 12px;">1 &middot; Place the module</h3>
+                    <p style="font-size: 15px; color: #475569; line-height: 1.8;">Copy the <code>ts_partner_app</code> folder into a directory on your Odoo instance's <code>addons_path</code> &mdash; typically a <code>custom-addons</code> or <code>extra-addons</code> folder alongside your other third-party modules.</p>
+                    <div style="background: #1C1824; border-radius: 10px; overflow: hidden; margin-top: 10px;">
+                        <div style="padding: 8px 14px; font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: 12px; color: #A89BB8; border-bottom: 1px solid rgba(255,255,255,0.1);">addons_path &middot; odoo.conf</div>
+                        <pre style="margin: 0; padding: 14px 16px; font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: 13px; color: #EFE9F5; overflow-x: auto;">addons_path = /usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons</pre>
+                    </div>
+                </div>
+
+                <div class="p-4 shadow-sm border mb-4" style="background: #FFFFFF; border-radius: 12px;">
+                    <h3 style="font-size: 19px; font-weight: 700; color: #1C1520; margin-bottom: 4px;">2 &middot; Install <code>cryptography</code></h3>
+                    <p style="font-size: 14px; color: #6D6478; margin-bottom: 14px;">Pick the tab that matches how Odoo is running &mdash; the package has to land in the exact Python interpreter Odoo executes with.</p>
+
+                    <ul class="nav nav-tabs" id="tsEnvTab" role="tablist" style="border-bottom: 2px solid #714B67; gap: 8px; margin: 0 0 16px; padding-left: 0; list-style: none; display: flex; flex-wrap: wrap;">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="ts-env-docker-tab" data-bs-toggle="tab" href="#ts_env_docker" role="tab" style="color: #714B67; font-weight: 700; font-size: 14px; padding: 8px 16px; border-radius: 6px 6px 0 0; background: #FFFFFF; border: 1px solid #714B67; border-bottom: 1px solid #FFFFFF; text-decoration: none; display: block;">Docker Compose</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="ts-env-baremetal-tab" data-bs-toggle="tab" href="#ts_env_baremetal" role="tab" style="color: #475569; font-weight: 700; font-size: 14px; padding: 8px 16px; border-radius: 6px 6px 0 0; background: #E5DEE3; border: 1px solid #D9C9D5; text-decoration: none; display: block;">Bare metal / systemd</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="ts-env-sh-tab" data-bs-toggle="tab" href="#ts_env_sh" role="tab" style="color: #475569; font-weight: 700; font-size: 14px; padding: 8px 16px; border-radius: 6px 6px 0 0; background: #E5DEE3; border: 1px solid #D9C9D5; text-decoration: none; display: block;">Odoo.sh</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="ts_env_docker" role="tabpanel">
+                            <p style="font-size: 14px; color: #475569; line-height: 1.8;">Quick check (survives until the container is recreated) &mdash; find your Odoo container name, then install directly inside it:</p>
+                            <div style="background: #1C1824; border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
+                                <div style="padding: 8px 14px; font-family: ui-monospace, monospace; font-size: 12px; color: #A89BB8; border-bottom: 1px solid rgba(255,255,255,0.1);">shell</div>
+                                <pre style="margin: 0; padding: 14px 16px; font-family: ui-monospace, monospace; font-size: 13px; color: #EFE9F5; overflow-x: auto;">docker compose ps
+docker exec -it &lt;odoo-container-name&gt; pip install cryptography
+docker compose restart odoo</pre>
+                            </div>
+                            <div class="d-flex p-3 mb-3" style="background: #F6ECDC; border-radius: 10px; gap: 10px;">
+                                <span>&#9888;&#65039;</span>
+                                <p style="margin: 0; font-size: 14px; color: #6D5A2E;">This installs into the container's writable layer &mdash; a plain <code>docker compose up</code> keeps it, but <code>docker compose pull</code> or recreating the container wipes it out. For anything past a quick test, bake it into the image instead.</p>
+                            </div>
+                            <p style="font-size: 14px; color: #475569; line-height: 1.8;"><strong>Persistent (recommended):</strong> create a one-line <code>Dockerfile</code> next to your <code>docker-compose.yml</code>:</p>
+                            <div style="background: #1C1824; border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
+                                <div style="padding: 8px 14px; font-family: ui-monospace, monospace; font-size: 12px; color: #A89BB8; border-bottom: 1px solid rgba(255,255,255,0.1);">Dockerfile</div>
+                                <pre style="margin: 0; padding: 14px 16px; font-family: ui-monospace, monospace; font-size: 13px; color: #EFE9F5; overflow-x: auto;">FROM odoo:19.0
+USER root
+RUN pip install --no-cache-dir cryptography
+USER odoo</pre>
+                            </div>
+                            <p style="font-size: 14px; color: #475569; line-height: 1.8;">Then point the <code>odoo</code> service at it instead of the public image, and rebuild:</p>
+                            <div style="background: #1C1824; border-radius: 10px; overflow: hidden;">
+                                <div style="padding: 8px 14px; font-family: ui-monospace, monospace; font-size: 12px; color: #A89BB8; border-bottom: 1px solid rgba(255,255,255,0.1);">shell</div>
+                                <pre style="margin: 0; padding: 14px 16px; font-family: ui-monospace, monospace; font-size: 13px; color: #EFE9F5; overflow-x: auto;">docker compose build odoo
+docker compose up -d</pre>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="ts_env_baremetal" role="tabpanel">
+                            <p style="font-size: 14px; color: #475569; line-height: 1.8;">Activate the same virtual environment (or Python interpreter) your <code>odoo</code> service runs with, then install into it:</p>
+                            <div style="background: #1C1824; border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
+                                <div style="padding: 8px 14px; font-family: ui-monospace, monospace; font-size: 12px; color: #A89BB8; border-bottom: 1px solid rgba(255,255,255,0.1);">shell</div>
+                                <pre style="margin: 0; padding: 14px 16px; font-family: ui-monospace, monospace; font-size: 13px; color: #EFE9F5; overflow-x: auto;"><span style="color: #A89BB8;"># if Odoo runs from a virtualenv:</span>
+sudo -u odoo -H sh -c '. /opt/odoo/venv/bin/activate &amp;&amp; pip install cryptography'
+
+<span style="color: #A89BB8;"># if Odoo uses the system Python (Debian/Ubuntu package install):</span>
+sudo pip3 install cryptography
+<span style="color: #A89BB8;"># or, on newer Debian/Ubuntu that block system-wide pip installs:</span>
+sudo apt install python3-cryptography</pre>
+                            </div>
+                            <p style="font-size: 14px; color: #475569; line-height: 1.8;">Restart the service so the new module is loaded into the running process:</p>
+                            <div style="background: #1C1824; border-radius: 10px; overflow: hidden;">
+                                <div style="padding: 8px 14px; font-family: ui-monospace, monospace; font-size: 12px; color: #A89BB8; border-bottom: 1px solid rgba(255,255,255,0.1);">shell</div>
+                                <pre style="margin: 0; padding: 14px 16px; font-family: ui-monospace, monospace; font-size: 13px; color: #EFE9F5; overflow-x: auto;">sudo systemctl restart odoo</pre>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="ts_env_sh" role="tabpanel">
+                            <p style="font-size: 14px; color: #475569; line-height: 1.8;">Odoo.sh installs Python packages listed in a <code>requirements.txt</code> file at the root of your custom addons repository. Add the package there:</p>
+                            <div style="background: #1C1824; border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
+                                <div style="padding: 8px 14px; font-family: ui-monospace, monospace; font-size: 12px; color: #A89BB8; border-bottom: 1px solid rgba(255,255,255,0.1);">requirements.txt</div>
+                                <pre style="margin: 0; padding: 14px 16px; font-family: ui-monospace, monospace; font-size: 13px; color: #EFE9F5; overflow-x: auto;">cryptography</pre>
+                            </div>
+                            <p style="font-size: 14px; color: #475569; line-height: 1.8;">Commit and push. Odoo.sh rebuilds the build automatically and installs the package before your modules load &mdash; no shell access needed.</p>
+                            <div class="d-flex p-3" style="background: #F1EDF0; border-radius: 10px; gap: 10px;">
+                                <span>&#8505;&#65039;</span>
+                                <p style="margin: 0; font-size: 14px; color: #475569;">If a <code>requirements.txt</code> already exists in that repo, just add <code>cryptography</code> as a new line rather than replacing the file.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 shadow-sm border mb-4" style="background: #FFFFFF; border-radius: 12px;">
+                    <h3 style="font-size: 19px; font-weight: 700; color: #1C1520; margin-bottom: 12px;">3 &middot; Update Apps &amp; install</h3>
+                    <ol style="font-size: 15px; line-height: 2; color: #333333; padding-left: 20px; margin-bottom: 12px;">
+                        <li>Log in as an administrator and open <strong>Apps</strong>.</li>
+                        <li>Click <strong>Update Apps List</strong> and confirm.</li>
+                        <li>Remove the default <strong>Apps</strong> filter from the search bar, then search for <strong>Odoo Clients 360</strong>.</li>
+                        <li>Click <strong>Install</strong>.</li>
+                    </ol>
+                    <div class="d-flex p-3" style="background: #F1EDF0; border-radius: 10px; gap: 10px;">
+                        <span>&#8505;&#65039;</span>
+                        <p style="margin: 0; font-size: 14px; color: #475569;">The module marks itself as an application (its own icon on the Apps home screen), so it won't show up unless that <strong>Apps</strong> filter is cleared first.</p>
+                    </div>
+                </div>
+
+                <div class="p-4 shadow-sm border mb-4" style="background: #FFFFFF; border-radius: 12px;">
+                    <h3 style="font-size: 19px; font-weight: 700; color: #1C1520; margin-bottom: 12px;">4 &middot; Verify &amp; configure</h3>
+                    <p style="font-size: 15px; color: #475569; line-height: 1.8;">Once installation finishes, tail the Odoo log during install/upgrade and make sure this line is <em>absent</em>:</p>
+                    <div style="background: #1C1824; border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
+                        <div style="padding: 8px 14px; font-family: ui-monospace, monospace; font-size: 12px; color: #A89BB8; border-bottom: 1px solid rgba(255,255,255,0.1);">odoo log &middot; should NOT appear</div>
+                        <pre style="margin: 0; padding: 14px 16px; font-family: ui-monospace, monospace; font-size: 13px; color: #EFE9F5; overflow-x: auto;">WARNING  odoo.addons.ts_partner_app.models.partner_asset: The 'cryptography' python
+package is required by ts_partner_app.</pre>
+                    </div>
+                    <p style="font-size: 15px; color: #475569; line-height: 1.8;">If you don't see it, stored logins/passwords will be encrypted at rest. If you do, go back to Step 2 &mdash; the package likely landed in a different Python environment than the one Odoo is actually running.</p>
+                    <ul style="font-size: 15px; line-height: 2; color: #333333; padding-left: 20px; margin-bottom: 12px;">
+                        <li>Open <strong>Odoo Clients 360 &rarr; Configuration &rarr; Import Demo</strong> and click <strong>Import Demo Data</strong> to see the module populated with sample clients, assets, and infrastructure profiles.</li>
+                        <li>Check <strong>Settings &rarr; Users &rarr; Groups</strong> &mdash; the installing admin is auto-assigned to <em>Odoo Clients 360 / Manager</em>, which can view stored credentials and manage stages.</li>
+                        <li>When you're done exploring, use <strong>Remove Demo Data</strong> in the same wizard for a clean slate.</li>
+                    </ul>
+                    <div class="d-flex p-3" style="background: #E3F1EA; border-radius: 10px; gap: 10px;">
+                        <span>&#9989;</span>
+                        <p style="margin: 0; font-size: 14px; color: #1F5B41;">That's it &mdash; the module is installed and ready. Everything from here (stages, tags, asset types, service products) is configured from <strong>Odoo Clients 360 &rarr; Configuration</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="p-4 shadow-sm border" style="background: #FFFFFF; border-radius: 12px;">
+                    <h3 style="font-size: 19px; font-weight: 700; color: #1C1520; margin-bottom: 12px;">Troubleshooting</h3>
+
+                    <details style="border: 1px solid #E5DEE3; border-radius: 10px; margin-bottom: 10px; background: #FFFFFF;">
+                        <summary style="cursor: pointer; padding: 12px 16px; font-weight: 700; font-size: 14px; color: #1C1520;">ModuleNotFoundError: No module named 'cryptography'</summary>
+                        <div style="padding: 0 16px 14px; font-size: 14px; color: #6D6478; line-height: 1.8;">The package was installed into a different Python than the one Odoo is running. In Docker, double-check you ran <code>pip install</code> <em>inside</em> the Odoo container (<code>docker exec</code>), not on the host. On bare metal, confirm which interpreter the <code>odoo</code> systemd unit points at and install into that exact one.</div>
+                    </details>
+
+                    <details style="border: 1px solid #E5DEE3; border-radius: 10px; margin-bottom: 10px; background: #FFFFFF;">
+                        <summary style="cursor: pointer; padding: 12px 16px; font-weight: 700; font-size: 14px; color: #1C1520;">Permission denied while installing inside the container</summary>
+                        <div style="padding: 0 16px 14px; font-size: 14px; color: #6D6478; line-height: 1.8;">The official <code>odoo</code> image drops privileges to the <code>odoo</code> user by default. Run the install as root explicitly: <code>docker exec -u root -it &lt;container&gt; pip install cryptography</code></div>
+                    </details>
+
+                    <details style="border: 1px solid #E5DEE3; border-radius: 10px; margin-bottom: 10px; background: #FFFFFF;">
+                        <summary style="cursor: pointer; padding: 12px 16px; font-weight: 700; font-size: 14px; color: #1C1520;">Package installed, but the warning still shows up</summary>
+                        <div style="padding: 0 16px 14px; font-size: 14px; color: #6D6478; line-height: 1.8;">Odoo caches its Python imports for the lifetime of the process. A <code>pip install</code> while Odoo is already running won't be picked up until it restarts &mdash; restart the service or container, then retry the module install/upgrade.</div>
+                    </details>
+
+                    <details style="border: 1px solid #E5DEE3; border-radius: 10px; margin-bottom: 10px; background: #FFFFFF;">
+                        <summary style="cursor: pointer; padding: 12px 16px; font-weight: 700; font-size: 14px; color: #1C1520;">"Odoo Clients 360" doesn't appear after Update Apps List</summary>
+                        <div style="padding: 0 16px 14px; font-size: 14px; color: #6D6478; line-height: 1.8;">Usually one of two things: the <strong>Apps</strong> filter is still active in the search bar (remove it), or the folder isn't actually inside a path listed in <code>addons_path</code>. Confirm with <code>docker exec &lt;container&gt; ls /mnt/extra-addons</code> (adjust the path) &mdash; you should see <code>ts_partner_app</code> listed.</div>
+                    </details>
+
+                    <details style="border: 1px solid #E5DEE3; border-radius: 10px; background: #FFFFFF;">
+                        <summary style="cursor: pointer; padding: 12px 16px; font-weight: 700; font-size: 14px; color: #1C1520;">Existing installs: I upgraded and now credentials look garbled</summary>
+                        <div style="padding: 0 16px 14px; font-size: 14px; color: #6D6478; line-height: 1.8;">This should only happen if <code>cryptography</code> was <em>missing</em> during an upgrade that expected to migrate plaintext credentials into encrypted storage. Install the package, then trigger the module upgrade again from <strong>Apps</strong> &mdash; the migration re-runs safely and only touches columns it still finds in plaintext.</div>
+                    </details>
+                </div>
             </div>
         </div>
     </div>

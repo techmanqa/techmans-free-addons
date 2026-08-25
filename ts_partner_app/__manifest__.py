@@ -1,6 +1,6 @@
 {
     'name': 'Odoo Clients 360',
-    'version': '19.0.5',
+    'version': '19.0.7',
     'category': 'Sales',
     'summary': 'All-in-One Client Asset, Service & Financial Hub for Odoo Partners',
     'description': """
