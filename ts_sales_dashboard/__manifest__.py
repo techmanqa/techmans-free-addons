@@ -2,7 +2,7 @@
 {
     "name": "Advanced Sales Dashboard",
     "summary": "Executive sales dashboard with revenue, customers, products, geography, and team KPIs. Works on Odoo Community and Enterprise.",
-    "version": "19.0.2.0.0",
+    "version": "19.0.2.2.0",
     "category": "Sales",
     "author": "Mudassir Amin, Inovado D.o.o., Mirsad Selimovic, Techman Solutions",
     "website": "https://inovado.ba, https://techman.qa, https://www.mudassir.it.com",

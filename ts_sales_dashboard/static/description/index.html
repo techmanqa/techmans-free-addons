@@ -65,8 +65,9 @@
             Advanced Sales Dashboard provides management teams with a clear and
             interactive overview of revenue, orders, customers, products,
             salespeople, geography, pipeline performance and monthly trends.
-            Apply date and company filters, review critical KPIs and open the
-            corresponding standard Odoo records directly from the dashboard.
+            Apply date, company and per-customer filters, review critical KPIs
+            and open the corresponding standard Odoo records directly from the
+            dashboard.
         </p>
     </div>
 
@@ -618,6 +619,20 @@
                     the corresponding standard Odoo records, allowing users to
                     immediately investigate the underlying transactions.
                 </p>
+
+                <p style="margin: 0 0 20px;
+                          color: #6d6370;
+                          font-size: 16px;
+                          line-height: 1.8;">
+                    Pick a company from the header (shown when a user belongs to
+                    more than one) to scope every card, KPI, comparison delta and
+                    drill-through to that company, or aggregate them all. Type a
+                    customer name into the search-as-you-type filter to turn the
+                    whole dashboard into a single-client view &mdash; revenue,
+                    monthly trend, products, invoicing status, lost pipeline and
+                    quotation aging for that client alone; the cross-customer
+                    cards hide themselves while a client is selected.
+                </p>
             </div>
 
             <div style="flex: 1 1 400px;">
@@ -673,6 +688,20 @@
                             &#10003;
                         </span>
                         Company selection
+                    </div>
+
+                    <div style="margin-bottom: 14px;">
+                        <span style="display: inline-block;
+                                     width: 28px;
+                                     height: 28px;
+                                     margin-right: 10px;
+                                     border-radius: 50%;
+                                     background: #00a09d;
+                                     text-align: center;
+                                     line-height: 28px;">
+                            &#10003;
+                        </span>
+                        Per-customer view (search-as-you-type)
                     </div>
 
                     <div>
@@ -872,7 +901,17 @@
                              font-weight: 800;">
                     &#10003;
                 </span>
-                Date and company filters
+                Date, company &amp; per-customer filters
+            </div>
+
+            <div style="flex: 1 1 380px;
+                        padding: 15px 18px;
+                        border-bottom: 1px solid #eadfeb;">
+                <span style="color: #00a09d;
+                             font-weight: 800;">
+                    &#10003;
+                </span>
+                Single-customer dashboard view (search-as-you-type)
             </div>
 
             <div style="flex: 1 1 380px;

@@ -67,8 +67,36 @@
 }
 
 .pr-sales-date-filter,
+.pr-sales-company-filter,
+.pr-sales-partner-filter,
 .pr-sales-settings {
     position: relative;
+}
+
+.pr-sales-company-filter .pr-sales-date-filter-panel {
+    width: 240px;
+}
+
+.pr-sales-partner-panel {
+    max-height: 340px;
+    overflow-y: auto;
+    width: 280px;
+}
+
+.pr-sales-partner-search {
+    border: 1px solid var(--pr-border);
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 13px;
+    margin-bottom: 6px;
+    padding: 6px 8px;
+    width: 100%;
+}
+
+.pr-sales-partner-empty {
+    color: var(--pr-muted);
+    font-size: 12px;
+    padding: 8px;
 }
 
 .pr-sales-date-filter-toggle {
