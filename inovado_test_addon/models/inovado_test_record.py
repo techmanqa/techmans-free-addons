@@ -2,6 +2,7 @@ from odoo import fields, models
 
 
 class InovadoTestRecord(models.Model):
-    _inherit = "inovado.test.record"
+    _name = "inovado.test.record"
+    _description = "Inovado Test Record"
 
-    addon_note = fields.Char(string="Addon Note")
+    name = fields.Char(required=True)
