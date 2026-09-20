@@ -2,7 +2,6 @@ from odoo import fields, models
 
 
 class InovadoTestRecord(models.Model):
-    _name = "inovado.test.record"
-    _description = "Inovado Test Record"
+    _inherit = "inovado.test.record"
 
-    name = fields.Char(required=True)
+    base_note = fields.Char(string="Base Note")
