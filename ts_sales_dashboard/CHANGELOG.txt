@@ -1,5 +1,27 @@
 # Changelog - Advanced Sales Dashboard (ts_sales_dashboard)
 
+## [19.0.2.2.0] - 2026-08-28
+### Added
+- Customer filter: a search-as-you-type (`res.partner` `name_search`) picker in
+  the dashboard header scopes every card, KPI, comparison delta and
+  drill-through domain to the chosen client. `get_dashboard_data` gained a
+  fifth `partner_id` argument and returns `partner_id` / `partner_name` /
+  `hidden_when_customer`. While a customer is selected, the cross-customer
+  cards (Customer Insights, New vs Repeat gauges, Quotation Conversion,
+  Geography, Team Achievement, Top 5 Customers, Best/Red Client) are hidden.
+- Listing page (`static/description/index.html`) updated for the company and
+  per-customer filters (intro, Available Filters box, Key Features grid,
+  "Go From Insight to Action" section).
+
+## [19.0.2.1.0] - 2026-08-28
+### Added
+- Company filter: a dropdown in the dashboard header (shown only when the user
+  belongs to more than one company) scopes every card's query, KPI, comparison
+  delta and drill-through domain to the selected company, or aggregates all of
+  the user's companies when set to "All Companies". `get_dashboard_data` gained
+  a fourth `company_id` argument and now returns `companies` / `company_id`;
+  the currency block follows the selected company.
+
 ## [19.0.2.0.0] - 2026-08-25
 ### Changed
 - **Breaking:** renamed the module's technical name from `pr_sales_dashboard`

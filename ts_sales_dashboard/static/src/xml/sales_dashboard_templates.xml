@@ -18,6 +18,55 @@
                         <p>Revenue, orders, customers, product movement, geography, and team performance in one view.</p>
                     </div>
                     <div class="pr-sales-header-actions">
+                        <div class="pr-sales-date-filter pr-sales-partner-filter" t-ref="partnerFilterRoot">
+                            <button class="btn pr-sales-date-filter-toggle" type="button" t-on-click="togglePartnerFilter">
+                                <i class="fa fa-user me-1"/>
+                                <span t-esc="this.partnerLabel"/>
+                                <i class="fa fa-caret-down ms-1"/>
+                            </button>
+                            <div class="pr-sales-date-filter-panel pr-sales-partner-panel" t-if="state.showPartnerFilter">
+                                <input type="text" class="pr-sales-partner-search"
+                                       placeholder="Search customer..."
+                                       t-att-value="state.partnerQuery"
+                                       t-on-input="onPartnerQueryInput"/>
+                                <button type="button"
+                                        t-att-class="!state.partnerId ? 'active' : ''"
+                                        t-on-click="clearPartner">
+                                    <span>All Customers</span>
+                                </button>
+                                <t t-foreach="state.partnerResults" t-as="partner" t-key="partner.id">
+                                    <button type="button"
+                                            t-att-class="state.partnerId === partner.id ? 'active' : ''"
+                                            t-on-click="() => this.selectPartner(partner.id, partner.name)">
+                                        <span t-esc="partner.name"/>
+                                    </button>
+                                </t>
+                                <div class="pr-sales-partner-empty" t-if="state.partnerQuery &amp;&amp; !state.partnerResults.length">
+                                    No customers found
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pr-sales-date-filter pr-sales-company-filter" t-ref="companyFilterRoot" t-if="this.hasCompanyFilter">
+                            <button class="btn pr-sales-date-filter-toggle" type="button" t-on-click="toggleCompanyFilter">
+                                <i class="fa fa-building-o me-1"/>
+                                <span t-esc="this.companyLabel"/>
+                                <i class="fa fa-caret-down ms-1"/>
+                            </button>
+                            <div class="pr-sales-date-filter-panel" t-if="state.showCompanyFilter">
+                                <button type="button"
+                                        t-att-class="!state.companyId ? 'active' : ''"
+                                        t-on-click="() => this.setCompany(false)">
+                                    <span>All Companies</span>
+                                </button>
+                                <t t-foreach="this.companyOptions" t-as="company" t-key="company.id">
+                                    <button type="button"
+                                            t-att-class="state.companyId === company.id ? 'active' : ''"
+                                            t-on-click="() => this.setCompany(company.id)">
+                                        <span t-esc="company.name"/>
+                                    </button>
+                                </t>
+                            </div>
+                        </div>
                         <div class="pr-sales-date-filter" t-ref="dateFilterRoot">
                             <button class="btn pr-sales-date-filter-toggle" type="button" t-on-click="toggleDateFilter">
                                 <i class="fa fa-calendar me-1"/>

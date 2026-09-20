@@ -12,28 +12,59 @@ class TsSalesDashboard(models.AbstractModel):
     _name = "ts.sales.dashboard"
     _description = "Executive Sales Dashboard Service"
 
+    # Cards that only make sense across many customers -- suppressed when the
+    # dashboard is filtered down to a single client.
+    _CUSTOMER_HIDDEN_CARDS = [
+        "customer-insights", "new-customers-gauge", "repeat-customers-gauge",
+        "conversion", "geography", "teams", "top-customers-bars",
+        "best-client", "red-client",
+    ]
+
     @api.model
-    def get_dashboard_data(self, months=6, date_from=False, date_to=False):
-        state_domain = [("state", "in", ["sale", "done"])]
+    def get_dashboard_data(self, months=6, date_from=False, date_to=False,
+                           company_id=False, partner_id=False):
+        company_ids = self._company_ids(company_id)
+        partner = self._partner(partner_id)
+        partner_id = partner.id or False
+
+        # base scope = company (+ partner) applied to every card and drill-down
+        base_domain = [("company_id", "in", company_ids)]
+        line_base_domain = [("order_id.company_id", "in", company_ids)]
+        base_domain_ui = [["company_id", "in", company_ids]]
+        if partner_id:
+            base_domain += [("partner_id", "=", partner_id)]
+            line_base_domain += [("order_id.partner_id", "=", partner_id)]
+            base_domain_ui += [["partner_id", "=", partner_id]]
+
+        state_domain = [("state", "in", ["sale", "done"])] + base_domain
         date_domain = self._date_domain(date_from, date_to)
         line_date_domain = [("order_id." + field, op, value) for field, op, value in date_domain]
 
+        # Because the per-card helpers append ``date_domain`` to the drill-down
+        # domain they return, folding the base scope in here also scopes every
+        # "click to open records".
+        scoped_domain = base_domain + date_domain
+        line_scoped_domain = line_base_domain + line_date_domain
+
         confirmed_domain = state_domain + date_domain
-        confirmed_domain_ui = [["state", "in", ["sale", "done"]]] + [list(cond) for cond in date_domain]
+        confirmed_domain_ui = (
+            [["state", "in", ["sale", "done"]]] + base_domain_ui
+            + [list(cond) for cond in date_domain]
+        )
         line_domain = [
             ("order_id.state", "in", ["sale", "done"]),
             ("display_type", "=", False),
             ("product_id", "!=", False),
-        ] + line_date_domain
+        ] + line_scoped_domain
 
         summary = self._get_summary(confirmed_domain, confirmed_domain_ui)
         customers = self._get_customer_insights(confirmed_domain)
-        monthly = self._get_monthly_revenue(state_domain, months=months)
-        product_data = self._get_product_data(line_domain, line_date_domain)
-        top_customers = self._get_top_customers(confirmed_domain, date_domain)
-        geography = self._get_geography(confirmed_domain, date_domain)
-        teams = self._get_team_achievement(confirmed_domain, date_domain)
-        conversion = self._get_conversion(date_domain)
+        monthly = self._get_monthly_revenue(state_domain, months=months, company_domain=base_domain)
+        product_data = self._get_product_data(line_domain, line_scoped_domain)
+        top_customers = self._get_top_customers(confirmed_domain, scoped_domain)
+        geography = self._get_geography(confirmed_domain, scoped_domain)
+        teams = self._get_team_achievement(confirmed_domain, scoped_domain)
+        conversion = self._get_conversion(scoped_domain)
         comparison = self._get_comparison(state_domain, date_from, date_to, summary, conversion)
 
         return {
@@ -44,20 +75,50 @@ class TsSalesDashboard(models.AbstractModel):
             "product_categories": product_data["categories"],
             "top_products_revenue": product_data["top_revenue"],
             "top_products_volume": product_data["top_volume"],
-            "salespeople": self._get_salespeople(confirmed_domain, date_domain),
+            "salespeople": self._get_salespeople(confirmed_domain, scoped_domain),
             "top_customers": top_customers,
-            "best_client": self._get_best_client(confirmed_domain, date_domain),
-            "red_client": self._get_red_client(date_domain),
+            "best_client": self._get_best_client(confirmed_domain, scoped_domain),
+            "red_client": self._get_red_client(scoped_domain),
             "conversion": conversion,
             "geography": geography,
             "teams": teams,
-            "currency": self._currency_data(),
+            "currency": self._currency_data(company_ids[0] if company_id else False),
+            "companies": self._company_options(),
+            "company_id": company_id or False,
+            "partner_id": partner_id,
+            "partner_name": partner.display_name if partner_id else False,
+            "hidden_when_customer": self._CUSTOMER_HIDDEN_CARDS,
             "date_range": {"date_from": date_from, "date_to": date_to},
             "comparison": comparison,
-            "lost_pipeline": self._get_lost_pipeline(months=6),
+            "lost_pipeline": self._get_lost_pipeline(months=6, company_domain=base_domain),
             "invoicing": self._get_invoicing(confirmed_domain, confirmed_domain_ui),
-            "quotation_aging": self._get_quotation_aging(),
+            "quotation_aging": self._get_quotation_aging(base_domain),
         }
+
+    def _company_ids(self, company_id):
+        """Allowed companies to aggregate. A single id (that the user may access)
+        narrows to that company; otherwise every company in the session."""
+        allowed = self.env.companies.ids or self.env.company.ids
+        if company_id and company_id in allowed:
+            return [company_id]
+        return allowed
+
+    def _company_options(self):
+        return [
+            {"id": company.id, "name": company.name}
+            for company in self.env.user.company_ids.sorted("name")
+        ]
+
+    def _partner(self, partner_id):
+        empty = self.env["res.partner"].browse()
+        if not partner_id:
+            return empty
+        partner = self.env["res.partner"].browse(int(partner_id)).exists()
+        try:
+            partner.check_access("read")
+        except Exception:
+            return empty  # partner the user may not read -> behave as "all"
+        return partner
 
     def _date_domain(self, date_from, date_to):
         domain = []
@@ -82,13 +143,15 @@ class TsSalesDashboard(models.AbstractModel):
 
         prev_date_domain = self._date_domain(prev_date_from, prev_date_to)
         prev_confirmed_domain = state_domain + prev_date_domain
+        # carry the company / customer scope (but not the state) over to the quotation count
+        prev_company_domain = [cond for cond in state_domain if cond[0] in ("company_id", "partner_id")]
 
         Order = self.env["sale.order"]
         totals = Order.read_group(prev_confirmed_domain, ["amount_total:sum"], [])
         prev_revenue = totals[0].get("amount_total", 0.0) if totals else 0.0
         prev_orders = Order.search_count(prev_confirmed_domain)
         prev_average_order_value = prev_revenue / prev_orders if prev_orders else 0.0
-        prev_quotations = Order.search_count(prev_date_domain)
+        prev_quotations = Order.search_count(prev_company_domain + prev_date_domain)
         prev_conversion_rate = self._percent(prev_orders, prev_quotations)
 
         return {
@@ -111,8 +174,9 @@ class TsSalesDashboard(models.AbstractModel):
             return None
         return round(((current - previous) / abs(previous)) * 100, 2)
 
-    def _currency_data(self):
-        currency = self.env.company.currency_id
+    def _currency_data(self, company_id=False):
+        company = self.env["res.company"].browse(company_id) if company_id else self.env.company
+        currency = company.currency_id or self.env.company.currency_id
         return {
             "symbol": currency.symbol or "",
             "position": currency.position or "before",
@@ -132,9 +196,9 @@ class TsSalesDashboard(models.AbstractModel):
             "domain": domain_ui,
         }
 
-    def _get_monthly_revenue(self, domain, months=6):
+    def _get_monthly_revenue(self, domain, months=6, company_domain=None):
         Order = self.env["sale.order"]
-        option_domain = [("state", "in", ["draft", "sent"])]
+        option_domain = [("state", "in", ["draft", "sent"])] + list(company_domain or [])
         today = fields.Date.context_today(self)
         start_month = today.replace(day=1) - relativedelta(months=months - 1)
         month_keys = []
@@ -183,9 +247,11 @@ class TsSalesDashboard(models.AbstractModel):
             for key, label in month_keys
         ]
 
-    def _get_lost_pipeline(self, months=6):
+    def _get_lost_pipeline(self, months=6, company_domain=None):
         Order = self.env["sale.order"]
-        domain = [("state", "=", "cancel")]
+        company_domain = list(company_domain or [])
+        company_domain_ui = [list(cond) for cond in company_domain]
+        domain = [("state", "=", "cancel")] + company_domain
         today = fields.Date.context_today(self)
         start_month = today.replace(day=1) - relativedelta(months=months - 1)
         month_keys = []
@@ -218,7 +284,7 @@ class TsSalesDashboard(models.AbstractModel):
                     ["state", "=", "cancel"],
                     ["date_order", ">=", fields.Datetime.to_string(datetime.combine(month_date, time.min))],
                     ["date_order", "<=", fields.Datetime.to_string(datetime.combine(month_date + relativedelta(months=1, days=-1), time.max))],
-                ],
+                ] + company_domain_ui,
             }
             for key, label, month_date in month_keys
         ]
@@ -234,9 +300,11 @@ class TsSalesDashboard(models.AbstractModel):
             "invoiced_domain": domain_ui + [["invoice_status", "in", ["invoiced", "upselling"]]],
         }
 
-    def _get_quotation_aging(self):
+    def _get_quotation_aging(self, company_domain=None):
         Order = self.env["sale.order"]
-        orders = Order.search([("state", "in", ["draft", "sent"])])
+        company_domain = list(company_domain or [])
+        company_domain_ui = [list(cond) for cond in company_domain]
+        orders = Order.search([("state", "in", ["draft", "sent"])] + company_domain)
         now = fields.Datetime.now()
         buckets = [
             {"id": "0_7", "label": _("0-7 Days"), "min_days": 0, "max_days": 7, "count": 0, "amount": 0.0},
@@ -258,7 +326,7 @@ class TsSalesDashboard(models.AbstractModel):
         total_count = sum(bucket["count"] for bucket in buckets)
         result = []
         for bucket in buckets:
-            bucket_domain = [["state", "in", ["draft", "sent"]]]
+            bucket_domain = [["state", "in", ["draft", "sent"]]] + company_domain_ui
             max_create = now - timedelta(days=bucket["min_days"])
             bucket_domain.append(["create_date", "<=", fields.Datetime.to_string(max_create)])
             if bucket["max_days"]:

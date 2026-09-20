@@ -47,6 +47,8 @@ export class SalesDashboardAction extends Component {
         this.storageKey = `ts_sales_dashboard_hidden_cards_${user.userId || "anon"}`;
         this.settingsRef = useRef("settingsRoot");
         this.dateFilterRef = useRef("dateFilterRoot");
+        this.companyFilterRef = useRef("companyFilterRoot");
+        this.partnerFilterRef = useRef("partnerFilterRoot");
         this.state = useState({
             data: {},
             loading: true,
@@ -58,6 +60,13 @@ export class SalesDashboardAction extends Component {
             customDateFrom: false,
             customDateTo: false,
             showDateFilter: false,
+            companyId: false,
+            showCompanyFilter: false,
+            partnerId: false,
+            partnerName: "",
+            showPartnerFilter: false,
+            partnerQuery: "",
+            partnerResults: [],
         });
 
         useExternalListener(window, "click", (ev) => {
@@ -74,6 +83,20 @@ export class SalesDashboardAction extends Component {
                 !this.dateFilterRef.el.contains(ev.target)
             ) {
                 this.state.showDateFilter = false;
+            }
+            if (
+                this.state.showCompanyFilter &&
+                this.companyFilterRef.el &&
+                !this.companyFilterRef.el.contains(ev.target)
+            ) {
+                this.state.showCompanyFilter = false;
+            }
+            if (
+                this.state.showPartnerFilter &&
+                this.partnerFilterRef.el &&
+                !this.partnerFilterRef.el.contains(ev.target)
+            ) {
+                this.state.showPartnerFilter = false;
             }
             if (this.state.activeInfo && !ev.target.closest(".pr-sales-info-wrap")) {
                 this.state.activeInfo = null;
@@ -103,7 +126,13 @@ export class SalesDashboardAction extends Component {
     }
 
     isCardHidden(id) {
-        return this.state.hiddenCards.includes(id);
+        if (this.state.hiddenCards.includes(id)) {
+            return true;
+        }
+        if (this.state.partnerId) {
+            return (this.state.data.hidden_when_customer || []).includes(id);
+        }
+        return false;
     }
 
     toggleCard(id) {
@@ -130,9 +159,98 @@ export class SalesDashboardAction extends Component {
         this.state.data = await this.orm.call(
             "ts.sales.dashboard",
             "get_dashboard_data",
-            [this.state.months, date_from, date_to]
+            [
+                this.state.months,
+                date_from,
+                date_to,
+                this.state.companyId || false,
+                this.state.partnerId || false,
+            ]
         );
         this.state.loading = false;
+    }
+
+    // --- customer (partner) filter -------------------------------------------
+    get partnerLabel() {
+        return this.state.partnerName || _t("All Customers");
+    }
+
+    togglePartnerFilter() {
+        this.state.showPartnerFilter = !this.state.showPartnerFilter;
+        if (this.state.showPartnerFilter && !this.state.partnerResults.length) {
+            this.searchPartners("");
+        }
+    }
+
+    onPartnerQueryInput(ev) {
+        const value = ev.target.value;
+        this.state.partnerQuery = value;
+        clearTimeout(this._partnerSearchTimer);
+        this._partnerSearchTimer = setTimeout(() => this.searchPartners(value), 250);
+    }
+
+    async searchPartners(query) {
+        // positional args (name, domain, operator, limit) so the call works
+        // regardless of the name_search "args" -> "domain" kwarg rename
+        const pairs = await this.orm.call("res.partner", "name_search", [
+            query || "",
+            [["sale_order_ids", "!=", false]],
+            "ilike",
+            20,
+        ]);
+        this.state.partnerResults = pairs.map(([id, name]) => ({ id, name }));
+    }
+
+    async selectPartner(id, name) {
+        this.state.showPartnerFilter = false;
+        this.state.partnerQuery = "";
+        this.state.partnerResults = [];
+        if (this.state.partnerId === id) {
+            return;
+        }
+        this.state.partnerId = id;
+        this.state.partnerName = name;
+        await this.loadDashboardData();
+    }
+
+    async clearPartner() {
+        this.state.showPartnerFilter = false;
+        if (!this.state.partnerId) {
+            return;
+        }
+        this.state.partnerId = false;
+        this.state.partnerName = "";
+        await this.loadDashboardData();
+    }
+
+    get companyOptions() {
+        return this.state.data.companies || [];
+    }
+
+    get hasCompanyFilter() {
+        return this.companyOptions.length > 1;
+    }
+
+    get companyLabel() {
+        if (!this.state.companyId) {
+            return _t("All Companies");
+        }
+        const match = this.companyOptions.find((company) => company.id === this.state.companyId);
+        return match ? match.name : _t("All Companies");
+    }
+
+    toggleCompanyFilter() {
+        this.state.showCompanyFilter = !this.state.showCompanyFilter;
+    }
+
+    async setCompany(companyId) {
+        this.state.showCompanyFilter = false;
+        const next = companyId || false;
+        if (this.state.companyId === next) {
+            return;
+        }
+        this.state.companyId = next;
+        await this.loadDashboardData();
     }
 
     async setPeriod(months) {
