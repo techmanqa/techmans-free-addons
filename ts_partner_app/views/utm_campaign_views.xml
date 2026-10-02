@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="utm_campaign_view_form_inherit_asset" model="ir.ui.view">
+        <field name="name">utm.campaign.form.inherit.asset</field>
+        <field name="model">utm.campaign</field>
+        <field name="inherit_id" ref="utm.utm_campaign_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button name="action_view_assets"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-server"
+                    invisible="asset_count == 0">
+                    <field name="asset_count" widget="statinfo" string="Client Assets"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

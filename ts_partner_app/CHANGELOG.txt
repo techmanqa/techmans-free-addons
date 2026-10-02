@@ -1,0 +1,308 @@
+# Changelog - Odoo Clients 360 (ts_partner_app)
+
+## [19.0.13] - 2026-09-09
+### Added
+- **Client Actuals** tab on the customer form (managers) — a period rollup
+  across the whole client: all posted customer invoices (minus credit notes)
+  for the client and its contacts, plus every vendor bill tagged (via Client
+  Asset) to one of the client's assets. Shows straight totals — **untaxed and
+  with tax** — for revenue, cost and margin, a document count, an "Open
+  Invoices & Bills" button, and a period selector (This Year / Trailing 12
+  Months / All Time / Custom). No per-month split, so one-off implementation or
+  project invoices are counted as-is.
+### Changed
+- **Asset Actuals** simplified: the monthly-derived figures and the monthly
+  plan-vs-actual comparison are gone. It now shows period totals only —
+  revenue, cost and margin, each **untaxed and with tax** — for invoices/bills
+  tagged to that asset. Removed fields: `actual_months`,
+  `actual_monthly_revenue/cost/margin`, `billing_variance`, `cost_variance`
+  (all were non-stored — no data migration).
+### Added
+- **Environment Platforms** — a configurable list under **Configuration**
+  (Odoo.sh, OEC.sh, Docker, Odoo Online, Custom Server). Each has a *Kind* that
+  drives the environment form. Add your own from the menu.
+- **Platform** selector on the environment form. Odoo.sh / OEC.sh show
+  **Project URL / Branch / Database Name**; Docker shows **Image / Tag**,
+  **Compose / Stack Path** and **Container Name**; the rest just show the URL
+  and login.
+- Platform option **"Uses an Infrastructure profile"** — when off (default for
+  Odoo.sh and Odoo Online), environments on that platform hide the
+  **Infrastructure** (server) link; when on, the link is shown so the
+  environment can be tied to a server profile.
+### Changed
+- The environment form's **Odoo.sh** tab is gone; its fields moved into the
+  main form, shown conditionally by platform kind.
+- Renamed environment fields `odoo_sh_url` → `project_url`,
+  `odoo_sh_branch` → `project_branch`, `odoo_sh_database` → `database_name`
+  (shared by Odoo.sh and OEC.sh). Upgrade migration renames the columns and
+  backfills the platform from the linked Infrastructure profile's hosting type.
+
+## [19.0.11] - 2026-09-09
+### Added
+- **Environments** — a new top menu next to **Infrastructure**. Infrastructure now
+  describes only the *server* (hosting type, SSH, provider, resources); everything
+  about *Odoo itself* moves to environments, and a client can have several
+  (Production, Staging, Development, ...). Each environment tracks its own Odoo.sh
+  project, Odoo login, GitHub repository, current / latest Odoo version, "upgrade
+  available" flag, technical debt level, custom & native modules, its URL and
+  logins, live SSL / uptime health, and backup & risk. An environment can be
+  pinned to an Infrastructure profile (which server it runs on) and to a client
+  asset. One environment per client can be marked **Primary**.
+- **Environments** stat button on the client, the client asset and the
+  Infrastructure profile.
+### Changed
+- Moved off **partner.infrastructure**: Odoo.sh URL/branch/database, Odoo login
+  URL/email/password, GitHub URL/branch/token — now on the environment.
+- Moved off the **client asset**: Current / Latest Odoo Version, Last Upgrade
+  Date, Code Repository Branch, Technical Debt Level, Custom Modules, **Native
+  Odoo Apps**, **URL / Login / Password (primary & secondary)**, **live health
+  monitoring** (Website Reachable, SSL expiry, Last Health Check), and
+  **Backup & Risk** (Last Backup Check, Backup Verified, Monitoring Active, DR
+  Plan Documented). The asset form loses its Backup & Risk, Environments and
+  Infrastructure tabs.
+- **Risk Level** on the client asset is now a read-only mirror of its
+  environments (highest across them); set it on the environment.
+- The SSL / uptime health-check scheduled action now runs per environment; the
+  weekly digest and the dashboard tiles (Unreachable, Backup Not Verified, Odoo
+  Upgrades Due) read from environments.
+- Client Infrastructure and Credentials PDF reports, and the portal asset page,
+  updated to read Odoo, credential and health details from environments.
+- Upgrade migration creates a "Production" environment per existing Infrastructure
+  profile / asset and carries the data (and encrypted credentials) over.
+
+## [19.0.10] - 2026-09-08
+### Added
+- **Has Project?** radio (Yes / No) on the client asset card. Many engagements
+  have no project, so this now defaults from whether a project is linked and, when
+  set to **No**, hides the **Project** link and the **Project Start / End Date**
+  fields and clears them. Linking a project flips it back to **Yes**.
+- **Subscription Number** is now masked on the asset form with an eye toggle to
+  reveal / hide it, same as the password fields.
+- **License Currency** on the Cost & Margin tab (defaults to USD). Odoo bills
+  user licenses in USD/EUR regardless of the local currency, so the license list
+  price is entered in that currency and shown converted below: **Annual License
+  Cost (Local)** and **Monthly License Cost (Local)** at the current rate. Only
+  the local monthly figure feeds Infra Monthly Cost and Gross Margin.
+- **Monthly License Cost (License Currency)** on the License Cost tab — the
+  monthly figure before conversion, shown only when the License Currency differs
+  from the asset currency.
+- **Subscription Term** selector under the Subscription Start Date: 1 Month,
+  1 Year, 3 Years, 5 Years or Custom. Picking a fixed term auto-fills the
+  Subscription End Date (Start Date + term); Custom lets you set it by hand. The
+  End Date stays editable — a manual value is kept until the Start Date or term
+  changes. Existing assets are set to Custom on upgrade so their End Dates are
+  untouched; renewals also pin the term to Custom.
+- **Actuals** tab on the client asset — reconcile the estimate against real
+  Accounting figures. A new **Client Asset** field on customer invoices and vendor
+  bills (and a "Link Invoices & Bills" button) tags moves to an asset; the tab
+  then shows, for a chosen period (This Year / Trailing 12 Months / Since Start /
+  Custom): actual revenue, actual cost and actual margin, their monthly
+  equivalents, and the variance versus the planned Monthly Billing and estimated
+  Infra Monthly Cost. Invoices generated from an asset's Sale Order carry the tag
+  automatically. Includes an "Invoices & Bills" smart button and an `asset_id`
+  group-by on the invoice search.
+- New **Configuration > Settings** page for the app with a **Currency Conversion**
+  block: toggle Multi-Currencies, pick Odoo's built-in currency-rate provider
+  (ECB, etc.), set the sync interval and run **Update Rates Now**. These are the
+  standard Odoo currency-rate settings surfaced here so the License Currency
+  conversion has real exchange rates to work with.
+- The Cost & Margin tab shows a warning when the License Currency differs from the
+  asset currency but no exchange rate is configured (the conversion then falls
+  back to 1:1).
+- **Project Start Date** / **Project End Date** on the client asset card, next to
+  the existing subscription dates. The project engagement often does not line up
+  with the Odoo subscription period, so these are tracked separately. They are
+  purely informational: expiry reminders and renewals still run off the
+  subscription dates.
+- Search filters for the new dates: "Project Started", "Project Ended",
+  "Project Ending in 30 Days", plus group-by on Project Start / End Date.
+- Optional (hidden by default) Project Start / End Date columns in the asset list.
+- **Project** field on the client asset card — an explicit link to any existing
+  project. When set, the "Client Project" stat button and "Open Project" use it
+  instead of auto-discovering a project by customer (which stays as the fallback
+  when the field is left empty). Linking a project also proposes the Project
+  Start / End Date from the project's own dates (only fills blanks).
+- **Link Existing Tasks** header button on the client asset form: opens a picker
+  to attach one or more existing `project.task` records to the asset in one step
+  (by default hides tasks already linked to another asset). Linked tasks are
+  reached through the existing "Tasks" / "Project Tasks" stat buttons and the
+  Tasks menu — no dedicated tab.
+- New **Odoo Versions** catalog (Configuration > Odoo Versions), seeded with
+  series 10.0 through 19.0. Each entry has a sequence (ordering / "latest"),
+  an optional End of Support date, a note and an archive toggle. Add new series
+  here as Odoo releases them.
+- **Odoo Upgrades Due** tile on the portfolio dashboard: counts open assets whose
+  Current Odoo Version is an older series than their Latest Available Version, and
+  opens that list on click.
+
+### Changed
+- The **Cost & Margin** tab is split in two: a dedicated **License Cost** tab
+  (License Currency, annual price per user, and the computed annual/monthly
+  totals) and the **Cost & Margin** tab for everything else (server, backup,
+  maintenance, external services, infra total, billing and margin). The monthly
+  license cost is shown read-only on Cost & Margin so the infra total still adds
+  up.
+- The separate **Credentials** and **Credential Log** tabs on the client asset are
+  merged into a single **Infrastructure** tab (Credentials section on top, the
+  access log below). Same fields, same manager-only restriction.
+- **License cost is now annual per user**, not monthly per license. The field is
+  relabelled **Annual License Cost / User**; it is multiplied by Licenses and
+  divided by 12 for the monthly cost breakdown. Existing values are migrated
+  automatically (old monthly amount x 12, License Currency pinned to the asset's
+  own currency), so Infra Monthly Cost and Gross Margin are unchanged on upgrade.
+- "Current Odoo Version" and "Latest Available Version" on the client asset are
+  now dropdowns backed by the **Odoo Versions** catalog instead of free text.
+  Existing values are migrated automatically: text like "17.0" / "v16 Enterprise"
+  is matched to the seeded series, and anything unmatched is added to the catalog
+  so no data is lost.
+- The asset date fields "Start Date" / "End Date" are relabelled to
+  **Subscription Start Date** / **Subscription End Date** to distinguish them from
+  the new project dates. Field names and all reminder/renewal logic are unchanged.
+- Removed the multi-company **Company** field from the asset form (it is still on
+  the record, defaulting to the active company). New assets take the company from
+  the company selector, so the extra field on the form was redundant.
+
+## [19.0.9] - 2026-09-01
+### Changed
+- **Server Resources** now lives on its own notebook tab on the Infrastructure
+  profile, placed right after "Notes", instead of a box wedged under the SSH
+  Access settings. The tab is shown only for "Custom Server" hosting and to the
+  Server Administrator group.
+- **Fetch Resources** now posts the full CPU / memory / disk / uptime output to
+  the chatter in a preformatted block, not just a "fetched from <host>" note --
+  so the resource readings build up an auditable, dated history on the record
+  without re-running the command.
+
+## [19.0.8] - 2026-09-01
+### Added
+- SSH server management on the client Infrastructure profile. When Hosting Type is
+  "Custom Server", the profile form gains (for the new Server Administrator group):
+  - An **SSH Access** section under "Custom Server Details": authentication type
+    (password or SSH private key + optional passphrase) and a restart command.
+    Secrets are encrypted at rest with the same `database.secret`-derived Fernet
+    key used elsewhere in the module and are only visible to the Client Hub
+    Manager group. Host / port / user reuse the existing Custom Server fields.
+  - Four header buttons:
+    - **Test Connection** -- opens an SSH session and flips Connection Status
+      (Unknown -> Online / Error), tracked in the chatter.
+    - **Fetch Resources** -- pulls CPU count, memory, disk usage and uptime in one
+      round-trip; fills the "Server Resources" box and a "Last Check" timestamp.
+      Assumes a Linux host with GNU coreutils.
+    - **Run Command** -- a wizard that runs an arbitrary command over SSH, shows
+      the output inline, stays open for the next command, and posts each command +
+      output to the chatter.
+    - **Restart** -- sends the configured restart command behind a confirmation
+      dialog, tolerates the SSH session dropping mid-restart, and saves the result
+      to the chatter for audit history.
+  - New "Server Administrator" group (implies Client Hub Manager). One custom
+    server per client (one infrastructure profile per client).
+- SSH actions require the `paramiko` Python package. It is an **optional**
+  dependency: the server details store and display fine without it, and the live
+  actions raise a friendly "install paramiko" message if it is missing. Install
+  with `pip install paramiko` and restart Odoo to enable them.
+
+### Changed
+- Infrastructure "Hosting Provider" is now a selectable record, not free text.
+  New `partner.hosting.provider` model with a "Hosting Providers" entry under
+  Configuration (name, website, notes). `partner.infrastructure.hosting_provider`
+  (Char) becomes `hosting_provider_id` (Many2one); a migration turns existing
+  free-text values into provider records (case-insensitive de-duplication) and
+  relinks each profile.
+
+### Translations
+- Bosnian (bs_BA) strings for all of the above: the SSH fields, selection values,
+  buttons, help text, the Run Command wizard, the Hosting Providers configuration
+  screen, and the SSH status / error / notification messages.
+
+## [19.0.7] - 2026-08-25
+### Fixed
+- Confirming a quotation raised an Access Error ("You are not allowed to access
+  'Client-Related Asset' (partner.asset) records") for any salesperson who isn't in
+  the Odoo Clients 360 User/Manager group. `sale.order.action_confirm()` searches and
+  updates linked `partner.asset` renewal records as a side effect of confirmation, but
+  was running that lookup with the confirming user's own rights instead of `sudo()`,
+  so it blocked confirmation entirely for users outside the Client Hub groups — a
+  regression from before this module was installed. The renewal-bookkeeping step now
+  runs under `sudo()`, since it's an automatic side effect of a permitted action
+  (confirming their own order) rather than the user browsing or editing assets
+  directly; no per-user group assignment is needed.
+
+## [19.0.6] - 2026-08-21
+### Added
+- Added a 5th "Installation Guide" tab to `static/description/index.html`, condensing
+  `install.html`'s content (requirements table, 4-step install incl. per-environment
+  Docker/bare-metal/Odoo.sh instructions for the `cryptography` package, verification,
+  and a 5-item troubleshooting accordion) into the same inline-styles-only, Bootstrap-tab
+  convention as the rest of the listing page, so it's visible without leaving the Apps
+  Store listing. `install.html` itself is unchanged and still linked separately.
+
+## [19.0.5] - 2026-08-21
+### Changed
+- Redesigned `static/description/index.html` (the Odoo Apps Store listing page) after
+  the `salon_spa_scheduler` module's listing: full HTML document with SEO meta/JSON-LD,
+  a top status bar, four core highlight cards, a 16-item feature checklist grid, and an
+  interactive tabbed section (Screenshots / Day-to-Day Workflow / Under the Hood /
+  Tags & Specification). Confirmed live on another listing that apps.odoo.com already
+  has Bootstrap's tab JS loaded globally, so `data-bs-toggle="tab"` navigation works on
+  the Apps Store page without needing our own `<script>` (which gets stripped anyway).
+  Still inline-styles-only, per the 19.0.4 fix — no `<style>` block.
+
+## [19.0.4] - 2026-08-21
+### Fixed
+- Rebuilt `static/description/index.html` (the Odoo Apps Store listing page) to use
+  only inline `style="..."` attributes and Bootstrap grid classes instead of a `<style>`
+  block. apps.odoo.com strips `<style>` tags from module descriptions, so the page was
+  rendering as unstyled plain text on the live listing even though it looked correct
+  locally.
+- Fixed the 4 screenshot images in that page 404ing on the live listing: they were
+  referenced via a `../screenshots/...` path that escapes the directory the Apps Store
+  CDN actually serves (only `static/description/` is exposed, flattened). Screenshots
+  are now duplicated into `static/description/` (`shot-*.png`) and referenced by bare
+  filename, the same way `icon.png` already worked.
+
+## [19.0.3] - 2026-08-21
+### Added
+- Client Reference (`res.partner.client_ref`): auto-generated for every new top-level
+  client from their name plus a running number (e.g. `ACME-0001`). Numbering is driven
+  by an `ir.sequence` configurable at Settings > Technical > Sequences & Identifiers >
+  Sequences; the field itself is read-only and can't be edited by hand. Sub-contacts and
+  addresses created under a company don't get their own reference.
+- Asset Name / Label is now auto-generated (read-only) from the Customer's Client
+  Reference and the asset Type as soon as both are chosen (e.g. `ACME-0001 - Online`),
+  and stays in sync if either changes later. A running number is appended for
+  duplicates of the same type on the same client (e.g. `ACME-0001 - Online (2)`).
+- Each Cost & Margin line (Server, License, Backup, Maintenance, External Services)
+  now has a "Billed by Us" toggle; Infra Monthly Cost and Gross Margin only sum the
+  toggled-on lines instead of always summing everything. Reflects that clients often
+  pay license (and, on Odoo.sh, storage) costs directly to Odoo, and a custom server
+  may or may not be billed through us — only Maintenance defaults to billed by us.
+  Existing assets are recomputed on upgrade to match.
+
+### Changed
+- The asset header's "Infrastructure" button is now a smart button in the top button
+  box (matching Tasks/Project Tasks/Invoices), instead of a classic header button.
+- That Infrastructure smart button now shows an actual count, like Tasks/Project
+  Tasks/Invoices do, and is hidden when the count is 0 (same as those) instead of
+  showing static "Infrastructure"/"Add Infrastructure" text.
+
+## [19.0.2] - 2026-08-20
+### Fixed
+- Dashboard "Running Projects & Tasks" card and the "Client Projects" menu were listing
+  every `project.project` in the database (any project not the hardcoded shared "Client
+  Tasks" one), sweeping in unrelated projects on multi-project databases. Client projects
+  created via "New Client Project" are now tagged "Client App", and both the dashboard
+  and menu are scoped to that tag. Pre-existing client projects are backfilled by the
+  upgrade migration.
+
+## [19.0.1] - 2026-08-20
+### Added
+- Initial public release. Free and open source (LGPL-3).
+- Portfolio dashboard, client infrastructure profiles, encrypted credentials with
+  access audit log, live SSL & uptime monitoring, renewal automation, one-off
+  invoicing, project task templates turned into sale products, a guided new-client
+  onboarding wizard, client self-service portal, and per-client infrastructure PDF
+  report.
+- App-listing description page (`static/description/index.html`) with the real app
+  icon and a screenshot gallery.
+- `static/description/banner.jpg` (Odoo Apps Store cover image) and manifest
+  `images` list (banner + 4 screenshots) for the Apps Store listing.

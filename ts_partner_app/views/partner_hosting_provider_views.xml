@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="partner_hosting_provider_view_list" model="ir.ui.view">
+        <field name="name">partner.hosting.provider.list</field>
+        <field name="model">partner.hosting.provider</field>
+        <field name="arch" type="xml">
+            <list string="Hosting Providers" editable="bottom">
+                <field name="name"/>
+                <field name="url" widget="url" placeholder="https://..."/>
+                <field name="notes" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="partner_hosting_provider_view_form" model="ir.ui.view">
+        <field name="name">partner.hosting.provider.form</field>
+        <field name="model">partner.hosting.provider</field>
+        <field name="arch" type="xml">
+            <form string="Hosting Provider">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. Hetzner"/></h1>
+                    </div>
+                    <group>
+                        <field name="url" widget="url"/>
+                        <field name="active" invisible="1"/>
+                    </group>
+                    <group string="Notes">
+                        <field name="notes" nolabel="1" placeholder="Account, support contact, ..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="partner_hosting_provider_view_search" model="ir.ui.view">
+        <field name="name">partner.hosting.provider.search</field>
+        <field name="model">partner.hosting.provider</field>
+        <field name="arch" type="xml">
+            <search string="Hosting Providers">
+                <field name="name"/>
+                <filter name="inactive" string="Archived" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="partner_hosting_provider_action" model="ir.actions.act_window">
+        <field name="name">Hosting Providers</field>
+        <field name="res_model">partner.hosting.provider</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add a hosting provider</p>
+            <p>These appear in the Hosting Provider field of a Custom Server infrastructure profile.</p>
+        </field>
+    </record>
+
+    <menuitem id="partner_hosting_provider_menu"
+              name="Hosting Providers"
+              parent="partner_asset_menu_config"
+              action="partner_hosting_provider_action"
+              sequence="30"/>
+
+</odoo>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_view_form_inherit_asset" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.asset</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="before">
+                <field name="client_ref" placeholder="Auto-generated"/>
+            </field>
+            <div name="button_box" position="inside">
+                <button name="action_view_infrastructure"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-server">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text" invisible="not infrastructure_id">Infrastructure</span>
+                        <span class="o_stat_text" invisible="infrastructure_id">Add Infrastructure</span>
+                    </div>
+                    <field name="infrastructure_id" invisible="1"/>
+                </button>
+                <button name="action_view_partner_assets"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-cubes"
+                    invisible="asset_count == 0">
+                    <field name="asset_count" widget="statinfo" string="Odoo Assets"/>
+                </button>
+                <button name="action_view_environments"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-server"
+                    invisible="environment_count == 0">
+                    <field name="environment_count" widget="statinfo" string="Environments"/>
+                </button>
+                <button name="action_view_expiring_soon_assets"
+                    type="object"
+                    class="oe_stat_button text-danger"
+                    icon="fa-hourglass-half"
+                    invisible="expiring_soon_count == 0">
+                    <field name="expiring_soon_count" widget="statinfo" string="Expiring Soon"/>
+                </button>
+            </div>
+            <xpath expr="//notebook" position="inside">
+                <page string="Client Actuals" name="client_actuals"
+                      groups="ts_partner_app.group_partner_asset_manager"
+                      invisible="asset_count == 0">
+                    <field name="client_actuals_currency_id" invisible="1"/>
+                    <div class="alert alert-info" role="alert">
+                        Straight totals of everything invoiced to this client and every
+                        vendor bill tagged to one of its assets, for the chosen period —
+                        no monthly split, so one-off implementation / project invoices
+                        are counted as-is. Amounts are in the company currency.
+                    </div>
+                    <group>
+                        <group string="Period">
+                            <field name="client_actuals_period"/>
+                            <field name="client_actuals_date_from"
+                                   readonly="client_actuals_period != 'custom'"/>
+                            <field name="client_actuals_date_to"
+                                   readonly="client_actuals_period != 'custom'"/>
+                            <field name="client_actual_move_count" readonly="1"/>
+                            <button name="action_view_client_moves" type="object" class="btn-link"
+                                    icon="fa-list" string="Open Invoices &amp; Bills"/>
+                        </group>
+                        <group string="Totals for the period">
+                            <field name="client_actual_revenue" widget="monetary" readonly="1"/>
+                            <field name="client_actual_revenue_total" widget="monetary" readonly="1"/>
+                            <field name="client_actual_cost" widget="monetary" readonly="1"/>
+                            <field name="client_actual_cost_total" widget="monetary" readonly="1"/>
+                            <field name="client_actual_margin" widget="monetary" readonly="1"
+                                   decoration-success="client_actual_margin &gt; 0"
+                                   decoration-danger="client_actual_margin &lt; 0"/>
+                            <field name="client_actual_margin_total" widget="monetary" readonly="1"
+                                   decoration-success="client_actual_margin_total &gt; 0"
+                                   decoration-danger="client_actual_margin_total &lt; 0"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

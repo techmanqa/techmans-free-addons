@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_environment_view_list" model="ir.ui.view">
+        <field name="name">partner.environment.list</field>
+        <field name="model">partner.environment</field>
+        <field name="arch" type="xml">
+            <list string="Odoo Environments">
+                <field name="partner_id"/>
+                <field name="name"/>
+                <field name="env_type" widget="badge"
+                       decoration-success="env_type == 'production'"
+                       decoration-info="env_type == 'staging'"
+                       decoration-muted="env_type in ('development', 'test', 'other')"/>
+                <field name="is_primary" widget="boolean_toggle"/>
+                <field name="platform_id" optional="show"/>
+                <field name="infrastructure_id" optional="show"/>
+                <field name="current_version" optional="show"/>
+                <field name="latest_version" optional="hide"/>
+                <field name="upgrade_available" widget="boolean_toggle" optional="show"/>
+                <field name="url" widget="url" optional="hide"/>
+                <field name="website_up" widget="boolean_toggle" optional="hide"/>
+                <field name="risk_level" widget="badge"
+                       decoration-success="risk_level == 'low'"
+                       decoration-warning="risk_level == 'medium'"
+                       decoration-danger="risk_level == 'high'" optional="show"/>
+                <field name="project_url" widget="url" optional="hide"/>
+                <field name="github_url" widget="url" optional="hide"/>
+                <field name="technical_debt_level" optional="hide"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="partner_environment_view_search" model="ir.ui.view">
+        <field name="name">partner.environment.search</field>
+        <field name="model">partner.environment</field>
+        <field name="arch" type="xml">
+            <search string="Search Odoo Environments">
+                <field name="partner_id"/>
+                <field name="name"/>
+                <field name="platform_id"/>
+                <field name="infrastructure_id"/>
+                <field name="current_version"/>
+                <field name="project_url"/>
+                <field name="github_url"/>
+                <filter string="Primary" name="filter_primary" domain="[('is_primary', '=', True)]"/>
+                <filter string="Upgrade Available" name="filter_upgrade" domain="[('upgrade_available', '=', True)]"/>
+                <filter string="High Risk" name="filter_high_risk" domain="[('risk_level', '=', 'high')]"/>
+                <filter string="Site Down" name="filter_down" domain="[('website_up', '=', False), ('last_health_check', '!=', False)]"/>
+                <separator/>
+                <filter string="Production" name="filter_production" domain="[('env_type', '=', 'production')]"/>
+                <filter string="Staging" name="filter_staging" domain="[('env_type', '=', 'staging')]"/>
+                <filter string="Development" name="filter_development" domain="[('env_type', '=', 'development')]"/>
+                <filter string="Test" name="filter_test" domain="[('env_type', '=', 'test')]"/>
+                <group name="group_by">
+                    <filter string="Client" name="group_partner" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Environment Type" name="group_env_type" context="{'group_by': 'env_type'}"/>
+                    <filter string="Platform" name="group_platform" context="{'group_by': 'platform_id'}"/>
+                    <filter string="Infrastructure" name="group_infra" context="{'group_by': 'infrastructure_id'}"/>
+                    <filter string="Current Version" name="group_version" context="{'group_by': 'current_version'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="partner_environment_view_form" model="ir.ui.view">
+        <field name="name">partner.environment.form</field>
+        <field name="model">partner.environment</field>
+        <field name="arch" type="xml">
+            <form string="Odoo Environment">
+                <header>
+                    <button name="action_check_health" type="object" string="Check Now"
+                            icon="fa-heartbeat" invisible="not url"
+                            help="Connect to the URL to verify uptime and read the real SSL certificate expiry."/>
+                    <button name="action_open_url" type="object" string="Open"
+                            icon="fa-external-link" invisible="not url"/>
+                    <button name="action_open_project_url" type="object" string="Open Project"
+                            icon="fa-external-link" invisible="not project_url"/>
+                    <button name="action_open_odoo_login_url" type="object" string="Open Odoo"
+                            icon="fa-external-link" invisible="not odoo_login_url"/>
+                    <button name="action_open_github_url" type="object" string="Open Repository"
+                            icon="fa-external-link" invisible="not github_url"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="e.g. Production"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" options="{'no_create': True}"/>
+                            <field name="env_type"/>
+                            <field name="is_primary"/>
+                            <field name="platform_id"/>
+                            <field name="platform_kind" invisible="1"/>
+                            <field name="platform_show_infrastructure" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="infrastructure_id"
+                                   invisible="platform_id and not platform_show_infrastructure"
+                                   domain="[('partner_id', '=', partner_id)]"/>
+                            <field name="asset_id"
+                                   domain="[('partner_id', '=', partner_id)]"/>
+                            <label for="url"/>
+                            <div class="o_row">
+                                <field name="url" widget="url"/>
+                                <button name="action_open_url" type="object" icon="fa-external-link"
+                                        string="Open" invisible="not url" class="btn btn-link"/>
+                            </div>
+                        </group>
+                    </group>
+
+                    <group string="Project" name="project_group"
+                           invisible="platform_kind not in ('odoo_sh', 'oec_sh')">
+                        <label for="project_url"/>
+                        <div class="o_row">
+                            <field name="project_url" widget="url"/>
+                            <button name="action_open_project_url" type="object" icon="fa-external-link"
+                                    string="Open" invisible="not project_url" class="btn btn-link"/>
+                        </div>
+                        <field name="project_branch"/>
+                        <field name="database_name"/>
+                    </group>
+
+                    <group string="Docker" name="docker_group" invisible="platform_kind != 'docker'">
+                        <field name="docker_image" placeholder="e.g. odoo:19.0"/>
+                        <field name="docker_compose_path" placeholder="/opt/stacks/client/docker-compose.yml"/>
+                        <field name="docker_container"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Odoo Login" name="odoo_login"
+                              groups="ts_partner_app.group_partner_asset_manager">
+                            <group>
+                                <label for="odoo_login_url"/>
+                                <div class="o_row">
+                                    <field name="odoo_login_url" widget="url"/>
+                                    <button name="action_open_odoo_login_url" type="object" icon="fa-external-link"
+                                            string="Open" invisible="not odoo_login_url" class="btn btn-link"/>
+                                </div>
+                                <field name="odoo_login_email"/>
+                                <label for="odoo_login_password"/>
+                                <div class="o_row">
+                                    <field name="odoo_login_password" password="True" invisible="show_odoo_login_password"/>
+                                    <field name="odoo_login_password" invisible="not show_odoo_login_password"/>
+                                    <field name="show_odoo_login_password" invisible="1"/>
+                                    <button name="toggle_odoo_login_password" type="object" icon="fa-eye"
+                                            title="Show Password" invisible="show_odoo_login_password" class="btn btn-link"/>
+                                    <button name="toggle_odoo_login_password" type="object" icon="fa-eye-slash"
+                                            title="Hide Password" invisible="not show_odoo_login_password" class="btn btn-link"/>
+                                </div>
+                            </group>
+                        </page>
+
+                        <page string="GitHub / Repository" name="github"
+                              groups="ts_partner_app.group_partner_asset_manager">
+                            <group>
+                                <label for="github_url"/>
+                                <div class="o_row">
+                                    <field name="github_url" widget="url"/>
+                                    <button name="action_open_github_url" type="object" icon="fa-external-link"
+                                            string="Open" invisible="not github_url" class="btn btn-link"/>
+                                </div>
+                                <field name="github_branch"/>
+                                <field name="code_repository_branch"/>
+                                <label for="github_token"/>
+                                <div class="o_row">
+                                    <field name="github_token" password="True" invisible="show_github_token"/>
+                                    <field name="github_token" invisible="not show_github_token"/>
+                                    <field name="show_github_token" invisible="1"/>
+                                    <button name="toggle_github_token" type="object" icon="fa-eye"
+                                            title="Show Token" invisible="show_github_token" class="btn btn-link"/>
+                                    <button name="toggle_github_token" type="object" icon="fa-eye-slash"
+                                            title="Hide Token" invisible="not show_github_token" class="btn btn-link"/>
+                                </div>
+                            </group>
+                        </page>
+
+                        <page string="Version &amp; Upgrade" name="version_upgrade">
+                            <group>
+                                <group string="Version Information">
+                                    <field name="current_version"/>
+                                    <field name="latest_version"/>
+                                    <field name="upgrade_available"/>
+                                    <field name="last_upgrade_date"/>
+                                </group>
+                                <group string="Technical Details">
+                                    <field name="technical_debt_level" widget="badge"
+                                           decoration-success="technical_debt_level == 'low'"
+                                           decoration-warning="technical_debt_level == 'medium'"
+                                           decoration-danger="technical_debt_level in ['high', 'critical']"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Modules" name="modules">
+                            <div class="oe_title">
+                                <h3>Native Odoo Apps Used</h3>
+                            </div>
+                            <field name="native_module_ids" nolabel="1" widget="many2many_tags"
+                                   placeholder="Sales, Inventory, Accounting..."/>
+                            <separator string="Custom Modules"/>
+                            <field name="custom_module_ids" nolabel="1">
+                                <list editable="bottom">
+                                    <field name="name"/>
+                                    <field name="version"/>
+                                    <field name="author"/>
+                                    <field name="link" widget="url"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <page string="Access" name="access"
+                              groups="ts_partner_app.group_partner_asset_manager">
+                            <group>
+                                <group string="Primary Access">
+                                    <field name="login_email"/>
+                                    <label for="password"/>
+                                    <div class="o_row">
+                                        <field name="password" password="True" invisible="show_password"/>
+                                        <field name="password" invisible="not show_password"/>
+                                        <field name="show_password" invisible="1"/>
+                                        <button name="toggle_password" type="object" icon="fa-eye"
+                                                title="Show Password" invisible="show_password" class="btn btn-link"/>
+                                        <button name="toggle_password" type="object" icon="fa-eye-slash"
+                                                title="Hide Password" invisible="not show_password" class="btn btn-link"/>
+                                    </div>
+                                </group>
+                                <group string="Secondary Access">
+                                    <label for="url2"/>
+                                    <div class="o_row">
+                                        <field name="url2" widget="url"/>
+                                        <button name="action_open_url2" type="object" icon="fa-external-link"
+                                                string="Open" invisible="not url2" class="btn btn-link"/>
+                                    </div>
+                                    <field name="login_email2"/>
+                                    <label for="password2"/>
+                                    <div class="o_row">
+                                        <field name="password2" password="True" invisible="show_password2"/>
+                                        <field name="password2" invisible="not show_password2"/>
+                                        <field name="show_password2" invisible="1"/>
+                                        <button name="toggle_password2" type="object" icon="fa-eye"
+                                                title="Show Password" invisible="show_password2" class="btn btn-link"/>
+                                        <button name="toggle_password2" type="object" icon="fa-eye-slash"
+                                                title="Hide Password" invisible="not show_password2" class="btn btn-link"/>
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Health &amp; Backup" name="health_backup">
+                            <group>
+                                <group string="Live Health Monitoring">
+                                    <field name="website_up" widget="boolean_toggle" readonly="1"/>
+                                    <field name="ssl_expiry_date" readonly="1"/>
+                                    <field name="ssl_days_left" readonly="1" invisible="not ssl_expiry_date"/>
+                                    <field name="last_health_check" readonly="1"/>
+                                    <button name="action_check_health" type="object" string="Check Now"
+                                            icon="fa-heartbeat" class="btn btn-secondary" invisible="not url"
+                                            help="Connect to the URL to verify uptime and read the real SSL certificate expiry."/>
+                                </group>
+                                <group string="Backup Monitoring">
+                                    <field name="last_backup_check"/>
+                                    <field name="backup_verified"/>
+                                </group>
+                                <group string="Risk &amp; Compliance">
+                                    <field name="monitoring_active" widget="radio" options="{'horizontal': true}"/>
+                                    <field name="dr_plan_documented"/>
+                                    <field name="risk_level" widget="priority"/>
+                                </group>
+                            </group>
+                            <div class="alert alert-info mt-2" role="alert">
+                                <i class="fa fa-info-circle mr-1"/>
+                                Proper documentation of backup checks and disaster recovery plans provides essential legal protection for your managed services.
+                            </div>
+                        </page>
+
+                        <page string="Notes" name="notes">
+                            <field name="notes" placeholder="Additional information..." widget="text"/>
+                        </page>
+
+                        <page string="Credential Log" name="credential_log"
+                              groups="ts_partner_app.group_partner_asset_manager">
+                            <field name="credential_log_ids" nolabel="1" readonly="1">
+                                <list>
+                                    <field name="create_date" string="Date"/>
+                                    <field name="user_id"/>
+                                    <field name="action"/>
+                                    <field name="field_name"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="partner_environment_action" model="ir.actions.act_window">
+        <field name="name">Environments</field>
+        <field name="res_model">partner.environment</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add an Odoo environment for a client
+            </p>
+            <p>
+                Each environment (Production, Staging, ...) tracks its own Odoo version,
+                Odoo.sh project, login, repository and custom modules. Link it to the
+                client's Infrastructure profile to say which server it runs on.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="partner_environment_menu"
+              name="Environments"
+              parent="partner_asset_menu_root"
+              action="partner_environment_action"
+              sequence="16"/>
+</odoo>

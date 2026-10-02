@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_infrastructure_view_list" model="ir.ui.view">
+        <field name="name">partner.infrastructure.list</field>
+        <field name="model">partner.infrastructure</field>
+        <field name="arch" type="xml">
+            <list string="Client Infrastructure">
+                <field name="partner_id"/>
+                <field name="hosting_type" widget="badge" decoration-info="hosting_type == 'odoo_sh'" decoration-warning="hosting_type == 'custom_server'" decoration-muted="hosting_type == 'online'"/>
+                <field name="server_host" optional="hide"/>
+                <field name="hosting_provider_id" optional="hide"/>
+                <field name="environment_count" optional="show"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="partner_infrastructure_view_search" model="ir.ui.view">
+        <field name="name">partner.infrastructure.search</field>
+        <field name="model">partner.infrastructure</field>
+        <field name="arch" type="xml">
+            <search string="Search Client Infrastructure">
+                <field name="partner_id"/>
+                <field name="server_host"/>
+                <field name="hosting_provider_id"/>
+                <filter string="Online" name="filter_online" domain="[('hosting_type', '=', 'online')]"/>
+                <filter string="Odoo.sh" name="filter_odoo_sh" domain="[('hosting_type', '=', 'odoo_sh')]"/>
+                <filter string="Custom Server" name="filter_custom_server" domain="[('hosting_type', '=', 'custom_server')]"/>
+                <group name="group_by">
+                    <filter string="Hosting Type" name="group_hosting_type" context="{'group_by': 'hosting_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="partner_infrastructure_view_form" model="ir.ui.view">
+        <field name="name">partner.infrastructure.form</field>
+        <field name="model">partner.infrastructure</field>
+        <field name="arch" type="xml">
+            <form string="Client Infrastructure">
+                <header>
+                    <button name="action_server_test_connection" type="object" string="Test Connection"
+                            invisible="hosting_type != 'custom_server'"
+                            groups="ts_partner_app.group_partner_server_admin"/>
+                    <button name="action_server_fetch_resources" type="object" string="Fetch Resources"
+                            invisible="hosting_type != 'custom_server'"
+                            groups="ts_partner_app.group_partner_server_admin"/>
+                    <button name="action_server_run_command" type="object" string="Run Command"
+                            invisible="hosting_type != 'custom_server'"
+                            groups="ts_partner_app.group_partner_server_admin"/>
+                    <button name="action_server_restart" type="object" string="Restart"
+                            invisible="hosting_type != 'custom_server' or not server_restart_command"
+                            confirm="Send the configured restart command to this server?"
+                            groups="ts_partner_app.group_partner_server_admin"/>
+                    <field name="server_status" widget="statusbar" readonly="1"
+                           statusbar_visible="unknown,online,error"
+                           invisible="hosting_type != 'custom_server'"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_environments" type="object"
+                                class="oe_stat_button" icon="fa-cubes">
+                            <field name="environment_count" widget="statinfo" string="Environments"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="partner_id"/>
+                        <h1>
+                            <field name="partner_id" placeholder="Client" options="{'no_create': True}"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="hosting_type" widget="radio" options="{'horizontal': true}"/>
+                    </group>
+
+                    <group invisible="hosting_type != 'custom_server'">
+                        <group string="Custom Server Details">
+                            <field name="server_host"/>
+                            <field name="server_ssh_port"/>
+                            <field name="server_ssh_user"/>
+                            <field name="hosting_provider_id"/>
+                        </group>
+                        <group string="SSH Access" groups="ts_partner_app.group_partner_server_admin">
+                            <field name="server_auth_type" widget="radio"/>
+                            <label for="server_password" invisible="server_auth_type == 'key'"/>
+                            <div class="o_row" invisible="server_auth_type == 'key'">
+                                <field name="server_password" password="True" invisible="show_server_password"/>
+                                <field name="server_password" invisible="not show_server_password"/>
+                                <field name="show_server_password" invisible="1"/>
+                                <button name="toggle_server_password" type="object" icon="fa-eye"
+                                        title="Show Password" invisible="show_server_password" class="btn btn-link"/>
+                                <button name="toggle_server_password" type="object" icon="fa-eye-slash"
+                                        title="Hide Password" invisible="not show_server_password" class="btn btn-link"/>
+                            </div>
+                            <field name="server_private_key" invisible="server_auth_type != 'key'"
+                                   placeholder="-----BEGIN OPENSSH PRIVATE KEY-----&#10;..."/>
+                            <field name="server_key_passphrase" password="True"
+                                   invisible="server_auth_type != 'key'"/>
+                            <field name="server_restart_command"
+                                   placeholder="e.g. sudo systemctl restart odoo"/>
+                            <field name="server_last_check" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Environments" name="environments">
+                            <field name="environment_ids" nolabel="1"
+                                   context="{'default_partner_id': partner_id}">
+                                <list editable="bottom">
+                                    <field name="name"/>
+                                    <field name="env_type"/>
+                                    <field name="is_primary" widget="boolean_toggle"/>
+                                    <field name="platform_id"/>
+                                    <field name="current_version"/>
+                                    <field name="project_url" widget="url" optional="hide"/>
+                                    <field name="github_url" widget="url" optional="hide"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="notes" placeholder="Additional information..." widget="text"/>
+                        </page>
+                        <page string="Server Resources" name="server_resources"
+                              invisible="hosting_type != 'custom_server'"
+                              groups="ts_partner_app.group_partner_server_admin">
+                            <field name="server_resource_info" widget="text" nolabel="1" readonly="1"
+                                   placeholder="Use 'Fetch Resources' to pull CPU, memory, disk and uptime."/>
+                        </page>
+                        <page string="Credential Log" name="credential_log" groups="ts_partner_app.group_partner_asset_manager">
+                            <field name="credential_log_ids" nolabel="1" readonly="1">
+                                <list>
+                                    <field name="create_date" string="Date"/>
+                                    <field name="user_id"/>
+                                    <field name="action"/>
+                                    <field name="field_name"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="partner_infrastructure_action" model="ir.actions.act_window">
+        <field name="name">Client Infrastructure</field>
+        <field name="res_model">partner.infrastructure</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a client's infrastructure profile!
+            </p>
+            <p>
+                Mark it Odoo.sh or Custom Server and record the server / hosting
+                details. Odoo.sh, logins, repositories and versions live on the
+                client's Environments.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="partner_infrastructure_menu"
+              name="Infrastructure"
+              parent="partner_asset_menu_root"
+              action="partner_infrastructure_action"
+              sequence="15"/>
+</odoo>

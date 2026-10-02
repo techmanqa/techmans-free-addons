@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="ts_partner_app.ClientHubBars">
+        <div t-if="!rows.length" class="o_ch_empty">
+            <i class="oi" data-icon="archive"/>
+            <span t-out="empty"/>
+        </div>
+        <div t-foreach="rows" t-as="row" t-key="row_index"
+             class="o_ch_bar_row" t-att-class="{'o_ch_clickable': onRow}"
+             t-on-click="() => onRow and onRow(row)">
+            <span class="o_ch_bar_label" t-att-title="row.label or row.stage" t-out="row.label or row.stage"/>
+            <div class="o_ch_bar_track">
+                <div class="o_ch_bar_fill" t-att-class="tone"
+                     t-attf-style="width: #{pct(row.count)}%"/>
+            </div>
+            <span class="o_ch_bar_count" t-out="row.count"/>
+        </div>
+    </t>
+
+    <t t-name="ts_partner_app.ClientHubDashboard">
+        <div class="o_client_hub_dashboard">
+
+            <!-- Header -->
+            <div class="o_ch_hero">
+                <div class="o_ch_hero_text">
+                    <span class="o_ch_eyebrow"><i class="oi me-1" data-icon="view_module"/>Portfolio overview</span>
+                    <h2>Odoo Clients 360</h2>
+                    <span class="o_ch_subtitle" t-out="this.todayLabel"/>
+                </div>
+                <div class="o_ch_hero_actions">
+                    <button class="btn o_ch_btn_ghost" title="Refresh" t-on-click="this.refresh"
+                            t-att-disabled="this.state.loading">
+                        <i class="oi" data-icon="refresh" t-att-class="{'oi-spin': this.state.loading}"/>
+                    </button>
+                    <button class="btn o_ch_btn_ghost" t-on-click="this.openProjects">
+                        <i class="oi me-1" data-icon="folder"/> Projects
+                    </button>
+                    <button class="btn o_ch_btn_light" t-on-click="this.openNewClientAsset">
+                        <i class="oi me-1" data-icon="add"/> New Client
+                    </button>
+                </div>
+            </div>
+
+            <div t-if="this.state.error" class="o_ch_alert" role="alert">
+                <i class="oi" data-icon="error"/>
+                <span>Could not load the dashboard data.</span>
+                <button class="btn btn-sm btn-outline-danger ms-auto" t-on-click="this.refresh">Try again</button>
+            </div>
+
+            <!-- Loading skeleton -->
+            <div t-if="!this.state.data and !this.state.error" class="o_ch_kpis">
+                <div t-foreach="[1, 2, 3, 4]" t-as="i" t-key="i" class="o_ch_kpi o_ch_skeleton"/>
+            </div>
+
+            <t t-if="this.state.data">
+                <t t-set="kpi" t-value="this.state.data.kpi"/>
+                <t t-set="risk" t-value="this.state.data.risk"/>
+
+                <!-- KPIs -->
+                <div class="o_ch_kpis">
+                    <div class="o_ch_kpi o_ch_tone_primary o_ch_clickable" t-on-click="this.openClients">
+                        <div class="o_ch_kpi_icon"><i class="oi" data-icon="group"/></div>
+                        <div class="o_ch_kpi_body">
+                            <span class="o_ch_kpi_label">Clients</span>
+                            <span class="o_ch_kpi_value" t-out="kpi.client_count"/>
+                        </div>
+                        <i class="oi o_ch_kpi_go" data-icon="chevron_right"/>
+                    </div>
+                    <div class="o_ch_kpi o_ch_tone_info o_ch_clickable" t-on-click="this.openActiveAssets">
+                        <div class="o_ch_kpi_icon"><i class="oi" data-icon="apps"/></div>
+                        <div class="o_ch_kpi_body">
+                            <span class="o_ch_kpi_label">Active client assets</span>
+                            <span class="o_ch_kpi_value" t-out="kpi.asset_count"/>
+                        </div>
+                        <i class="oi o_ch_kpi_go" data-icon="chevron_right"/>
+                    </div>
+                    <div class="o_ch_kpi o_ch_tone_success">
+                        <div class="o_ch_kpi_icon"><i class="oi" data-icon="autorenew"/></div>
+                        <div class="o_ch_kpi_body">
+                            <span class="o_ch_kpi_label">Monthly billing</span>
+                            <span class="o_ch_kpi_value" t-out="this.formatMoney(kpi.mrr)"/>
+                        </div>
+                    </div>
+                    <div class="o_ch_kpi" t-att-class="kpi.margin &lt; 0 ? 'o_ch_tone_danger' : 'o_ch_tone_success'">
+                        <div class="o_ch_kpi_icon"><i class="oi" data-icon="show_chart"/></div>
+                        <div class="o_ch_kpi_body">
+                            <span class="o_ch_kpi_label">Gross margin</span>
+                            <span class="o_ch_kpi_value" t-out="this.formatMoney(kpi.margin)"/>
+                            <div class="o_ch_margin">
+                                <div class="o_ch_margin_track">
+                                    <div class="o_ch_margin_fill" t-attf-style="width: #{this.marginWidth(kpi.margin_pct)}%"/>
+                                </div>
+                                <span t-out="this.formatPct(kpi.margin_pct)"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Attention -->
+                <div class="o_ch_section_title">
+                    <span>Needs attention</span>
+                    <span t-if="this.riskTotal" class="o_ch_badge o_ch_badge_danger" t-out="this.riskTotal"/>
+                    <span t-else="" class="o_ch_badge o_ch_badge_ok"><i class="oi me-1" data-icon="check"/>All clear</span>
+                </div>
+                <div class="o_ch_risks">
+                    <t t-foreach="this.riskCards" t-as="card" t-key="card.key">
+                        <div class="o_ch_risk" t-att-class="(risk[card.key] ? 'o_ch_risk_' + card.tone : 'o_ch_risk_ok')"
+                             t-on-click="() => card.open()">
+                            <div class="o_ch_risk_icon"><i class="oi" t-att-data-icon="card.icon"/></div>
+                            <div>
+                                <span class="o_ch_risk_value" t-out="risk[card.key] or 0"/>
+                                <span class="o_ch_risk_label" t-out="card.label"/>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+
+                <!-- Detail cards -->
+                <div class="o_ch_grid">
+                    <div class="o_ch_card">
+                        <div class="o_ch_card_head">
+                            <span class="o_ch_card_icon o_ch_tone_primary"><i class="oi" data-icon="pie_chart"/></span>
+                            <h4>Portfolio mix</h4>
+                        </div>
+                        <t t-call="ts_partner_app.ClientHubBars" rows="this.state.data.by_type" tone="'o_ch_fill_primary'"
+                           pct="(c) => this.barPct(c)" onRow="(row) => this.openByType(row)" empty="'No active assets yet.'"/>
+                    </div>
+
+                    <div class="o_ch_card">
+                        <div class="o_ch_card_head">
+                            <span class="o_ch_card_icon o_ch_tone_warning"><i class="oi" data-icon="hourglass_empty"/></span>
+                            <h4>Expiring in 30 days</h4>
+                            <span t-if="this.state.data.expiring_soon.length" class="o_ch_badge o_ch_badge_warning ms-auto"
+                                  t-out="this.state.data.expiring_soon.length"/>
+                        </div>
+                        <div t-if="!this.state.data.expiring_soon.length" class="o_ch_empty">
+                            <i class="oi" data-icon="event_upcoming"/><span>Nothing expiring soon.</span>
+                        </div>
+                        <div t-foreach="this.state.data.expiring_soon" t-as="row" t-key="row.id"
+                             class="o_ch_list_row o_ch_clickable" t-on-click="() => this.openAsset(row.id)">
+                            <div class="o_ch_list_main">
+                                <span class="o_ch_list_title" t-out="row.name"/>
+                                <span class="o_ch_list_sub" t-out="row.partner"/>
+                            </div>
+                            <span class="o_ch_date_chip" t-att-class="this.expiryClass(row.expiry_date)"
+                                  t-out="this.expiryLabel(row.expiry_date)" t-att-title="row.expiry_date"/>
+                        </div>
+                        <a href="#" class="o_ch_view_all" t-on-click.prevent="this.openExpiringSoon">View all <i class="oi" data-icon="arrow_forward"/></a>
+                    </div>
+
+                    <div class="o_ch_card">
+                        <div class="o_ch_card_head">
+                            <span class="o_ch_card_icon o_ch_tone_info"><i class="oi" data-icon="checklist"/></span>
+                            <h4>By stage</h4>
+                        </div>
+                        <t t-call="ts_partner_app.ClientHubBars" rows="this.state.data.by_stage" tone="'o_ch_fill_info'"
+                           pct="(c) => this.barPct(c)" onRow="false" empty="'No active assets yet.'"/>
+                    </div>
+
+                    <div class="o_ch_card">
+                        <div class="o_ch_card_head">
+                            <span class="o_ch_card_icon o_ch_tone_success"><i class="oi" data-icon="cloud"/></span>
+                            <h4>Infrastructure coverage</h4>
+                        </div>
+                        <t t-call="ts_partner_app.ClientHubBars" rows="this.state.data.infrastructure.by_hosting_type"
+                           tone="'o_ch_fill_success'" pct="(c) => this.infraBarPct(c)"
+                           onRow="(row) => this.openInfraByHostingType(row)" empty="'No infrastructure profiles yet.'"/>
+                        <a t-if="this.state.data.infrastructure.missing_count" href="#" class="o_ch_view_all o_ch_text_warning"
+                           t-on-click.prevent="this.openMissingInfra">
+                            <i class="oi me-1" data-icon="warning"/>
+                            <t t-out="this.state.data.infrastructure.missing_count"/> client(s) without a profile
+                            <i class="oi" data-icon="arrow_forward"/>
+                        </a>
+                        <span t-elif="this.state.data.infrastructure.by_hosting_type.length" class="o_ch_view_all o_ch_text_success">
+                            <i class="oi me-1" data-icon="check_circle"/>Every client has a profile.
+                        </span>
+                    </div>
+
+                    <div class="o_ch_card o_ch_card_wide">
+                        <div class="o_ch_card_head">
+                            <span class="o_ch_card_icon o_ch_tone_primary"><i class="oi" data-icon="folder"/></span>
+                            <h4>Running projects &amp; tasks</h4>
+                        </div>
+                        <div class="o_ch_stats">
+                            <div class="o_ch_stat">
+                                <span class="o_ch_stat_value" t-out="this.state.data.projects.project_count"/>
+                                <span class="o_ch_stat_label">running projects</span>
+                            </div>
+                            <div class="o_ch_stat">
+                                <span class="o_ch_stat_value" t-out="this.state.data.projects.open_task_count"/>
+                                <span class="o_ch_stat_label">open tasks</span>
+                            </div>
+                        </div>
+                        <t t-call="ts_partner_app.ClientHubBars" rows="this.state.data.projects.by_stage" tone="'o_ch_fill_primary'"
+                           pct="(c) => this.projectBarPct(c)" onRow="(row) => this.openTasksByStage(row)"
+                           empty="'No client projects yet.'"/>
+                        <a href="#" class="o_ch_view_all" t-on-click.prevent="this.openAllProjectTasks">View all tasks <i class="oi" data-icon="arrow_forward"/></a>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+
+</templates>

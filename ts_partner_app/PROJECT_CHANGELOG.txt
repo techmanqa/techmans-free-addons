@@ -1,0 +1,1167 @@
+# Project Changelog - Odoo Clients 360 (ts_partner_app)
+#
+# Internal development history, kept for reference only — not shipped as the
+# module's public-facing changelog. The module's version was reset to 19.0.1 for
+# its first public/free release; see CHANGELOG.txt for the release-facing log
+# going forward. Entries below use the pre-reset internal version numbers
+# (19.0.01 through 19.16.7) exactly as they were made; never edited retroactively.
+
+## [19.16.7] - 2026-08-20
+### Changed
+- Replaced the old FontAwesome-based `static/description/index.html` (the Apps-list
+  description page) with the full store-page design: hero, 9-pillar feature grid,
+  screenshot gallery (linking to the 4 real screenshots under `static/screenshots/`
+  instead of embedding them), spec table, and changelog strip. Self-contained, no
+  external font/icon dependency.
+- Added `static/description/install.html`, a standalone copy of the install guide.
+  `index.html` and `install.html` now cross-link (an "Installation guide" button/link
+  on the store page, a "← Odoo Clients 360" link back from the install guide).
+
+## [19.16.6] - 2026-08-20
+### Changed
+- Switched from a paid OPL-1 license to LGPL-3 and made the module free — removed
+  the `price`/`currency` keys from the manifest entirely.
+
+## [19.16.5] - 2026-08-20
+### Changed
+- Made the state/stage sync from 19.16.4 symmetric: setting `state` alone (without
+  `stage_id`) now also moves the stage to match, not just the other way around. Every
+  existing write path already sets both together deliberately, so this is pure
+  defense-in-depth for anywhere else that might set just one in the future.
+- Checked every other model in the module for the same dual state/stage_id pattern —
+  `partner.asset` is the only one that has it; nothing else needed this fix.
+
+## [19.16.4] - 2026-08-20
+### Fixed
+- Header button visibility (and everything else keyed off `state`) didn't update when
+  changing an asset's stage via the clickable statusbar or Kanban drag — those only
+  write `stage_id`, and nothing kept `state` in sync with it. Only the cron/health-check
+  paths set both together, so a manual stage change silently drifted the two apart.
+  `write()` now syncs `state` to match whenever `stage_id` changes to one of the 4
+  built-in stages and `state` isn't also being set explicitly in the same call. Also
+  fixed the one asset this had already happened to live.
+
+## [19.16.3] - 2026-08-20
+### Changed
+- Gated the two remaining always-visible header buttons too: **Infrastructure** now
+  hidden on New (visible on Running, To Renew, Closed), **New Client Project** now
+  visible only on Running.
+
+## [19.16.2] - 2026-08-20
+### Changed
+- Reordered and gated the asset header buttons by status, so only the action that
+  actually makes sense for the asset's current status shows up: **Create Sale Offer**
+  only on New, **Create Invoice** only on Running, **Create Renewal Quote** only on To
+  Renew (each now highlighted as the primary action for its status, and mutually
+  exclusive with the others since an asset only has one status at a time).
+  **Infrastructure** and **New Client Project** stay visible regardless of status, as
+  before.
+
+## [19.16.1] - 2026-08-20
+### Added
+- Bosnian translations for the new Create Sale Offer wizard.
+
+## [19.16.0] - 2026-08-20
+### Added
+- New **Create Sale Offer** button on the asset header, next to New Client Project —
+  same pattern (pick from checkboxes, then create), but for Sales: lets you tick which
+  service products (from Configuration > Import Products) apply, adjust quantity/price
+  per line, and generates a real quotation. Shows a helpful message pointing at Import
+  Products if no service products exist yet. Built on the same server-side-persisted
+  wizard pattern as New Client Project, so it doesn't repeat the earlier "missing
+  required field" class of bug.
+
+## [19.15.4] - 2026-08-20
+### Added
+- Bosnian translations for Remove Imported Products.
+
+## [19.15.3] - 2026-08-20
+### Fixed
+- Remove Imported Products, tested live: a product already used on a sale order/invoice
+  line surfaced a raw database foreign-key error, not a clean Odoo message — turns out
+  `product.product` doesn't guard against this deletion case itself. Worse, since
+  `unlink()` on a recordset is all-or-nothing, one blocked product stopped every other
+  product from being removed too. Now removes each product individually (isolated in
+  its own savepoint), so it removes everything it safely can and reports which specific
+  ones are still in use, by name, in a clear notification instead of a raw error.
+
+## [19.15.2] - 2026-08-20
+
+### Added
+- **Remove Imported Products** button on the Import Products wizard, next to Import
+  Products — deletes every product previously created by it and clears the link on
+  each template task. If a product has already been used on a confirmed sale order or
+  invoice, Odoo blocks its deletion and names which one, same as it would anywhere
+  else in the app.
+
+## [19.15.1] - 2026-08-20
+### Added
+- Bosnian translations for the new Import Products wizard.
+
+## [19.15.0] - 2026-08-20
+### Added
+- New **Import Products** wizard (Configuration, Manager-only) — turns the Project Task
+  Templates catalog into real Sales service products, one per task, priced at Default
+  Hours × an hourly rate you enter. Lets a client be quoted or invoiced per phase/task
+  ("Kickoff and stakeholder alignment", "Requirements and gap analysis", etc.) as
+  individual line items instead of one generic Client Services line. Re-running it
+  updates the same products (matched via the new `product_id` link on each template
+  task, now also shown as a column in Project Task Templates) instead of duplicating
+  them, so it's safe to re-run after changing hours or the rate.
+
+## [19.14.2] - 2026-08-20
+### Fixed
+- `partner.infrastructure` has a `company_id` field but had no multi-company `ir.rule` —
+  unlike `partner.asset`, which correctly restricts records to the user's active
+  company/companies. In an actual multi-company setup, a user could see and edit
+  infrastructure profiles belonging to a company they don't have access to. Added the
+  matching rule.
+- Infrastructure form hid `company_id` from everyone (`invisible="1"`) while its list
+  view correctly showed it to multi-company admins (`groups="base.group_multi_company"`)
+  — inconsistent with each other and with the asset form. Aligned both to the same
+  pattern used everywhere else in the module.
+
+## [19.14.1] - 2026-08-20
+### Added
+- Bosnian translations for the new Create Invoice / Invoices feature.
+
+## [19.14.0] - 2026-08-20
+### Added
+- New **Create Invoice** button on the asset header, next to Create Renewal Quote — for
+  one-off billing (project completed, ad-hoc maintenance) as opposed to the recurring
+  subscription renewal flow. Creates a draft Sale Order with a blank-priced "Client
+  Services" line (deliberately left blank, not pre-filled from Monthly Billing, since
+  these amounts vary per job); review/price it and use Odoo's normal Sales flow from
+  there (confirm, then Create Invoice) to generate the actual invoice.
+- New **Invoices** smart button on the asset, showing every invoice ever generated from
+  a Sale Order created against it (renewal or one-off) — a visible billing history per
+  asset. Backed by a new `asset_id` field on `sale.order`, set automatically whenever
+  this module creates an order from an asset.
+- New "Client Services" product, kept separate from "Asset Renewal Service" so one-off
+  project/maintenance revenue doesn't get mixed with renewal revenue in reports.
+
+## [19.13.1] - 2026-08-20
+### Added
+- Client Infrastructure Report: added **Subscription** (next to Sale Order) and
+  **Escalation Path** (next to the technical contacts, where it belongs) — both were
+  populated on the model and shown on the asset form, but never made it into the
+  report despite the report otherwise covering this exact information.
+### Reviewed
+- Checked every other view and report against its model's field list: `utm.campaign`
+  smart button, the Tasks/Projects menus and their search inherit, all analysis views
+  (pivot/graph/calendar), and the portal templates. All correctly scoped — the portal
+  in particular correctly shows only client-safe fields, no internal-only or credential
+  data. No other gaps found.
+
+## [19.13.0] - 2026-08-20
+### Added
+- New **Credentials** tab (manager-only, right before Credential Log) — the asset's own
+  Primary Access (login email + password) and Secondary Access (URL, login email,
+  password) fields, plus their reveal/hide toggles, were fully implemented in the model
+  (`login_email`, `password`, `url2`, `login_email2`, `password2`, `toggle_password`,
+  `toggle_password2`, `action_open_url2`) but had never actually been wired into any
+  view — there was no way to see or edit them from the UI at all.
+### Changed
+- Split the overloaded "Version & Upgrade" tab in two: it now holds just version/
+  technical-debt fields, with Native Odoo Apps Used and Custom Modules moved to their
+  own new **Modules** tab.
+- Added a placeholder to the "Escalation path" field (Client Technical Contacts tab) —
+  it had no label context explaining what to put there.
+
+## [19.12.5] - 2026-08-20
+### Fixed
+- Both mail template names and the renewal product's `description_sale` had their
+  **English** (`en_US`) slot literally containing Bosnian text — a side effect of the
+  19.11.x rebrand's live-DB patching, where the "set English text" write ran under a
+  context-less environment on a DB whose base language is Bosnian. Any English-context
+  user, a fresh install, or Odoo auto-filling a quote line description from
+  `description_sale` would have seen Bosnian text. Patched directly, and rewrote
+  `migrations/19.11.0/post-migrate.py` so every write — English and Bosnian alike —
+  now runs under an explicit `lang=` context, closing off this bug class for future
+  installs running the same migration.
+- Added the 2 remaining untranslated strings found by a fresh audit: the expanded
+  Import Demo Data description, and the "Renewal: %(name)s (Odoo.sh)" sale order line
+  text.
+
+## [19.12.4] - 2026-08-20
+### Changed
+- The health-check "escalated to High risk" chatter notification now also notifies
+  everyone in the Manager group, not just the asset's Responsible User.
+### Fixed
+- Found while wiring the above up: `res.groups.users` doesn't exist in this Odoo
+  build — the field is `user_ids` (same rename discovered on `res.users` earlier this
+  project). The weekly manager digest cron (`_cron_send_weekly_digest`) has been using
+  `group.users` since it was written, meaning it's been silently raising
+  `AttributeError` and never actually sending the weekly digest. Fixed both that and
+  the new manager-notify code to use `user_ids`.
+
+## [19.12.3] - 2026-08-20
+### Fixed
+- The expiry cron's chatter reminder and the health-check cron's "escalated to High
+  risk" alert both posted to the chatter with no recipients — meaning the Responsible
+  User only saw them if they happened to already be a follower of that asset. Both now
+  explicitly notify the Responsible User (`partner_ids`), so an actual bell/inbox
+  notification shows up in Odoo's chatter, not just a silent log entry.
+
+## [19.12.2] - 2026-08-20
+### Fixed
+- Import Demo Data's "Follow up on Nordic VPS renewal" task was created without a
+  `project_id`, making it a private task under Odoo's project security rules — visible
+  and deletable only by whoever's session created it. A manager running "Remove Demo
+  Data" from a different session hit an Access Error trying to unlink it. Now created
+  in the shared "Client Tasks" project, like every other demo task.
+
+## [19.12.1] - 2026-08-20
+### Changed
+- Moved the **Licenses** field from the Version & Upgrade tab to the main group, right
+  under Subscription Number.
+
+## [19.12.0] - 2026-08-19
+### Changed
+- Import Demo Data now exercises every part of the app instead of just the core
+  asset/project flow: native Odoo apps used, more of the tag catalog, a client IT
+  contact / decision maker / emergency contact per client (as real child contacts,
+  not just the company), two UTM campaigns linked to assets, encrypted credentials
+  populated on one asset and both infrastructure profiles (login, password, access
+  token), a draft renewal quote linked via Sale Order / Subscription on the Acme
+  Odoo.sh asset, subscription numbers, backup/DR/monitoring fields in both healthy
+  and unhealthy states, a high technical-debt example, and one client with **Email
+  Client on Expiry** turned off to show that toggle actually doing something. Blue
+  Harbor is deliberately left without an Infrastructure Profile, to demonstrate the
+  "clients missing a profile" dashboard callout. Sunrise's domain is deliberately
+  left without a health check, so "Check Now" can be seen live-promoting it from
+  New to Running. Remove Demo Data cleans up everything, including the new
+  contacts, campaigns, and the renewal quote.
+
+## [19.11.2] - 2026-08-19
+### Fixed
+- Live DB still showed "Client Stack" in Bosnian in 5 spots (module shortdesc, both
+  mail template names, the renewal product description, the security category
+  description) even after 19.11.0/19.11.1: on a module **upgrade** (not a fresh
+  install), Odoo's translation loader never overwrites a field's already-present
+  translation for a language, even once both the English source and `i18n/bs.po` have
+  the new text — it only fills in translations that were previously empty. Patched all
+  5 directly, and hardened `migrations/19.11.0/post-migrate.py` to set the `bs_BA`
+  value explicitly (not just `en_US`) so a fresh install upgrading through this version
+  elsewhere won't need the same manual fix.
+
+## [19.11.1] - 2026-08-19
+### Added
+- Bosnian translations for the rebrand's 8 new strings (mail template names, weekly
+  digest subject/body, product description, security category), and cleaned up the
+  now-orphaned "Client Stack"-branded translation entries.
+
+## [19.11.0] - 2026-08-19
+### Changed
+- Rebranded "Client Stack" -> "Odoo Clients 360": app name, top menu, main action,
+  dashboard header, security category/privilege, both mail template names, the renewal
+  product's description, the weekly manager digest subject/body, and the App Store
+  description page (added a new release-note entry, left the historical "Client Stack"
+  rebrand entry as-is). `ir.module.module.shortdesc` and the two `noupdate="1"` mail
+  templates/product don't get their XML/manifest text re-applied on a plain upgrade, so
+  a migration script (`migrations/19.11.0/post-migrate.py`) patches them directly,
+  matching the same pattern used for the original "Odoo Client Hub" rebrand.
+
+## [19.10.3] - 2026-08-19
+### Removed
+- "Create Task" header button on the asset form and its `action_create_task` method —
+  redundant now that the New Client Project wizard covers task creation properly
+  (with the full template catalog, hours, and scheduling). Nothing else referenced
+  this method.
+
+## [19.10.2] - 2026-08-19
+### Added
+- Dashboard: the **Clients** and **Active Client Assets** KPI cards are now clickable,
+  matching the risk-row cards below them. Clients opens the active-assets list grouped
+  by Customer; Active Client Assets opens it as a flat list — same underlying
+  `state != 'closed'` domain the two counters are computed from.
+
+## [19.10.1] - 2026-08-19
+### Added
+- Bosnian translation for the new client renewal email (subject, body, "View & Request
+  Renewal" button) and the "Email Client on Expiry" field/help text.
+
+## [19.10.0] - 2026-08-19
+### Added
+- Client-facing renewal reminder email. The expiry cron previously only emailed the
+  internal Responsible User — it now also emails the **client directly** when their
+  asset is expiring, with a "View & Request Renewal" button linking straight to the
+  client's portal page for that asset. New **Email Client on Expiry** toggle on the
+  asset form (Cost & Renewal group, on by default) lets you turn this off per asset if
+  a particular client shouldn't get it. New template: Client Stack: Client Renewal
+  Reminder (`mail_template_asset_expiry_client`).
+
+## [19.9.12] - 2026-08-19
+### Added
+- Bosnian translation for "Active Client Assets" (new dashboard KPI label) and synced
+  the "Client Asset" occurrence to include its new use in the Infrastructure report.
+
+## [19.9.11] - 2026-08-19
+### Fixed
+- `res_partner.py` used `date.today()` in two spots (`_compute_asset_counts`,
+  `action_view_expiring_soon_assets`) instead of `fields.Date.context_today()` like the
+  rest of the module — could be off by a day for users outside UTC. Fixed.
+- Contact picker fields on the asset form (Client IT contact, Decision maker, Emergency
+  contact) accepted any contact in the database. Now domain-restricted to the asset's
+  own client and its child contacts (`child_of` the asset's `partner_id`).
+### Changed
+- Dashboard's "Active Assets" KPI and the Infrastructure report's "Asset" column header
+  renamed to "Active Client Assets" / "Client Asset" — not a blind copy of the earlier
+  Assets→Clients menu rename (these two genuinely count/list individual asset records,
+  not clients, so "Clients" would have been wrong), but matching the "Client Asset(s)"
+  phrasing already used consistently everywhere else in the app instead of bare "Asset."
+
+## [19.9.10] - 2026-08-19
+### Fixed
+- Root-caused and fixed why re-running "Import Demo Data" kept reintroducing the
+  "Trial"/"VIP Client" untranslated-tag drift from 19.9.9: `_ensure_record`'s
+  `create()`/`write()` calls ran under whatever language the current session had
+  (this DB defaults to Bosnian), so writing a hardcoded English literal into a
+  translatable field's `write()` landed in the **bs_BA** slot, silently clobbering
+  the real translation with the English text every single re-import. `_ensure_record`
+  now forces `lang='en_US'` for all its create/write calls, so demo data always writes
+  to the English slot and never touches an existing Bosnian translation again.
+
+## [19.9.9] - 2026-08-19
+### Fixed
+- Full sweep of every ts_partner_app menu, action, report, and catalog record's
+  translation (not just the recently-added wizard). Found and fixed two demo-seeded
+  tags ("Trial", "VIP Client") stuck showing English under Bosnian — they're created
+  at runtime by the Import Demo wizard (not from static XML), so their `bs_BA` value
+  got set to the literal English text at creation time, and reloading `i18n/bs.po` on
+  a module upgrade doesn't overwrite an already-present translation value on those.
+  Patched both directly. Everything else — all menus, window actions, the two reports,
+  and every stage/tag/native-app catalog record — checked out correctly.
+
+## [19.9.8] - 2026-08-19
+### Fixed
+- Module-wide sweep for stale/missing Bosnian translations (following up 19.9.7's
+  occurrence-drift fix): confirmed zero remaining occurrence gaps anywhere in the
+  module. Added the one genuinely new gap found — the tag name-uniqueness constraint's
+  error message ("Tag name already exists!"), introduced by 19.9.6's `_sql_constraints`
+  → `models.Constraint` fix and never translated until now.
+
+## [19.9.7] - 2026-08-19
+### Fixed
+- 21 Bosnian translations existed but silently didn't apply everywhere they should,
+  because Odoo's `.po` loader matches by the `#:` occurrence comment, not just the msgid
+  text — reusing an already-translated string in a new spot (a new field, a new action,
+  a catalog entry) doesn't automatically translate that new spot unless its occurrence
+  is listed too. Concretely broken: the **New Client Project** action/dialog title (still
+  showed the English string), the Client Stages/Tags action names and view titles
+  (already patched live in 19.9.1, but would have reverted to English on any fresh
+  install since the `.po` itself was never fixed), the CRM/Sales/Purchase/Helpdesk/
+  Manufacturing catalog task names, the "Tasks" wizard-step label, and generic field
+  labels (Name, Sequence, Created by/on, Last Updated by/on, Display Name, ID) on the
+  three newer template/wizard models. Synced every entry's occurrences to the current
+  codebase so all of these now translate correctly.
+
+## [19.9.6] - 2026-08-19
+### Fixed
+- Expiry cron and renewal-confirmation logic (`_cron_send_expiry_notifications` in
+  `partner_asset.py`, `action_confirm` in `sale_order.py`) looked up the "To Renew" /
+  "Running" Kanban stage by a hardcoded English `name` search. Since `name` is
+  translatable and this DB's active language is Bosnian, the search silently matched
+  nothing once those stage names were actually translated — `state` updated correctly
+  but `stage_id` (and therefore the Kanban card) quietly fell out of sync. Both now use
+  `env.ref()` against the stage's xmlid instead, matching the pattern already used
+  correctly in `action_check_health`.
+- `partner.asset.tag`'s name-uniqueness constraint still used the deprecated
+  `_sql_constraints` list, which Odoo 19 ignores entirely (logs a warning, creates no
+  DB constraint) — duplicate tag names could be created. Converted to `models.Constraint`,
+  matching every other model in the module.
+### Added
+- Bosnian translations for the entire New Client Project wizard and Project Task
+  Templates catalog (99 strings) — the module's most recently built feature had zero
+  translation coverage until now: wizard labels/buttons/help text/error messages, the
+  config screen, and all 49 seeded catalog task names.
+
+## [19.9.5] - 2026-08-19
+### Changed
+- New Client Project wizard: moved **Next: Modules →** back into the footer, next to
+  Create Project and Cancel, now that it correctly reopens the wizard instead of closing
+  it — footer placement was never actually the problem.
+
+## [19.9.4] - 2026-08-19
+### Fixed
+- New Client Project wizard: the **Next: Modules** and **Recalculate PM** buttons were
+  closing the dialog after running — moving Next out of the footer wasn't the actual
+  fix, since a `target="new"` dialog closes by default whenever a `type="object"` button
+  returns nothing, regardless of where the button sits in the form. Both buttons now
+  explicitly return an action that reopens the (already-persisted) wizard record in
+  place, keeping the dialog open.
+
+## [19.9.3] - 2026-08-19
+### Fixed
+- New Client Project wizard: the **Next: Modules →** button was closing the whole
+  dialog instead of switching steps — it lived in the `<footer>`, and footer buttons in
+  a `target="new"` dialog always close it after running, regardless of what the method
+  returns (that's why Cancel/Create Project belong there but nothing else does). Moved
+  it into the page body (same treatment as the working Recalculate PM button), so it now
+  just switches to the Modules step in place.
+
+## [19.9.2] - 2026-08-19
+### Added
+- New Client Project wizard: added a **Next: Modules →** button on the Tasks step,
+  alongside the still-clickable statusbar. Safe to use `type="object"` for this now
+  (unlike the earlier attempts) since the wizard record is fully persisted before the
+  dialog opens — clicking it is an ordinary update, not the fragile from-scratch create
+  that caused the earlier bugs.
+
+## [19.9.1] - 2026-08-19
+### Changed
+- Renamed menu labels using "Asset" to "Client" for consistency: top nav **Assets → Clients**,
+  Configuration **Asset Stages → Client Stages**, Configuration **Asset Tags → Client Tags**
+  (including their list/form titles and window action names). No model, field, or technical
+  name changes — this is display text only.
+
+## [19.9.0] - 2026-08-19
+### Added
+- New Client Project wizard: a **Project Start Date** field (defaults to today). On
+  Create Project, selected tasks are now auto-scheduled from that date instead of all
+  landing on the same day — packed onto business days (Mon-Fri) up to 12 hours per day,
+  in natural project-flow order (Discovery → Foundation → Modules → Migration →
+  Integrations → Testing → Training → PM rather than each phase's own 10/20/30 sequence).
+  A single task whose own hours exceed 12h spans consecutive business days instead of
+  being squeezed into one. Sets `date_deadline` on every task, plus `planned_date_begin`
+  when the Gantt view's date fields are available (Enterprise's project_enterprise), so
+  the client project fills in as a proper Gantt chart. Also sets the project's own
+  Start Date the first time a project is created for a client.
+
+## [19.8.7] - 2026-08-19
+### Fixed
+- New Client Project wizard: fixed a recurring "Missing required value for the field
+  'Name'" error that survived the previous fixes because it wasn't actually about any
+  single missing view field — it was that the wizard opened as an unsaved/virtual record
+  (via `default_get`), and the browser's local cache for that kind of record has proven
+  unreliable across repeated save round-trips for multi-field One2many data. The wizard
+  record (and its 49 template lines) is now created **server-side**, fully persisted,
+  the moment you click "New Client Project" — the dialog always opens on a real,
+  already-saved record, so every subsequent click (toggling a task, Recalculate PM,
+  switching steps, Create Project) is an ordinary update to existing rows, not a
+  from-scratch creation the browser has to get exactly right.
+
+## [19.8.6] - 2026-08-19
+### Fixed
+- New Client Project wizard: the "Modules" step wasn't clickable on the statusbar.
+  `clickable="1"` needs to be inside the widget's `options` dict
+  (`options="{'clickable': '1'}"`), not a bare XML attribute — the bare attribute is
+  silently ignored, matching how core Odoo (project.task's own status bars) does it.
+
+## [19.8.5] - 2026-08-19
+### Fixed
+- New Client Project wizard: eliminated the "Missing required value" errors for good by
+  removing their root cause instead of chasing individual fields. The **Next: Modules** /
+  **Back: Tasks** buttons each forced a full save-and-reopen round trip (any `type="object"`
+  button does), and each of those trips was a fresh chance for the browser's local record
+  to drop a field the view didn't retain. Replaced them with a clickable **statusbar**
+  (Tasks / Modules) at the top of the wizard — switching steps is now a pure client-side
+  field change with no server round trip at all. The wizard is now only ever actually
+  saved once, when **Create Project** is clicked. The Recalculate PM button also no longer
+  forces a dialog reopen; it now just updates the line in place.
+
+## [19.8.4] - 2026-08-19
+### Fixed
+- New Client Project wizard: fixed "Missing required value for the field 'Phase'" when
+  clicking **Next: Modules** (which forces an implicit save). The `phase` field is
+  required on the line model but wasn't present in any of the 6 page list views, so the
+  web client's local record never retained a value for it and dropped the field entirely
+  on save. Added `phase`, `template_task_id`, and `sequence` back to every page's list as
+  hidden (`column_invisible`) columns so they round-trip correctly on save.
+
+## [19.8.3] - 2026-08-19
+### Fixed
+- New Client Project wizard: task/module lists appeared empty even though the "Selected
+  Tasks" / "Total Hours" summary showed correct numbers. The summary is a computed field
+  (fetched via RPC, worked fine), but the 6 page fields were never populated by
+  `default_get` — only the old shared `line_ids` was — so the web client's local record
+  for a brand-new, unsaved wizard had no data to render for them. `default_get` now
+  populates each of the 6 fields directly (dropped the shared `line_ids` field entirely,
+  since it's no longer needed), so every page shows its rows immediately when the wizard
+  opens.
+
+## [19.8.2] - 2026-08-19
+### Changed
+- New Client Project wizard is now a real 2-step flow instead of freely-clickable notebook
+  tabs: **Step 1 (Tasks)** shows all the implementation task sections (Discovery & Planning,
+  Foundation, Migration, Integrations, Testing & Training, Project Management) with a
+  **Next: Modules →** button; **Step 2 (Modules)** shows the native app checklist with
+  **← Back: Tasks** and the final **Create Project** button, which only appears on step 2.
+
+## [19.8.1] - 2026-08-19
+### Fixed
+- New Client Project wizard: fixed a "Missing required value for the field 'Name'" error on
+  save. The 6 notebook pages were all showing the same `line_ids` field repeated with
+  different domains/sub-views, a pattern the web client doesn't reliably support (it could
+  attempt to create a line without the fields from another page's sub-view). Replaced with 6
+  distinct One2many fields (`line_modules_ids`, `line_discovery_foundation_ids`, etc.), each
+  backed by the same underlying lines but domain-filtered at the ORM level, so every page is
+  unambiguous about its own field shape.
+
+## [19.8.0] - 2026-08-19
+### Added
+- **Project Task Templates** catalog (Configuration > Project Task Templates): a configurable
+  list of implementation phases/tasks with default hours (Discovery & Planning, Environment &
+  Foundation, Module Configuration, Data Migration, Integrations & Customization, Testing,
+  Training & Go-Live, Project Management) seeded from a standard 8-phase implementation plan.
+- The **New Client Project** button on an asset now opens a multi-page wizard instead of
+  creating the project directly: tick which modules and tasks apply to this client across
+  6 pages (Modules / Discovery & Foundation / Data Migration / Integrations & Customization /
+  Testing & Training / Project Management), adjust hours per line, then **Create Project**.
+  Selected tasks are created in the client's dedicated project (reusing it if one already
+  exists), tagged by phase (using standard Project tags) so they can be filtered/grouped
+  in the Project app. The Project Management page has a **Recalculate** button that sets
+  "Status meetings, reporting, coordination" to 12.5% of the other selected hours.
+
+## [19.7.37] - 2026-08-19
+### Fixed
+- Apps list still showed the old "Odoo Client Hub" name in the module's short description
+  (`ir.module.module.shortdesc`) — the 19.7.08 rebrand migration patched the noupdate data
+  records but missed this field, since it's only refreshed from the manifest on
+  "Update Apps List", not on a plain upgrade. Migration patches it directly to "Client Stack".
+
+## [19.7.36] - 2026-08-19
+### Added
+- Bosnian (bs_BA) translation of the entire module — field labels, view/report text,
+  portal templates, email templates, dashboard, and the seeded native-app/tag catalog
+  (`i18n/bs.po`, 458 of 464 translatable strings covered; proper nouns such as the app
+  name and demo client names, plus one internal technical string, are intentionally
+  left untranslated). Activate under Settings > Translations once Bosnian is installed
+  as a language, or switch your user's language to Bosnian / bosanski jezik.
+
+## [19.7.35] - 2026-08-19
+### Added
+- Asset form: picking a **Sale Order / Subscription** now auto-fills the Customer from that
+  order, and suggests an Asset Name from its first product line (falling back to the order's
+  own reference if no product line is found) — only when the Name field is still empty, so
+  it never overwrites something you already typed. Makes the new "New Client" quick-add flow
+  faster when you're creating the asset off the back of an existing quote.
+
+## [19.7.34] - 2026-08-19
+### Added
+- Dashboard header: new **New Client** button (primary, first in the button group) next to
+  Projects — opens a blank asset form directly from the dashboard, one click away instead
+  of navigating through the Assets menu first. The Customer field already supports
+  Odoo's standard inline "Create..." flow, so a brand-new client can be created right there
+  too, not just an existing one picked.
+
+## [19.7.33] - 2026-08-19
+### Added
+- Dashboard header: new **Projects** button, in line with the "Client Stack / Portfolio
+  overview" title, right-aligned at the end of that row — opens the new Client Projects
+  list. New `partner_asset_project_action` (+ "Projects" menu item, sequence 13) listing
+  every dedicated client project (i.e. everything except the shared "Client Tasks" one).
+- New **Running Projects & Tasks** card on the dashboard: running project count, open task
+  count, and a bar breakdown by stage (To Do / In Progress / Waiting on Client / Done)
+  across every client project — clickable through to the filtered task list, same pattern
+  as the other dashboard cards. Backed by a new `projects` key on `get_dashboard_data()`.
+
+## [19.7.32] - 2026-08-19
+### Fixed
+- Client Project smart button on the asset form was labeled just "Client Project", so the
+  task count above it read like a count of *projects* (e.g. "4 Client Project" looked like
+  4 projects) when it's actually the number of tasks inside the one project. Relabeled to
+  "Project Tasks" so it reads unambiguously as "4 Project Tasks", matching how the
+  neighboring "Tasks" button already reads. Audited every other smart button in the module
+  (Client Assets, Tasks, Odoo Assets, Expiring Soon, Infrastructure) — no other instances
+  of this issue found.
+
+## [19.7.31] - 2026-08-19
+### Changed
+- Import Demo wizard: the other three demo clients (Nordic, Blue Harbor, Sunrise) now also
+  get a dedicated Client Project with tasks spread across the shared stages, not just Acme
+  — so the "New Client Project" / Client Project smart button feature is visible for every
+  demo client. Tasks are scenario-appropriate: Nordic gets downtime/renewal follow-ups,
+  Blue Harbor gets margin-review tasks (ties into its intentional negative-margin demo
+  asset), Sunrise gets onboarding tasks (ties into its "just signed" New-stage asset).
+### Fixed
+- Demo data: Sunrise's domain asset was sitting in the "New" stage but status "Running" —
+  the exact stage/status contradiction fixed in 19.7.22, just never corrected in the demo
+  wizard itself. Now correctly `state: 'new'`.
+
+## [19.7.30] - 2026-08-19
+### Added
+- New **Client Project** smart button in the asset form's button box (next to the existing
+  Tasks one) — same click-to-open pattern, but only appears when the client actually has a
+  dedicated project running (as opposed to the shared "Client Tasks" one). Shows that
+  project's task count and opens straight into its task view. Backed by two new computed
+  fields on Partner Asset: `client_project_id`, `client_project_task_count`.
+
+## [19.7.29] - 2026-08-19
+### Changed
+- Import Demo wizard now also creates a dedicated **Client Project** for Acme (the same
+  outcome as clicking "New Client Project"), with 4 demo tasks spread across the To Do /
+  In Progress / Waiting on Client / Done stages, so the feature is visible without manually
+  clicking the button. Remove Demo Data cleans it up too (`project.project` added to the
+  removal order, right after `project.task`).
+
+## [19.7.28] - 2026-08-19
+### Added
+- **New Client Project** button on the asset form header — find-or-creates a dedicated
+  project for that client (named after the client, `partner_id` set) and opens its task
+  view, for real multi-task engagements (onboarding, a migration, a support contract) as
+  opposed to the single-task "Create Task" button. Reuses the same To Do / In Progress /
+  Waiting on Client / Done stages as the shared Client Tasks project, so the pipeline stays
+  consistent app-wide. Idempotent — clicking it again for a client that already has a
+  (non-shared) project opens the existing one instead of creating a duplicate.
+
+## [19.7.27] - 2026-08-19
+### Added
+- **Create Task** button on the asset form header (next to Create Renewal Quote /
+  Infrastructure) — creates a task linked to the asset and its client, assigns it to the
+  asset's Responsible User, and opens the new task's form directly.
+- New default **Client Tasks** project with four default stages — To Do, In Progress,
+  Waiting on Client, Done (folded) — so tasks created from the asset form land in a shared
+  team pipeline instead of scattering into each user's private/personal stages. Seeded via
+  `data/project_data.xml`.
+
+## [19.7.26] - 2026-08-19
+### Added
+- New **Tasks** menu (Client Stack → Tasks) listing every `project.task` linked to a Client
+  Asset, portfolio-wide — previously only reachable one asset at a time via the "Tasks"
+  smart button. List/kanban/form/calendar views, reusing Project's own task views. Also
+  extended Project's task search view with a "Client Asset" search field and a "Client
+  Asset" group-by, so tasks can be organized by which client's asset they belong to.
+
+## [19.7.25] - 2026-08-19
+### Removed
+- **Vendor** field (`vendor_id`) fully removed — field and data, per explicit request (no
+  replacement, nothing worth preserving). Cleaned out of every reference: the form (already
+  done in 19.7.24), the asset search "Vendor" group-by filter, the Client Infrastructure
+  Report, and the expiry reminder email template. The email template lives in a
+  `noupdate="1"` data file, so its existing body wouldn't refresh on its own — patched via
+  `migrations/19.7.25/post-migrate.py`.
+
+## [19.7.24] - 2026-08-19
+### Changed
+- Removed the **Vendor** field from the asset form. The underlying field (`vendor_id`) and
+  any existing data are untouched — it's still readable in the Client Infrastructure Report,
+  the expiry reminder email, and the "Vendor" group-by filter in the asset search — just no
+  longer editable from the form. Say the word if you want it fully deleted (field + data)
+  instead of just hidden.
+
+## [19.7.23] - 2026-08-19
+### Changed
+- Default renewal reminder window changed from **30 to 60 days** before End Date
+  (`reminder_days`), globally — the "move to To Renew" trigger fires 60 days out by
+  default now instead of 30. Still per-asset configurable (e.g. keep a shorter window for
+  fast-moving items like SSL certs). Existing assets still at the old 30-day default are
+  migrated to 60 on upgrade (`migrations/19.7.23/post-migrate.py`); assets with a
+  deliberately different value (anything other than exactly 30) are left untouched.
+- Confirmed (no code change needed): the reminder already surfaces as a native Odoo
+  notification — an Activity assigned to the asset's Responsible User, visible in the
+  Activities bell/menu — alongside the existing chatter note and email.
+
+## [19.7.22] - 2026-08-19
+### Added
+- Status field gets a **New** value, matching the "New" Kanban stage (previously new assets
+  showed stage "New" but status badge "Running" — contradictory). Defaults to `new` now
+  (was `running`). `action_check_health()`'s auto-provisioning move (New → Running) now
+  flips status to `running` at the same time, keeping stage and status in sync at that
+  transition. Added "New" to the status filter/group-by in the asset search, and a
+  decoration (info/blue) on the status badge.
+- Kanban cards now show a **High Risk** badge when `risk_level` is High, so problem clients
+  are visible while scanning the board instead of only on the dashboard's risk tile.
+### Fixed
+- Client portal: the asset status badge used a catch-all `t-else` for "Closed" that would
+  have mis-labeled New assets as Closed to the client. Now explicit for all four statuses.
+- Existing assets already sitting in the New stage (created before this fix, showing the
+  old default status of Running) are corrected to status New on upgrade
+  (`migrations/19.7.22/post-migrate.py`) — nothing else is touched.
+
+## [19.7.21] - 2026-08-19
+### Removed
+- "Odoo Enterprise Cost" field — superseded by License Cost.
+### Changed
+- **License Cost** is now a per-license price (was a flat monthly amount) —
+  labeled "License Cost (per license)". A new read-only **Total License Cost**
+  (`license_cost_total`) computes `license_cost &#215; Licenses` and feeds into Infra Monthly
+  Cost in its place. The Cost &amp; Margin tab shows the per-unit price next to the license
+  count and the computed total.
+- Existing assets' old Odoo Enterprise Cost values are migrated into Maintenance Cost before
+  the column is dropped (`migrations/19.7.21/pre-migrate.py`) — not into License Cost, since
+  most existing assets have Licenses = 0 and multiplying by that would silently zero the
+  amount back out.
+- Financial Overview pivot/graph: swap License Cost for Total License Cost as the measure
+  (the per-unit price alone isn't a meaningful sum across clients).
+
+## [19.7.20] - 2026-08-18
+### Changed
+- License Cost and Maintenance Cost (added in 19.7.19) are now available as measures on the
+  Financial Overview pivot and graph, alongside Monthly Billing, Infra Monthly Cost, Gross
+  Margin, and Margin %.
+
+## [19.7.19] - 2026-08-18
+### Added
+- Monthly Cost Breakdown (Cost &amp; Margin tab): two new cost lines — **License Cost**
+  (shown next to the Licenses count from the Version &amp; Upgrade tab for context) and
+  **Maintenance Cost**. Both feed into the existing Infra Monthly Cost total, so gross
+  margin, the Financial Overview pivot, and the dashboard's cost/margin KPIs all pick them
+  up automatically — no other changes needed since those all read the existing computed
+  total rather than the individual cost fields.
+
+## [19.7.18] - 2026-08-18
+### Added
+- New **Credentials** report (PDF, per client): live Infrastructure Profile credentials
+  (Odoo login URL/email/password, GitHub URL/branch/access token, server SSH details) and
+  any legacy per-asset logins that still hold data. Restricted to the Manager group at the
+  action level (`group_ids`) — doesn't even appear in the Print menu for plain Users — and
+  backed by the same field-level Manager-only access already enforced on every credential
+  field, so it's blocked at the ORM layer too, not just hidden in the UI.
+- Every credential shown in the new report is recorded in the Credential Access Log,
+  exactly like revealing a password in the UI would be.
+### Changed
+- `partner.asset.credential.log` now also logs Infrastructure Profile credential
+  reveals/updates (new `infrastructure_id` field alongside the existing `asset_id`, at
+  least one required). Infrastructure Profile gets its own read-only "Credential Log" tab,
+  matching the one already on assets. Toggling the Odoo Login password or GitHub token's
+  visibility on the Infrastructure form is now logged too (previously it wasn't).
+
+## [19.7.17] - 2026-08-18
+### Changed
+- Client Infrastructure Report expanded significantly: now includes an Infrastructure
+  Profile section (hosting type badge, Odoo.sh/Custom Server details, Odoo login URL,
+  GitHub repository/branch — credentials still excluded), a per-client license total, and
+  a full per-asset detail block covering Technical Contacts, Cost &amp; Margin, Backup &amp;
+  Risk, Version &amp; Upgrade (including License count and Native Odoo Apps Used), Tags,
+  Campaign, and the Custom Modules table. The original compact assets-overview table is
+  kept at the top for a quick scan. Report generation uses the printing user's own
+  permissions (no `sudo()`), so Manager-only fields still aren't exposed to plain Users.
+
+## [19.7.16] - 2026-08-18
+### Added
+- Asset form (Version &amp; Upgrade tab): new **Licenses** field (number of user seats the
+  client is on) and **Native Odoo Apps Used** — a multi-select tag field (new
+  `partner.asset.native.module` model) for the standard Odoo apps a client runs (Sales,
+  Inventory, Accounting, ...), separate from the existing Custom Modules list which is for
+  bespoke development. Seeded with 29 common native apps
+  (`data/partner_asset_native_module_data.xml`); manageable afterwards from
+  Configuration &gt; Native Odoo Apps like any other catalog (add more, e.g. localizations
+  or niche apps, as needed). Also searchable/groupable on the asset list.
+
+## [19.7.15] - 2026-08-18
+### Added
+- Assets still in the "New" stage now move to "Running" automatically the first time their
+  health check succeeds (site comes up), via `action_check_health()` — covers both the daily
+  SSL/uptime cron and the manual "Check Now" button. A chatter note records the auto-move
+  ("Provisioning confirmed — the site is live. Moved from New to Running."). Assets without a
+  URL, or that never come up, stay in New until moved manually (via the stage statusbar or by
+  dragging the Kanban card) — this only automates the happy path.
+
+## [19.7.14] - 2026-08-18
+### Added
+- Stages now carry their own Kanban color (`partner.asset.stage.color`, editable via the
+  standard color-picker on the Asset Stages list/form). The "New" stage ships set to Cyan
+  so newly-signed clients stand out on the board immediately.
+### Changed
+- Partner Asset's `color` field is now computed from its stage (`stage_id.color`), stored,
+  and still freely overridable per card — moving a card to a different stage now recolors
+  it automatically instead of requiring a manual pick. Existing records are recomputed
+  automatically on upgrade.
+
+## [19.7.13] - 2026-08-18
+### Added
+- New default Kanban stage **"New"** (sequence 5, ahead of Running) for clients who've just
+  signed and aren't provisioned/live yet — pipeline is now New → Running → To Renew → Closed.
+  Since new assets already default to the lowest-sequence stage, newly created assets now
+  land in "New" automatically, no code change needed beyond the stage record itself.
+- Import Demo wizard: Sunrise's domain asset now demonstrates the New stage (signed 2 days
+  ago) instead of sitting in Running.
+
+## [19.7.12] - 2026-08-18
+### Added
+- "Client Assets" smart button on the Campaign (`utm.campaign`) form — shows the count of
+  Partner Assets linked to that campaign and opens them filtered, mirroring the same pattern
+  CRM uses for its own Leads/Opportunities smart button. Hidden when the count is zero.
+  New `models/utm_campaign.py` (`_inherit = 'utm.campaign'`) and
+  `views/utm_campaign_views.xml`.
+
+## [19.7.11] - 2026-08-18
+### Added
+- New "Campaign" field on Partner Asset (`campaign_id`, links to `utm.campaign` — the same
+  Campaign model used by CRM, Sales, and Mass Mailing), so an asset can be tied to the
+  marketing/sales campaign that brought in the client or the upsell. Added to the form
+  (next to Vendor), as an optional list column, and as a search filter/group-by. New `utm`
+  dependency (already installed transitively via `sale`, now declared explicitly since the
+  module references `utm.campaign` directly).
+
+## [19.7.10] - 2026-08-18
+### Changed
+- App Store description page (`static/description/index.html`) brought up to date — it was
+  frozen at the feature set from early 2026 and was missing everything from Live SSL
+  Monitoring onward. Now covers the Portfolio Dashboard, Client Infrastructure Profiles
+  (Online/Odoo.sh/Custom Server split), live SSL &amp; uptime monitoring, the encrypted
+  credential vault with audit log, renewal automation, the client portal, role-based access
+  control, multi-company &amp; tags, plus a compact "Also Included" list for the smaller
+  features (calendar, pivot/graph, PDF report, project integration, technical contacts,
+  custom module inventory). Release Notes section replaced with the actual current history
+  (was still showing v19.0.39-era placeholder entries).
+
+## [19.7.09] - 2026-08-18
+### Changed
+- New app icon to match the "Client Stack" rebrand: three stacked plates in the app's own
+  purple brand color (matching the dashboard/kanban accent) with an amber accent dot,
+  replacing the old navy-blue icon. Same file path (`static/description/icon.png`), so it
+  updates everywhere it's referenced (Apps icon, app switcher web_icon, portal page icon)
+  automatically.
+
+## [19.7.08] - 2026-08-18
+### Changed
+- Renamed the application from "Odoo Client Hub" to **Client Stack** (more distinctive, avoids leading
+  a third-party listing with "Odoo"). Updated everywhere user-facing: manifest name/description, App
+  Store description page, root app menu, dashboard header, security group category ("Client Stack /
+  User", "Client Stack / Manager"), weekly digest subject/body, renewal product description, and the
+  expiry reminder email template's internal name.
+- The module's technical name (`ts_partner_app`), all model/field/XML-ID technical identifiers, and CSS
+  class names are unchanged — this is a display-name rebrand only, not a technical module rename, so
+  existing installs upgrade in place with no data impact.
+
+## [19.7.07] - 2026-08-18
+### Added
+- Dashboard: new "Infrastructure Coverage" card — bar breakdown of Infrastructure Profiles
+  by Hosting Type (Online/Odoo.sh/Custom Server, clickable through to the filtered list)
+  plus a "N client(s) without a profile" link that opens the contacts still missing one.
+  Closes the gap where the Infrastructure Profile feature (added in 19.7.02) wasn't
+  reflected anywhere on the portfolio dashboard. Backed by a new `infrastructure` key on
+  `get_dashboard_data()`.
+
+## [19.7.06] - 2026-08-18
+### Added
+- 12 default asset tags for common Odoo project work, seeded on install
+  (`data/partner_asset_tag_data.xml`): Implementation, Migration, Upgrade, Customization,
+  Support & Maintenance, Integration, Training, Go-Live, On-Premise, SaaS / Odoo Online,
+  Multi-Company, Data Import. Editable/removable afterwards like any other tag.
+
+## [19.7.05] - 2026-08-18
+### Changed
+- Asset form: "Type" now renders as radio buttons (still a Selection field underneath,
+  no data change) for the 3-way Online/Odoo.sh/Custom choice.
+- Infrastructure Profile: added "Online" as a third Hosting Type option alongside
+  Odoo.sh and Custom Server, mirroring the asset Type field. Selecting Online hides both
+  the Odoo.sh and Custom Server detail sections, leaving just the always-present Odoo
+  Login and GitHub sections.
+
+## [19.7.04] - 2026-08-18
+### Changed
+- Asset "Type" simplified from 8 values (Domain, Hosting, Odoo.sh, Email, SSL, Git, Server,
+  Other) down to 3: **Online**, **Odoo.sh**, **Custom** — mirroring the Infrastructure
+  Profile's Odoo.sh/Custom Server split. Online is the catch-all for any generic web-facing
+  asset (what used to be Domain/Hosting/Email/SSL/Other); Custom covers what used to be
+  Git/Server. Existing records are remapped automatically on upgrade
+  (`migrations/19.7.04/post-migrate.py`).
+- SSL/uptime health-check cron (`_cron_check_asset_health`) no longer filters by type —
+  any asset with a Monitored URL set is checked, regardless of Online/Odoo.sh/Custom.
+- Removed the type='ssl'-specific auto-extension of End Date to the certificate's expiry
+  on health check, since "SSL" is no longer a distinct type; `ssl_expiry_date` is still
+  recorded on every check.
+
+## [19.7.03] - 2026-08-18
+### Changed
+- Asset form: removed the "Server Login Details" / "Odoo Portal Login Details" section
+  (URL, login email, password, secondary URL/email/password) now that this information
+  belongs on the client's Infrastructure Profile instead of being duplicated per-asset.
+  The "Monitored URL" (used by SSL/uptime health checks) moved into the Backup & Risk tab's
+  "Live Health Monitoring" group so `Check Now` keeps working. Underlying fields
+  (`login_email`, `password`, `url2`, `login_email2`, `password2`, ...) were left in the
+  model/database untouched — only removed from the view — so no existing credential data
+  is lost; they can be dropped later once confirmed unused.
+- Added an "Infrastructure" button next to "Create Renewal Quote" on the asset form header,
+  opening (or creating) that client's Infrastructure Profile.
+
+## [19.7.02] - 2026-08-18
+### Added
+- Client Infrastructure Profile: new "Infrastructure" smart button on the customer form and
+  "Infrastructure" menu, one consolidated record per client (new `partner.infrastructure`
+  model, unique per partner). Top-level "Hosting Type" toggle (Odoo.sh / Custom Server)
+  switches between an Odoo.sh section (project URL, branch, database) and a Custom Server
+  section (host/IP, SSH port/user, hosting provider); an always-visible "Odoo Login" section
+  (URL, email, encrypted password with reveal toggle) and "GitHub / Code Repository" section
+  (URL, branch, encrypted access token with reveal toggle) sit below regardless of hosting
+  type. Credential fields restricted to Asset Managers, encrypted at rest the same way as
+  existing `partner.asset` credentials.
+- Import Demo wizard now also seeds one Odoo.sh and one Custom Server infrastructure profile
+  to showcase the new toggle.
+
+## [19.7.01] - 2026-08-18
+### Added
+- "Import Demo" wizard under Configuration (Manager only): one-click creates a set of
+  realistic demo clients and assets (domains, hosting, Odoo.sh, SSL, git, server, email —
+  including one expiring soon, one overdue, and one with negative margin) to explore the
+  Dashboard, Financial Overview and expiry engine without manual data entry. Re-running
+  updates the same demo records in place instead of duplicating; a "Remove Demo Data"
+  button cleanly deletes everything it created. New transient model
+  `ts.partner.app.demo.import.wizard` (`models/demo_import_wizard.py`).
+### Note
+- This is a temporary dev/testing helper, explicitly scoped to be dismissed later — see
+  the removal steps documented at the top of `models/demo_import_wizard.py`.
+
+## [19.7.00] - 2026-08-18
+### Added
+- Portfolio Dashboard: new OWL client action ("Dashboard" menu, above Assets) giving a
+  single-screen overview — client/asset counts, MRR, infra cost and gross margin KPIs,
+  a portfolio mix breakdown by asset type, a stage pipeline breakdown, an "Expiring in
+  30 Days" list, and clickable risk tiles (High Risk, Unreachable, Backup Stale, Negative
+  Margin) that open a filtered asset list. Backed by a new `get_dashboard_data()` method
+  on `partner.asset`.
+
+## [19.6.00] - 2026-07-18
+### Added
+- Live SSL & uptime monitoring: daily cron connects to each asset's URL, checks reachability and reads the real SSL certificate expiry (works even on invalid/expired certs). Auto-fills End Date for SSL assets, escalates Risk Level to High when a site is down or a certificate expires in under 14 days, and posts an alert in the chatter. "Check Now" button on the Backup & Risk tab.
+- Renewal completion flow: confirming the linked renewal Sale Order automatically extends the asset's End Date by the new "Renewal Period (months)" field (default 12), resets it to Running, and re-arms the expiry notification.
+- Weekly manager digest: cron emails all Asset Managers a summary of assets expiring in 30 days, unreachable sites, negative-margin assets, backups not verified in 60+ days, and high/critical technical debt.
+- Calendar view on End Date, colored by customer, added to the main action.
+- Client Infrastructure PDF report (QWeb): printable per-customer overview of assets, versions, risk and backup status — credentials explicitly excluded. Available from the asset list Print menu.
+- Tags with colors (partner.asset.tag) + kanban card color (highlight_color); tags shown on cards, filterable and groupable in search. Tag management in Configuration.
+- Client portal: customers can log in and view their own assets at /my/assets (name, type, dates, version, status — never credentials), with a "Request Renewal" button that posts to the chatter and schedules an activity for the responsible user. Read-only record rule scoped to the customer's commercial entity.
+- Credential encryption at rest: passwords are now encrypted with Fernet (key derived from the database secret) in dedicated *_encrypted columns; the visible fields are non-stored computes. A migration script encrypts existing plaintext values and wipes the old columns on upgrade.
+- Credential access audit log: every password reveal and update is logged (who, when, which field) and shown to managers in a new "Credential Log" tab.
+- Project integration: new "Client Asset" field on project tasks, Tasks smart button and stat on the asset form ('project' added as dependency).
+- Multi-company support: company_id field with a multi-company record rule.
+### Changed
+- Manifest: added 'portal' and 'project' dependencies and the 'cryptography' python external dependency.
+
+## [19.5.00] - 2026-07-18
+### Added
+- Role-based access control: new "Odoo Client Hub / User" and "Odoo Client Hub / Manager" security groups. Users can create/edit assets but cannot delete them, manage stages, or view credentials. Admin is auto-assigned as Manager on upgrade.
+- Credential protection: login and password fields are now restricted to Managers at both the view and ORM/API level.
+- Smarter expiry engine: new `reminder_days` field (default 30) drives an automatically computed `expiry_date` (works for imports/API too, not just the UI). Cron is now catch-up safe (`expiry_date <= today` + `expiry_notified` flag), so missed runs no longer skip reminders. Changing the end date re-arms the notification.
+- Expiry email reminder: new mail template sent to the responsible user in addition to the chatter message and activity.
+- "Create Renewal Quote" button on the asset form: generates a draft Sale Order (using the new "Asset Renewal Service" product) pre-filled with the monthly billing amount, and links it to the asset.
+- Financial Overview dashboard: dedicated pivot/graph views and menu showing MRR (monthly billing), infrastructure cost, gross margin and margin % per customer.
+- New computed `margin_pct` field.
+- List view: MRR / cost / margin columns with column totals; new "Expiring in 30 Days" search filter.
+### Fixed
+- SECURITY: passwords and login emails no longer have `tracking=True` (old and new values were being logged into the chatter and visible to all followers).
+- Performance: partner asset counters now use two batched `_read_group` queries instead of one search per partner (N+1) and removed dead read_group code.
+- Cron reliability: reminders are no longer silently skipped if the scheduler misses the exact expiry day; corrected the reminder message wording.
+- Activity creation now uses `activity_schedule()` and is skipped safely when no responsible user is set.
+
+## [19.4.00] - 2026-02-23
+### Fixed
+- Forced app icon refresh for the Odoo Apps list by explicitly adding `images` key to manifest and bumping version to 19.4.00.
+
+## [19.3.09] - 2026-02-23
+### Changed
+- Redefined versioning scheme: 19.x.xx format with 10 versions per minor increment.
+
+## [19.3.08] - 2026-02-23
+### Changed
+- Updated manifest with official metadata: Author (Techman Solutions, Mirsad Selimovic), Website, Maintainer, and Support.
+- Changed license to OPL-1 and set the module price to 150.00 USD.
+
+## [19.3.07] - 2026-02-23
+### Changed
+- Updated App Store description page colors to match the brand (RGB 138, 18, 88).
+- Replaced previous accent colors with the new magenta/maroon theme for headers and icons.
+
+## [19.3.06] - 2026-02-23
+### Changed
+- Improved `static/description/index.html` layout using Odoo-native classes for better browser rendering in the App Store.
+- Reorganized Key Features grid and Support section for better readability.
+
+## [19.3.05] - 2026-02-23
+### Added
+- Created a comprehensive `static/description/index.html` for the Odoo App Store.
+- Updated manifest with improved summary, description, and version 1.0.35.
+
+## [19.3.04] - 2026-02-23
+### Changed
+- Converted "Custom Modules" tracking from `Many2many` to `One2many`.
+- Enabled direct inline editing (no popup) for the custom modules list in the "Version & Upgrade" tab.
+
+## [19.3.03] - 2026-02-23
+### Changed
+- Expanded the "Custom Modules" section to take the full width of the form page.
+- Replaced the `group` container with an `oe_title` header and direct field placement to remove layout constraints.
+
+## [19.3.02] - 2026-02-23
+### Added
+- Added "Custom Modules" section in the Version & Upgrade tab.
+- Replaced the simple text field for custom modules with a structured Many2many relationship.
+- New model `partner.asset.custom.module` to store module Name, Version, Author, and Link.
+
+## [19.3.01] - 2026-02-23
+### Changed
+- Converted `infra_monthly_cost` to a computed field.
+- Added detailed cost component fields: `server_cost`, `odoo_enterprise_cost`, `backup_cost`, and `external_services_cost`.
+- Updated "Cost & Margin" tab with a new "Monthly Cost Breakdown" section.
+
+## [19.2.10] - 2026-02-23
+### Added
+- Added "Backup & Risk" tab to the asset form view.
+- Added `last_backup_check` (Date), `backup_verified` (Boolean), `monitoring_active` (Yes/No), `dr_plan_documented` (Boolean), and `risk_level` (Low/Medium/High) fields.
+- Added legal protection advisory note to the Backup & Risk section.
+
+## [19.2.09] - 2026-02-23
+### Changed
+- Refined domain filtering for "Client Technical Contacts" to strictly show sub-contacts (children) of the selected Customer, excluding the Customer record itself from the selection to avoid clutter and ensure technical contacts are specific individuals.
+
+## [19.2.08] - 2026-02-23
+### Fixed
+- Attempted to resolve app icon not loading by stripping redundant manifest keys and forcing a version bump.
+- Verified icon file integrity and permissions.
+
+## [19.2.07] - 2026-02-23
+### Added
+- Added `emergency_contact_phone` field to the asset form view (related to the selected Emergency Contact's mobile number).
+
+## [19.2.06] - 2026-02-23
+### Changed
+- Converted "Client Technical Contacts" fields (`client_it_contact`, `decision_maker_contact`, `emergency_contact`) from text fields to Many2one links to `res.partner`.
+- Added dynamic filtering to technical contacts to only show contacts related to the selected Customer.
+
+## [19.2.05] - 2026-02-23
+### Added
+- Added "Client Technical Contacts" tab to the asset form view.
+- Added `client_it_contact`, `decision_maker_contact`, `emergency_contact`, and `escalation_path` fields.
+
+## [19.2.04] - 2026-02-23
+### Added
+- Added "Server Cost & Margin Tracking" tab to the asset form view.
+- Added `infra_monthly_cost`, `monthly_billing_client`, and `gross_margin` (computed) fields.
+- Added `currency_id` to handle monetary fields.
+- Updated List view to show Gross Margin with color coding.
+
+## [19.2.03] - 2026-02-22
+### Changed
+- Renamed the application from "Partner Asset Management" to "Odoo Client Hub".
+- Updated manifest, main action name, and root menu name.
+
+## [19.2.02] - 2026-02-22
+### Added
+- Added `sale_order_id` field to link assets to Sale Orders / Subscriptions.
+- Added `sale` as a module dependency in the manifest.
+- Updated Form, List, and Search views to include the Sale Order link.
+- Added "Sale Order / Subscription" grouping to the search view.
+
+## [19.2.01] - 2026-02-22
+### Changed
+- Moved `subscription_number` field in the form view to be positioned directly under the `vendor_id` field.
+
+## [19.1.10] - 2026-02-22
+### Fixed
+- Fixed `TypeError: PartnerAsset._read_group_stage_ids() missing 1 required positional argument: 'order'` in Odoo 19. The signature was updated to `(self, stages, domain)` as Odoo 19 no longer passes the `order` parameter to `group_expand` methods.
+
+## [19.1.09] - 2026-02-22
+### Fixed
+- Fixed issue where Kanban board appeared empty ("No stages yet") upon reinstallation.
+- Implemented `_read_group_stage_ids` and `group_expand` on `stage_id` to ensure all stages are always visible as columns in Kanban view.
+- Changed `noupdate="0"` for default stages to ensure they are correctly re-initialized during module upgrades/reinstalls.
+
+## [19.1.08] - 2026-02-22
+### Changed
+- Updated Kanban view to ensure all stages are visible by enabling `group_create="true"` and `group_edit="true"`.
+- Ensured default stages are not folded by default to improve visibility.
+
+## [19.1.07] - 2026-02-22
+### Changed
+- Redesigned Kanban cards to match Odoo CRM pipeline style (using `oe_kanban_content`, `o_kanban_record_top`, `o_kanban_record_body`, etc.).
+- Improved layout for Asset Name, Customer, Type, and End Date on cards.
+
+## [19.1.06] - 2026-02-22
+### Added
+- Added `end_date` field to the Kanban card view.
+
+## [19.1.05] - 2026-02-22
+### Added
+- Migrated existing assets to the new dynamic stages (Running, To Renew, Closed) based on their current status.
+- Reinforced default stage logic for new assets.
+
+## [19.1.04] - 2026-02-22
+### Added
+- New model `partner.asset.stage` for dynamic asset lifecycle management.
+- Dynamic Status Bar and Kanban grouping based on user-defined Stages.
+- Initial stages: **Running**, **To Renew**, and **Closed** (Folded).
+- New "Configuration" menu with "Asset Stages" management view.
+- Updated Expiry Notification cron to move assets to the "To Renew" stage.
+
+## [19.1.03] - 2026-02-22
+### Fixed
+- Attempted fix for app icon not loading in Odoo 19 Apps menu by bumping version and forcing registry refresh.
+- Verified icon file existence and path in Odoo container.
+
+## [19.1.02] - 2026-02-22
+### Fixed
+- Fixed Kanban view error `Missing 'card' template`.
+- Updated Kanban view to use the modern `card` template required by Odoo 19.
+
+## [19.1.01] - 2026-02-22
+### Added
+- Added Kanban view as the default view (similar to CRM pipeline).
+- Added Pivot and Graph views for advanced asset analysis.
+- Enabled `kanban,list,form,pivot,graph` view modes in the main action.
+- Configured Kanban to group by `state` (Running, To Renew, Closed) by default.
+- Added `remaining_days` widget to expiry date in Kanban cards.
+
+## [19.0.10] - 2026-02-22
+### Added
+- Added `expiry_date` calculation logic (defaults to 1 month before `end_date`).
+- Implemented daily scheduled action (cron) to send expiry notifications.
+- Added automatic activity creation and chatter notification for assets reaching `expiry_date`.
+- Added automatic state change to 'To Renew' when notification is sent.
+
+## [19.0.09] - 2026-02-22
+### Added
+- Added "eye" icon to show/hide password fields in the form view.
+- Added `show_password` and `show_password2` boolean fields to track visibility state.
+- Implemented Python methods to toggle password visibility.
+- Improved "Login Details" and "Odoo Portal Login Details" layout with inline show/hide buttons.
+
+## [19.0.08] - 2026-02-22
+### Added
+- Added "Open" button next to URL / Link fields in the form view.
+- Ensured "Open" buttons launch the link in a new browser tab.
+- Verified `static/description/icon.png` is correctly applied (Standardized for App Store).
+- Fixed minor layout alignment for date fields and responsible user.
+- Documented recent layout changes in the version history.
+
+## [19.0.07] - 2026-02-22
+### Added
+- Implemented automatic versioning policy (Revised: 50 changes = 1.1.xx bump, current: 1.0.xx).
+- Documented current changes in the new versioned format.
+- Moved `start_date` and `end_date` above `user_id` (Responsible User) in the form view.
+- Ensured `static/description/icon.png` is used for both the app store and the Odoo Apps menu.
+- Updated field grouping in the form view to align with user layout preferences.
+
+## [19.0.06] - 2026-02-22
+### Added
+- Added `state` (Status) field to `partner.asset` with values: Running, To Renew, Closed.
+- Added status bar to the form view (clickable for quick state changes).
+- Added status badge to the list view with color coding.
+- Added "Status" grouping and filters (Running, To Renew, Closed) to the search view.
+- Added "Assets" and "Expiring Soon" smart buttons to the `res.partner` form view.
+
+## [19.0.05] - 2026-02-22
+### Added
+- Added `password` field (masked) to `partner.asset`.
+- Renamed `url` label to "URL / Link".
+- Added `url2`, `login_email2`, and `password2` fields for secondary login details.
+- Added conditional visibility for login details (`invisible="not type"`).
+- Added `subscription_number`, `start_date`, and `end_date` fields.
+
+## [19.0.04] - 2026-02-22
+### Added
+- Integration with `res_partner`: Computed fields `asset_count` and `expiring_soon_count`.
+- Added search view with "Expired" filter and grouping (Customer, Type, Vendor).
+- Added `vendor_id` and `user_id` (Responsible User) fields.
+- Added `notes` and `attachment_ids` (Contracts/Configs) to the form view.
+- Added Chatter integration for activity tracking.
+
+## [19.0.03] - 2026-02-22
+### Added
+- Created the initial Odoo 19 module `ts_partner_app`.
+- Defined the `partner.asset` model structure and base fields.
+- Created List, Form, and Search views for the asset model.
+- Added `static/description/icon.png` dummy app icon.
+- Configured security access rights in `ir.model.access.csv`.
+
+## [19.0.02] - 2026-02-22
+### Fixed
+- Fixed form view chatter widget rendering for Odoo 19.
+- Fixed search view XML validation (simplified grouping).
+- Fixed module versioning compatibility (1.0 vs 19.0.1.0).
+- Fixed conditional visibility for login details.
+- Updated "Assets" smart button on `res.partner` to be hidden when the asset count is 0.
+
+## [19.0.01] - 2026-02-22
+- Initial version created.

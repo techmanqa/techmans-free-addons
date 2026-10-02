@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="infrastructure_command_wizard_form" model="ir.ui.view">
+        <field name="name">partner.infrastructure.command.wizard.form</field>
+        <field name="model">partner.infrastructure.command.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Run Command">
+                <group>
+                    <field name="infrastructure_id"/>
+                    <field name="command" placeholder="e.g. uptime"/>
+                </group>
+                <field name="output" widget="text" nolabel="1" readonly="1"
+                       placeholder="Command output appears here..."/>
+                <footer>
+                    <button name="action_run" type="object" string="Run" class="btn-primary"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

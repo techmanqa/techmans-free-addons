@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="mail_template_asset_expiry" model="mail.template">
+            <field name="name">Odoo Clients 360: Asset Expiry Reminder</field>
+            <field name="model_id" ref="model_partner_asset"/>
+            <field name="subject">Asset expiring soon: {{ object.name }}</field>
+            <field name="partner_to">{{ object.user_id.partner_id.id }}</field>
+            <field name="body_html" type="html">
+<div style="margin:0px;padding:0px;font-size:14px;">
+    <p>Hello <t t-out="object.user_id.name or ''"/>,</p>
+    <p>
+        The asset <strong t-out="object.name"/>
+        (<t t-out="dict(object._fields['type']._description_selection(object.env)).get(object.type, object.type)"/>)
+        for customer <strong t-out="object.partner_id.name or ''"/> is approaching its end date.
+    </p>
+    <ul>
+        <li>End date: <t t-out="object.end_date or ''"/></li>
+        <li>Monthly billing: <t t-out="object.monthly_billing_client or 0"/> <t t-out="object.currency_id.name or ''"/></li>
+    </ul>
+    <p>Please handle the renewal in time.</p>
+</div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="mail_template_asset_expiry_client" model="mail.template">
+            <field name="name">Odoo Clients 360: Client Renewal Reminder</field>
+            <field name="model_id" ref="model_partner_asset"/>
+            <field name="subject">Your {{ object.name }} is expiring soon — action needed</field>
+            <field name="email_to">{{ object.partner_id.email or '' }}</field>
+            <field name="body_html" type="html">
+<div style="margin:0px;padding:0px;font-size:14px;">
+    <p>Hello <t t-out="object.partner_id.name or ''"/>,</p>
+    <p>
+        This is a reminder that your
+        <strong t-out="dict(object._fields['type']._description_selection(object.env)).get(object.type, object.type)"/>
+        <strong t-out="object.name"/> is due to expire on
+        <strong t-out="object.end_date or ''"/>.
+    </p>
+    <p>
+        Please get in touch or let us know if you'd like to renew, so we can make sure
+        there's no interruption to your service.
+    </p>
+    <p>
+        <a t-attf-href="#{object.get_base_url()}/my/assets/#{object.id}"
+           style="background-color:#875A7B;color:#ffffff;padding:8px 16px;text-decoration:none;border-radius:3px;">
+            View &amp; Request Renewal
+        </a>
+    </p>
+    <p>Thank you for your business.</p>
+</div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_asset_view_kanban" model="ir.ui.view">
+        <field name="name">partner.asset.kanban</field>
+        <field name="model">partner.asset</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage_id" quick_create="false" class="o_kanban_small_column" records_draggable="true" group_create="true" group_edit="true" highlight_color="color">
+                <field name="color"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="type"/>
+                <field name="end_date"/>
+                <field name="expiry_date"/>
+                <field name="user_id"/>
+                <field name="risk_level"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_content">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+                                <span t-if="record.risk_level.raw_value == 'high'"
+                                      class="badge text-bg-danger" title="High Risk">
+                                    <i class="fa fa-exclamation-triangle"/> High Risk
+                                </span>
+                            </div>
+                            <div class="o_kanban_record_body">
+                                <div>
+                                    <field name="partner_id"/>
+                                </div>
+                                <div class="text-muted">
+                                    <field name="type"/>
+                                </div>
+                                <div t-if="record.end_date.raw_value" class="text-muted">
+                                    End Date: <field name="end_date"/>
+                                </div>
+                            </div>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <div class="o_kanban_record_bottom mt-2">
+                                <div class="oe_kanban_bottom_left">
+                                    <field name="expiry_date" widget="remaining_days"/>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <field name="user_id" widget="many2one_avatar_user"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="partner_asset_view_tree" model="ir.ui.view">
+        <field name="name">partner.asset.tree</field>
+        <field name="model">partner.asset</field>
+        <field name="arch" type="xml">
+            <list string="Partner Assets">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="type"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="project_start_date" optional="hide"/>
+                <field name="project_end_date" optional="hide"/>
+                <field name="expiry_date"/>
+                <field name="sale_order_id" optional="show"/>
+                <field name="campaign_id" optional="hide"/>
+                <field name="stage_id" widget="badge"/>
+                <field name="state" widget="badge" decoration-info="state == 'new'" decoration-success="state == 'running'" decoration-warning="state == 'to_renew'" decoration-muted="state == 'closed'" optional="hide"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="monthly_billing_client" widget="monetary" sum="Total MRR" optional="show"/>
+                <field name="infra_monthly_cost" widget="monetary" sum="Total Cost" optional="hide"/>
+                <field name="gross_margin" decoration-success="gross_margin &gt; 0" decoration-danger="gross_margin &lt; 0" widget="monetary" sum="Total Margin"/>
+                <field name="user_id" widget="many2one_avatar_user"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="partner_asset_view_form" model="ir.ui.view">
+        <field name="name">partner.asset.form</field>
+        <field name="model">partner.asset</field>
+        <field name="arch" type="xml">
+            <form string="Partner Asset">
+                <sheet>
+                    <header>
+                        <button name="action_create_sale_offer" type="object"
+                                string="Create Sale Offer" class="btn-primary"
+                                invisible="state != 'new'"
+                                help="Pick from the service products created by Configuration &gt; Import Products and generate a quotation for this client."/>
+                        <button name="action_create_client_project" type="object"
+                                string="New Client Project"
+                                invisible="state != 'running'"
+                                help="Open (or create) a dedicated project for this client — for a real multi-task engagement like onboarding or a migration, as opposed to a single follow-up task."/>
+                        <button name="action_create_invoice" type="object"
+                                string="Create Invoice" class="btn-primary"
+                                invisible="state != 'running'"
+                                help="Create a draft Sale Order for one-off billing — project work or ad-hoc maintenance, as opposed to a recurring renewal."/>
+                        <button name="action_create_renewal_order" type="object"
+                                string="Create Renewal Quote" class="btn-primary"
+                                invisible="state != 'to_renew'"
+                                help="Create a draft Sale Order for the renewal of this asset."/>
+                        <button name="action_link_existing_tasks" type="object"
+                                string="Link Existing Tasks" invisible="not id"
+                                help="Attach existing project tasks to this client asset."/>
+                        <field name="stage_id" widget="statusbar" options="{'clickable': '1'}"/>
+                    </header>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_infrastructure" type="object" class="oe_stat_button" icon="fa-server"
+                                invisible="partner_infrastructure_count == 0">
+                            <field name="partner_infrastructure_count" widget="statinfo" string="Infrastructure"/>
+                        </button>
+                        <button name="action_view_environments" type="object" class="oe_stat_button" icon="fa-cubes"
+                                invisible="not id">
+                            <field name="environment_count" widget="statinfo" string="Environments"/>
+                        </button>
+                        <button name="action_view_tasks" type="object" class="oe_stat_button" icon="fa-tasks"
+                                invisible="task_count == 0">
+                            <field name="task_count" widget="statinfo" string="Tasks"/>
+                        </button>
+                        <button name="action_open_client_project" type="object" class="oe_stat_button" icon="fa-folder-open"
+                                invisible="not client_project_id">
+                            <field name="client_project_id" invisible="1"/>
+                            <field name="client_project_task_count" widget="statinfo" string="Project Tasks"/>
+                        </button>
+                        <button name="action_view_invoices" type="object" class="oe_stat_button" icon="fa-file-text-o"
+                                invisible="invoice_count == 0">
+                            <field name="invoice_count" widget="statinfo" string="Invoices"/>
+                        </button>
+                        <button name="action_view_actual_moves" type="object" class="oe_stat_button" icon="fa-balance-scale"
+                                invisible="actual_move_count == 0"
+                                groups="ts_partner_app.group_partner_asset_manager">
+                            <field name="actual_move_count" widget="statinfo" string="Invoices &amp; Bills"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Auto-filled from Customer"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <label for="subscription_number"/>
+                            <div class="o_row">
+                                <field name="subscription_number" password="True" invisible="show_subscription_number"/>
+                                <field name="subscription_number" invisible="not show_subscription_number"/>
+                                <field name="show_subscription_number" invisible="1"/>
+                                <button name="toggle_subscription_number" type="object" icon="fa-eye" title="Show Subscription Number" invisible="show_subscription_number" class="btn btn-link"/>
+                                <button name="toggle_subscription_number" type="object" icon="fa-eye-slash" title="Hide Subscription Number" invisible="not show_subscription_number" class="btn btn-link"/>
+                            </div>
+                            <field name="license_count"/>
+                            <field name="sale_order_id"/>
+                            <field name="has_project" widget="radio" options="{'horizontal': true}"/>
+                            <field name="project_id" invisible="has_project != 'yes'"/>
+                            <field name="type" widget="radio" options="{'horizontal': true}"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="campaign_id"/>
+                        </group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="subscription_term"/>
+                            <field name="end_date"/>
+                            <field name="project_start_date" invisible="has_project != 'yes'"/>
+                            <field name="project_end_date" invisible="has_project != 'yes'"/>
+                            <field name="reminder_days"/>
+                            <field name="notify_client_on_expiry"/>
+                            <field name="renewal_period"/>
+                            <field name="expiry_date"/>
+                            <field name="user_id" widget="many2one_avatar_user"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Client Technical Contacts" name="technical_contacts">
+                            <group>
+                                <group>
+                                    <field name="client_it_contact" domain="[('parent_id', '=', partner_id)]"/>
+                                    <field name="decision_maker_contact" domain="[('parent_id', '=', partner_id)]"/>
+                                    <field name="emergency_contact" domain="[('parent_id', '=', partner_id)]"/>
+                                    <field name="emergency_contact_phone"/>
+                                </group>
+                                <group>
+                                    <field name="escalation_path"
+                                           placeholder="Who to contact and in what order if the primary IT contact is unreachable during an incident..."/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="License Cost" name="license_cost">
+                            <field name="currency_id" invisible="1"/>
+                            <field name="license_currency_rate_missing" invisible="1"/>
+                            <div class="alert alert-warning" role="alert"
+                                 invisible="not license_currency_rate_missing">
+                                The License Currency differs from this asset's currency but no
+                                exchange rate is configured — the converted amounts below fall
+                                back to 1:1. Set up rates in <b>Configuration › Settings</b>
+                                (Currency Conversion).
+                            </div>
+                            <group>
+                                <group string="License Pricing">
+                                    <field name="license_currency_id"/>
+                                    <label for="license_cost"/>
+                                    <div class="o_row">
+                                        <field name="license_cost" widget="monetary" options="{'currency_field': 'license_currency_id'}"/>
+                                        <span class="text-muted">
+                                            / user / year &#215; <field name="license_count" nolabel="1" class="oe_inline"/> user(s)
+                                        </span>
+                                    </div>
+                                    <field name="license_cost_billed" widget="boolean_toggle"/>
+                                </group>
+                                <group string="Computed Totals">
+                                    <field name="license_cost_total" widget="monetary" options="{'currency_field': 'license_currency_id'}" readonly="1" force_save="1"/>
+                                    <field name="license_monthly_cost_currency" widget="monetary" options="{'currency_field': 'license_currency_id'}" readonly="1" force_save="1"
+                                           invisible="not license_currency_id or license_currency_id == currency_id"/>
+                                    <field name="license_cost_total_local" widget="monetary" readonly="1" force_save="1"/>
+                                    <field name="license_monthly_cost" widget="monetary" readonly="1" force_save="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Cost &amp; Margin" name="cost_margin">
+                            <group>
+                                <group string="Monthly Cost Breakdown">
+                                    <field name="server_cost" widget="monetary"/>
+                                    <field name="server_cost_billed" widget="boolean_toggle"/>
+                                    <field name="license_monthly_cost" widget="monetary" readonly="1" force_save="1"
+                                           help="Set on the License Cost tab. Included below only when 'Billed by Us' is on there."/>
+                                    <field name="license_cost_billed" widget="boolean_toggle" readonly="1"/>
+                                    <field name="backup_cost" widget="monetary"/>
+                                    <field name="backup_cost_billed" widget="boolean_toggle"/>
+                                    <field name="maintenance_cost" widget="monetary"/>
+                                    <field name="maintenance_cost_billed" widget="boolean_toggle"/>
+                                    <field name="external_services_cost" widget="monetary"/>
+                                    <field name="external_services_cost_billed" widget="boolean_toggle"/>
+                                    <separator/>
+                                    <field name="infra_monthly_cost" widget="monetary" readonly="1" force_save="1"/>
+                                </group>
+                                <group string="Billing &amp; Margin">
+                                    <field name="monthly_billing_client" widget="monetary"/>
+                                    <field name="gross_margin" widget="monetary" decoration-success="gross_margin &gt; 0" decoration-danger="gross_margin &lt; 0"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Actuals" name="actuals" groups="ts_partner_app.group_partner_asset_manager">
+                            <div class="alert alert-info" role="alert">
+                                Tag customer invoices and vendor bills to this asset (field
+                                <b>Client Asset</b> on the invoice, or the <b>Link Invoices &amp; Bills</b>
+                                button) to total the real revenue and cost for the period. One-off
+                                work (e.g. an implementation invoice) is counted as-is, not per month.
+                                For the whole client see <b>Client Actuals</b> on the customer.
+                            </div>
+                            <group>
+                                <group string="Period">
+                                    <field name="actuals_period"/>
+                                    <field name="actuals_date_from" readonly="actuals_period != 'custom'"/>
+                                    <field name="actuals_date_to" readonly="actuals_period != 'custom'"/>
+                                    <field name="actual_move_count" readonly="1"/>
+                                </group>
+                                <group string="Totals for the period">
+                                    <field name="actual_revenue" widget="monetary" readonly="1"/>
+                                    <field name="actual_revenue_total" widget="monetary" readonly="1"/>
+                                    <field name="actual_cost" widget="monetary" readonly="1"/>
+                                    <field name="actual_cost_total" widget="monetary" readonly="1"/>
+                                    <field name="actual_margin" widget="monetary" readonly="1"
+                                           decoration-success="actual_margin &gt; 0" decoration-danger="actual_margin &lt; 0"/>
+                                    <field name="actual_margin_total" widget="monetary" readonly="1"
+                                           decoration-success="actual_margin_total &gt; 0" decoration-danger="actual_margin_total &lt; 0"/>
+                                </group>
+                            </group>
+                            <separator string="Linked Invoices &amp; Bills"/>
+                            <button name="action_link_moves" type="object" class="btn-link" icon="fa-link"
+                                    string="Link Invoices &amp; Bills"/>
+                            <field name="actual_move_ids" nolabel="1" readonly="1">
+                                <list>
+                                    <field name="invoice_date"/>
+                                    <field name="name"/>
+                                    <field name="move_type"/>
+                                    <field name="partner_id"/>
+                                    <field name="amount_untaxed" widget="monetary"/>
+                                    <field name="amount_total" widget="monetary"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                    <field name="state" widget="badge"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="notes" placeholder="Additional information..." widget="text"/>
+                        </page>
+                        <page string="Attachments" name="attachments">
+                            <field name="attachment_ids" widget="many2many_binary"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="partner_asset_view_search" model="ir.ui.view">
+        <field name="name">partner.asset.search</field>
+        <field name="model">partner.asset</field>
+        <field name="arch" type="xml">
+            <search string="Search Partner Assets">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="type"/>
+                <field name="state"/>
+                <field name="stage_id"/>
+                <field name="sale_order_id"/>
+                <field name="campaign_id"/>
+                <field name="tag_ids"/>
+                <filter string="Expired" name="expired" domain="[('expiry_date', '&lt;', context_today())]"/>
+                <filter string="Expiring in 30 Days" name="expiring_soon"
+                        domain="[('expiry_date', '&gt;=', context_today()), ('expiry_date', '&lt;=', context_today() + relativedelta(days=30))]"/>
+                <separator/>
+                <filter string="Project Started" name="project_started"
+                        domain="[('project_start_date', '&lt;=', context_today())]"/>
+                <filter string="Project Ended" name="project_ended"
+                        domain="[('project_end_date', '&lt;', context_today())]"/>
+                <filter string="Project Ending in 30 Days" name="project_ending_soon"
+                        domain="[('project_end_date', '&gt;=', context_today()), ('project_end_date', '&lt;=', context_today() + relativedelta(days=30))]"/>
+                <separator/>
+                <filter string="New" name="new" domain="[('state', '=', 'new')]"/>
+                <filter string="Running" name="running" domain="[('state', '=', 'running')]"/>
+                <filter string="To Renew" name="to_renew" domain="[('state', '=', 'to_renew')]"/>
+                <filter string="Closed" name="closed" domain="[('state', '=', 'closed')]"/>
+                <separator/>
+                <filter string="Customer" name="group_partner" context="{'group_by': 'partner_id'}"/>
+                <filter string="Type" name="group_type" context="{'group_by': 'type'}"/>
+                <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                <filter string="Stage" name="group_stage" context="{'group_by': 'stage_id'}"/>
+                <filter string="Tags" name="group_tags" context="{'group_by': 'tag_ids'}"/>
+                <filter string="Sale Order / Subscription" name="group_sale" context="{'group_by': 'sale_order_id'}"/>
+                <filter string="Campaign" name="group_campaign" context="{'group_by': 'campaign_id'}"/>
+                <filter string="Project Start Date" name="group_project_start" context="{'group_by': 'project_start_date'}"/>
+                <filter string="Project End Date" name="group_project_end" context="{'group_by': 'project_end_date'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="partner_asset_view_pivot" model="ir.ui.view">
+        <field name="name">partner.asset.pivot</field>
+        <field name="model">partner.asset</field>
+        <field name="arch" type="xml">
+            <pivot string="Asset Analysis">
+                <field name="partner_id" type="row"/>
+                <field name="type" type="col"/>
+                <field name="stage_id" type="col"/>
+                <field name="monthly_billing_client" type="measure"/>
+                <field name="infra_monthly_cost" type="measure"/>
+                <field name="gross_margin" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="partner_asset_view_graph" model="ir.ui.view">
+        <field name="name">partner.asset.graph</field>
+        <field name="model">partner.asset</field>
+        <field name="arch" type="xml">
+            <graph string="Asset Analysis" type="bar">
+                <field name="type"/>
+                <field name="stage_id"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="partner_asset_view_calendar" model="ir.ui.view">
+        <field name="name">partner.asset.calendar</field>
+        <field name="model">partner.asset</field>
+        <field name="arch" type="xml">
+            <calendar string="Asset Expiries" date_start="end_date" color="partner_id" mode="month"
+                      event_open_popup="true" quick_create="0">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="type"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Financial Overview (Dashboard) -->
+    <record id="partner_asset_view_pivot_finance" model="ir.ui.view">
+        <field name="name">partner.asset.pivot.finance</field>
+        <field name="model">partner.asset</field>
+        <field name="arch" type="xml">
+            <pivot string="Financial Overview" sample="1">
+                <field name="partner_id" type="row"/>
+                <field name="monthly_billing_client" type="measure"/>
+                <field name="infra_monthly_cost" type="measure"/>
+                <field name="license_monthly_cost" type="measure"/>
+                <field name="maintenance_cost" type="measure"/>
+                <field name="gross_margin" type="measure"/>
+                <field name="margin_pct" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="partner_asset_view_graph_finance" model="ir.ui.view">
+        <field name="name">partner.asset.graph.finance</field>
+        <field name="model">partner.asset</field>
+        <field name="arch" type="xml">
+            <graph string="Financial Overview" type="bar" stacked="0" sample="1">
+                <field name="partner_id"/>
+                <field name="monthly_billing_client" type="measure"/>
+                <field name="license_monthly_cost" type="measure"/>
+                <field name="maintenance_cost" type="measure"/>
+                <field name="gross_margin" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="partner_asset_action_finance" model="ir.actions.act_window">
+        <field name="name">Financial Overview</field>
+        <field name="res_model">partner.asset</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'pivot', 'view_id': ref('partner_asset_view_pivot_finance')}),
+            (0, 0, {'view_mode': 'graph', 'view_id': ref('partner_asset_view_graph_finance')})]"/>
+        <field name="search_view_id" ref="partner_asset_view_search"/>
+        <field name="context">{'search_default_running': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No financial data yet
+            </p>
+            <p>
+                Fill in monthly billing and infrastructure costs on your assets to see MRR, total cost and gross margin per customer.
+            </p>
+        </field>
+    </record>
+
+    <record id="partner_asset_action" model="ir.actions.act_window">
+        <field name="name">Odoo Clients 360</field>
+        <field name="res_model">partner.asset</field>
+        <field name="view_mode">kanban,list,form,calendar,pivot,graph</field>
+        <field name="search_view_id" ref="partner_asset_view_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Track your client-related assets!
+            </p>
+            <p>
+                Manage domains, hosting, Odoo.sh, and more in one place.
+            </p>
+        </field>
+    </record>
+
+    <record id="partner_asset_action_dashboard" model="ir.actions.client">
+        <field name="name">Dashboard</field>
+        <field name="tag">ts_partner_app.dashboard</field>
+    </record>
+
+    <menuitem id="partner_asset_menu_root"
+              name="Odoo Clients 360"
+              web_icon="ts_partner_app,static/description/icon.png"
+              groups="ts_partner_app.group_partner_asset_user"
+              sequence="10"/>
+
+    <menuitem id="partner_asset_menu_dashboard_owl"
+              name="Dashboard"
+              parent="partner_asset_menu_root"
+              action="partner_asset_action_dashboard"
+              sequence="5"/>
+
+    <menuitem id="partner_asset_menu_assets"
+              name="Clients"
+              parent="partner_asset_menu_root"
+              action="partner_asset_action"
+              sequence="10"/>
+
+    <menuitem id="partner_asset_menu_dashboard"
+              name="Financial Overview"
+              parent="partner_asset_menu_root"
+              action="partner_asset_action_finance"
+              sequence="20"/>
+
+    <menuitem id="partner_asset_menu_config"
+              name="Configuration"
+              parent="partner_asset_menu_root"
+              groups="ts_partner_app.group_partner_asset_manager"
+              sequence="100"/>
+
+    <menuitem id="partner_asset_menu_stages"
+              name="Client Stages"
+              parent="partner_asset_menu_config"
+              action="partner_asset_stage_action"
+              sequence="10"/>
+</odoo>

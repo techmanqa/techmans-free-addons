@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="odoo_version_view_tree" model="ir.ui.view">
+        <field name="name">odoo.version.tree</field>
+        <field name="model">odoo.version</field>
+        <field name="arch" type="xml">
+            <list string="Odoo Versions" editable="bottom" default_order="sequence desc">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="end_of_support"/>
+                <field name="note"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="odoo_version_view_form" model="ir.ui.view">
+        <field name="name">odoo.version.form</field>
+        <field name="model">odoo.version</field>
+        <field name="arch" type="xml">
+            <form string="Odoo Version">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="sequence"/>
+                        <field name="end_of_support"/>
+                        <field name="note"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="odoo_version_view_search" model="ir.ui.view">
+        <field name="name">odoo.version.search</field>
+        <field name="model">odoo.version</field>
+        <field name="arch" type="xml">
+            <search string="Odoo Versions">
+                <field name="name"/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="odoo_version_action" model="ir.actions.act_window">
+        <field name="name">Odoo Versions</field>
+        <field name="res_model">odoo.version</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add an Odoo version!
+            </p>
+            <p>
+                This is the catalog offered on the asset's "Current Odoo Version" and
+                "Latest Available Version" fields. Ships with 10.0 through 19.0 — add
+                new series here as Odoo releases them.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="partner_asset_menu_odoo_versions"
+              name="Odoo Versions"
+              parent="partner_asset_menu_config"
+              action="odoo_version_action"
+              sequence="26"/>
+</odoo>
